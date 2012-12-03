@@ -1,0 +1,1611 @@
+Model {
+  Name			  "HoppingLEG"
+  Version		  7.7
+  MdlSubVersion		  0
+  GraphicalInterface {
+    NumRootInports	    0
+    NumRootOutports	    0
+    ParameterArgumentNames  ""
+    ComputedModelVersion    "1.225"
+    NumModelReferences	    0
+    NumTestPointedSignals   0
+  }
+  SavedCharacterEncoding  "windows-1250"
+  slprops.hdlmdlprops {
+    $PropName		    "HDLParams"
+    $ObjectID		    1
+    Array {
+      Type		      "Cell"
+      Dimension		      2
+      Cell		      "HDLSubsystem"
+      Cell		      "HoppingLEG"
+      PropName		      "mdlProps"
+    }
+  }
+  SaveDefaultBlockParams  on
+  ScopeRefreshTime	  0.035000
+  OverrideScopeRefreshTime on
+  DisableAllScopes	  off
+  DataTypeOverride	  "UseLocalSettings"
+  DataTypeOverrideAppliesTo "AllNumericTypes"
+  MinMaxOverflowLogging	  "UseLocalSettings"
+  MinMaxOverflowArchiveMode "Overwrite"
+  MaxMDLFileLineLength	  120
+  Created		  "Thu Oct 25 12:24:52 2012"
+  Creator		  "Alan Mutka"
+  UpdateHistory		  "UpdateHistoryNever"
+  ModifiedByFormat	  "%<Auto>"
+  LastModifiedBy	  "Alan Mutka"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Tue Nov 27 12:21:43 2012"
+  RTWModifiedTimeStamp	  275912559
+  ModelVersionFormat	  "1.%<AutoIncrement:225>"
+  ConfigurationManager	  "None"
+  SampleTimeColors	  off
+  SampleTimeAnnotations	  off
+  LibraryLinkDisplay	  "none"
+  WideLines		  off
+  ShowLineDimensions	  off
+  ShowPortDataTypes	  off
+  ShowLoopsOnError	  on
+  IgnoreBidirectionalLines off
+  ShowStorageClass	  off
+  ShowTestPointIcons	  on
+  ShowSignalResolutionIcons on
+  ShowViewerIcons	  on
+  SortedOrder		  off
+  ExecutionContextIcon	  off
+  ShowLinearizationAnnotations on
+  BlockNameDataTip	  off
+  BlockParametersDataTip  off
+  BlockDescriptionStringDataTip	off
+  ToolBar		  on
+  StatusBar		  on
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks	  off
+  SimulationMode	  "normal"
+  LinearizationMsg	  "none"
+  Profile		  off
+  ParamWorkspaceSource	  "MATLABWorkspace"
+  AccelSystemTargetFile	  "accel.tlc"
+  AccelTemplateMakefile	  "accel_default_tmf"
+  AccelMakeCommand	  "make_rtw"
+  TryForcingSFcnDF	  off
+  Object {
+    $PropName		    "DataLoggingOverride"
+    $ObjectID		    2
+    $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
+    model_		    "HoppingLEG"
+    signals_		    []
+    overrideMode_	    [0.0]
+    Array {
+      Type		      "Cell"
+      Dimension		      1
+      Cell		      "HoppingLEG"
+      PropName		      "logAsSpecifiedByModels_"
+    }
+    Array {
+      Type		      "Cell"
+      Dimension		      1
+      Cell		      []
+      PropName		      "logAsSpecifiedByModelsSSIDs_"
+    }
+  }
+  RecordCoverage	  off
+  CovPath		  "/"
+  CovSaveName		  "covdata"
+  CovMetricSettings	  "dw"
+  CovNameIncrementing	  off
+  CovHtmlReporting	  on
+  CovForceBlockReductionOff on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeVarName	  "covCumulativeData"
+  CovCumulativeReport	  off
+  CovReportOnPause	  on
+  CovModelRefEnable	  "Off"
+  CovExternalEMLEnable	  off
+  ExtModeBatchMode	  off
+  ExtModeEnableFloating	  on
+  ExtModeTrigType	  "manual"
+  ExtModeTrigMode	  "normal"
+  ExtModeTrigPort	  "1"
+  ExtModeTrigElement	  "any"
+  ExtModeTrigDuration	  1000
+  ExtModeTrigDurationFloating "auto"
+  ExtModeTrigHoldOff	  0
+  ExtModeTrigDelay	  0
+  ExtModeTrigDirection	  "rising"
+  ExtModeTrigLevel	  0
+  ExtModeArchiveMode	  "off"
+  ExtModeAutoIncOneShot	  off
+  ExtModeIncDirWhenArm	  off
+  ExtModeAddSuffixToVar	  off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect	  on
+  ExtModeSkipDownloadWhenConnect off
+  ExtModeLogAll		  on
+  ExtModeAutoUpdateStatusClock on
+  BufferReuse		  on
+  ShowModelReferenceBlockVersion off
+  ShowModelReferenceBlockIO off
+  Array {
+    Type		    "Handle"
+    Dimension		    1
+    Simulink.ConfigSet {
+      $ObjectID		      3
+      Version		      "1.11.0"
+      Array {
+	Type			"Handle"
+	Dimension		9
+	Simulink.SolverCC {
+	  $ObjectID		  4
+	  Version		  "1.11.0"
+	  StartTime		  "0.0"
+	  StopTime		  "inf"
+	  AbsTol		  "auto"
+	  FixedStep		  "0.001"
+	  InitialStep		  "auto"
+	  MaxNumMinSteps	  "-1"
+	  MaxOrder		  5
+	  ZcThreshold		  "auto"
+	  ConsecutiveZCsStepRelTol "10*128*eps"
+	  MaxConsecutiveZCs	  "1000"
+	  ExtrapolationOrder	  4
+	  NumberNewtonIterations  1
+	  MaxStep		  "auto"
+	  MinStep		  "auto"
+	  MaxConsecutiveMinStep	  "1"
+	  RelTol		  "1e-3"
+	  SolverMode		  "Auto"
+	  ConcurrentTasks	  off
+	  Solver		  "ode3"
+	  SolverName		  "ode3"
+	  SolverJacobianMethodControl "auto"
+	  ShapePreserveControl	  "DisableAll"
+	  ZeroCrossControl	  "UseLocalSettings"
+	  ZeroCrossAlgorithm	  "Nonadaptive"
+	  AlgebraicLoopSolver	  "TrustRegion"
+	  SolverResetMethod	  "Fast"
+	  PositivePriorityOrder	  off
+	  AutoInsertRateTranBlk	  off
+	  SampleTimeConstraint	  "Unconstrained"
+	  InsertRTBMode		  "Whenever possible"
+	}
+	Simulink.DataIOCC {
+	  $ObjectID		  5
+	  Version		  "1.11.0"
+	  Decimation		  "1"
+	  ExternalInput		  "[t, u]"
+	  FinalStateName	  "xFinal"
+	  InitialState		  "xInitial"
+	  LimitDataPoints	  on
+	  MaxDataPoints		  "1000"
+	  LoadExternalInput	  off
+	  LoadInitialState	  off
+	  SaveFinalState	  off
+	  SaveCompleteFinalSimState off
+	  SaveFormat		  "Array"
+	  SignalLoggingSaveFormat "ModelDataLogs"
+	  SaveOutput		  on
+	  SaveState		  off
+	  SignalLogging		  on
+	  DSMLogging		  on
+	  InspectSignalLogs	  off
+	  SaveTime		  on
+	  ReturnWorkspaceOutputs  off
+	  StateSaveName		  "xout"
+	  TimeSaveName		  "tout"
+	  OutputSaveName	  "yout"
+	  SignalLoggingName	  "logsout"
+	  DSMLoggingName	  "dsmout"
+	  OutputOption		  "RefineOutputTimes"
+	  OutputTimes		  "[]"
+	  ReturnWorkspaceOutputsName "out"
+	  Refine		  "1"
+	}
+	Simulink.OptimizationCC {
+	  $ObjectID		  6
+	  Version		  "1.11.0"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    8
+	    Cell		    "BooleansAsBitfields"
+	    Cell		    "PassReuseOutputArgsAs"
+	    Cell		    "PassReuseOutputArgsThreshold"
+	    Cell		    "ZeroExternalMemoryAtStartup"
+	    Cell		    "ZeroInternalMemoryAtStartup"
+	    Cell		    "OptimizeModelRefInitCode"
+	    Cell		    "NoFixptDivByZeroProtection"
+	    Cell		    "UseSpecifiedMinMax"
+	    PropName		    "DisabledProps"
+	  }
+	  BlockReduction	  on
+	  BooleanDataType	  on
+	  ConditionallyExecuteInputs on
+	  InlineParams		  off
+	  UseIntDivNetSlope	  off
+	  UseSpecifiedMinMax	  off
+	  InlineInvariantSignals  off
+	  OptimizeBlockIOStorage  on
+	  BufferReuse		  on
+	  EnhancedBackFolding	  off
+	  StrengthReduction	  off
+	  ExpressionFolding	  on
+	  BooleansAsBitfields	  off
+	  BitfieldContainerType	  "uint_T"
+	  EnableMemcpy		  on
+	  MemcpyThreshold	  64
+	  PassReuseOutputArgsAs	  "Structure reference"
+	  ExpressionDepthLimit	  2147483647
+	  FoldNonRolledExpr	  on
+	  LocalBlockOutputs	  on
+	  RollThreshold		  5
+	  SystemCodeInlineAuto	  off
+	  StateBitsets		  off
+	  DataBitsets		  off
+	  UseTempVars		  off
+	  ZeroExternalMemoryAtStartup on
+	  ZeroInternalMemoryAtStartup on
+	  InitFltsAndDblsToZero	  off
+	  NoFixptDivByZeroProtection off
+	  EfficientFloat2IntCast  off
+	  EfficientMapNaN2IntZero on
+	  OptimizeModelRefInitCode off
+	  LifeSpan		  "inf"
+	  MaxStackSize		  "Inherit from target"
+	  BufferReusableBoundary  on
+	  SimCompilerOptimization "Off"
+	  AccelVerboseBuild	  off
+	  AccelParallelForEachSubsystem	on
+	}
+	Simulink.DebuggingCC {
+	  $ObjectID		  7
+	  Version		  "1.11.0"
+	  RTPrefix		  "error"
+	  ConsistencyChecking	  "none"
+	  ArrayBoundsChecking	  "none"
+	  SignalInfNanChecking	  "none"
+	  SignalRangeChecking	  "none"
+	  ReadBeforeWriteMsg	  "UseLocalSettings"
+	  WriteAfterWriteMsg	  "UseLocalSettings"
+	  WriteAfterReadMsg	  "UseLocalSettings"
+	  AlgebraicLoopMsg	  "warning"
+	  ArtificialAlgebraicLoopMsg "warning"
+	  SaveWithDisabledLinksMsg "warning"
+	  SaveWithParameterizedLinksMsg	"warning"
+	  CheckSSInitialOutputMsg on
+	  UnderspecifiedInitializationDetection	"Classic"
+	  MergeDetectMultiDrivingBlocksExec "none"
+	  CheckExecutionContextPreStartOutputMsg off
+	  CheckExecutionContextRuntimeOutputMsg	off
+	  SignalResolutionControl "UseLocalSettings"
+	  BlockPriorityViolationMsg "warning"
+	  MinStepSizeMsg	  "warning"
+	  TimeAdjustmentMsg	  "none"
+	  MaxConsecutiveZCsMsg	  "error"
+	  MaskedZcDiagnostic	  "warning"
+	  IgnoredZcDiagnostic	  "warning"
+	  SolverPrmCheckMsg	  "warning"
+	  InheritedTsInSrcMsg	  "warning"
+	  DiscreteInheritContinuousMsg "warning"
+	  MultiTaskDSMMsg	  "error"
+	  MultiTaskCondExecSysMsg "error"
+	  MultiTaskRateTransMsg	  "error"
+	  SingleTaskRateTransMsg  "none"
+	  TasksWithSamePriorityMsg "warning"
+	  SigSpecEnsureSampleTimeMsg "warning"
+	  CheckMatrixSingularityMsg "none"
+	  IntegerOverflowMsg	  "warning"
+	  Int32ToFloatConvMsg	  "warning"
+	  ParameterDowncastMsg	  "error"
+	  ParameterOverflowMsg	  "error"
+	  ParameterUnderflowMsg	  "none"
+	  ParameterPrecisionLossMsg "warning"
+	  ParameterTunabilityLossMsg "warning"
+	  FixptConstUnderflowMsg  "none"
+	  FixptConstOverflowMsg	  "none"
+	  FixptConstPrecisionLossMsg "none"
+	  UnderSpecifiedDataTypeMsg "none"
+	  UnnecessaryDatatypeConvMsg "none"
+	  VectorMatrixConversionMsg "none"
+	  InvalidFcnCallConnMsg	  "error"
+	  FcnCallInpInsideContextMsg "Use local settings"
+	  SignalLabelMismatchMsg  "none"
+	  UnconnectedInputMsg	  "warning"
+	  UnconnectedOutputMsg	  "warning"
+	  UnconnectedLineMsg	  "warning"
+	  SFcnCompatibilityMsg	  "none"
+	  UniqueDataStoreMsg	  "none"
+	  BusObjectLabelMismatch  "warning"
+	  RootOutportRequireBusObject "warning"
+	  AssertControl		  "UseLocalSettings"
+	  EnableOverflowDetection off
+	  ModelReferenceIOMsg	  "none"
+	  ModelReferenceMultiInstanceNormalModeStructChecksumCheck "error"
+	  ModelReferenceVersionMismatchMessage "none"
+	  ModelReferenceIOMismatchMessage "none"
+	  ModelReferenceCSMismatchMessage "none"
+	  UnknownTsInhSupMsg	  "warning"
+	  ModelReferenceDataLoggingMessage "warning"
+	  ModelReferenceSymbolNameMessage "warning"
+	  ModelReferenceExtraNoncontSigs "error"
+	  StateNameClashWarn	  "warning"
+	  SimStateInterfaceChecksumMismatchMsg "warning"
+	  SimStateOlderReleaseMsg "error"
+	  InitInArrayFormatMsg	  "warning"
+	  StrictBusMsg		  "ErrorLevel1"
+	  BusNameAdapt		  "WarnAndRepair"
+	  NonBusSignalsTreatedAsBus "none"
+	  LoggingUnavailableSignals "error"
+	  BlockIODiagnostic	  "none"
+	  SFUnusedDataAndEventsDiag "warning"
+	  SFUnexpectedBacktrackingDiag "warning"
+	  SFInvalidInputDataAccessInChartInitDiag "warning"
+	  SFNoUnconditionalDefaultTransitionDiag "warning"
+	  SFTransitionOutsideNaturalParentDiag "warning"
+	}
+	Simulink.HardwareCC {
+	  $ObjectID		  8
+	  Version		  "1.11.0"
+	  ProdBitPerChar	  8
+	  ProdBitPerShort	  16
+	  ProdBitPerInt		  32
+	  ProdBitPerLong	  32
+	  ProdBitPerFloat	  32
+	  ProdBitPerDouble	  64
+	  ProdBitPerPointer	  32
+	  ProdLargestAtomicInteger "Char"
+	  ProdLargestAtomicFloat  "None"
+	  ProdIntDivRoundTo	  "Undefined"
+	  ProdEndianess		  "Unspecified"
+	  ProdWordSize		  32
+	  ProdShiftRightIntArith  on
+	  ProdHWDeviceType	  "32-bit Generic"
+	  TargetBitPerChar	  8
+	  TargetBitPerShort	  16
+	  TargetBitPerInt	  32
+	  TargetBitPerLong	  32
+	  TargetBitPerFloat	  32
+	  TargetBitPerDouble	  64
+	  TargetBitPerPointer	  32
+	  TargetLargestAtomicInteger "Char"
+	  TargetLargestAtomicFloat "None"
+	  TargetShiftRightIntArith on
+	  TargetIntDivRoundTo	  "Undefined"
+	  TargetEndianess	  "Unspecified"
+	  TargetWordSize	  32
+	  TargetTypeEmulationWarnSuppressLevel 0
+	  TargetPreprocMaxBitsSint 32
+	  TargetPreprocMaxBitsUint 32
+	  TargetHWDeviceType	  "Specified"
+	  TargetUnknown		  off
+	  ProdEqTarget		  on
+	}
+	Simulink.ModelReferenceCC {
+	  $ObjectID		  9
+	  Version		  "1.11.0"
+	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
+	  CheckModelReferenceTargetMessage "error"
+	  EnableParallelModelReferenceBuilds off
+	  ParallelModelReferenceErrorOnInvalidPool on
+	  ParallelModelReferenceMATLABWorkerInit "None"
+	  ModelReferenceNumInstancesAllowed "Multi"
+	  PropagateVarSize	  "Infer from blocks in model"
+	  ModelReferencePassRootInputsByReference on
+	  ModelReferenceMinAlgLoopOccurrences off
+	  PropagateSignalLabelsOutOfModel off
+	  SupportModelReferenceSimTargetCustomCode off
+	}
+	Simulink.SFSimCC {
+	  $ObjectID		  10
+	  Version		  "1.11.0"
+	  SFSimEnableDebug	  on
+	  SFSimOverflowDetection  on
+	  SFSimEcho		  on
+	  SimBlas		  on
+	  SimCtrlC		  on
+	  SimExtrinsic		  on
+	  SimIntegrity		  on
+	  SimUseLocalCustomCode	  off
+	  SimParseCustomCode	  on
+	  SimBuildMode		  "sf_incremental_build"
+	}
+	Simulink.RTWCC {
+	  $BackupClass		  "Simulink.RTWCC"
+	  $ObjectID		  11
+	  Version		  "1.11.0"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    8
+	    Cell		    "IncludeHyperlinkInReport"
+	    Cell		    "GenerateTraceInfo"
+	    Cell		    "GenerateTraceReport"
+	    Cell		    "GenerateTraceReportSl"
+	    Cell		    "GenerateTraceReportSf"
+	    Cell		    "GenerateTraceReportEml"
+	    Cell		    "GenerateSLWebview"
+	    Cell		    "GenerateCodeMetricsReport"
+	    PropName		    "DisabledProps"
+	  }
+	  SystemTargetFile	  "grt.tlc"
+	  GenCodeOnly		  off
+	  MakeCommand		  "make_rtw"
+	  GenerateMakefile	  on
+	  TemplateMakefile	  "grt_default_tmf"
+	  GenerateReport	  off
+	  SaveLog		  off
+	  RTWVerbose		  on
+	  RetainRTWFile		  off
+	  ProfileTLC		  off
+	  TLCDebug		  off
+	  TLCCoverage		  off
+	  TLCAssert		  off
+	  ProcessScriptMode	  "Default"
+	  ConfigurationMode	  "Optimized"
+	  ConfigAtBuild		  off
+	  RTWUseLocalCustomCode	  off
+	  RTWUseSimCustomCode	  off
+	  IncludeHyperlinkInReport off
+	  LaunchReport		  off
+	  TargetLang		  "C"
+	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
+	  IncludeERTFirstTime	  off
+	  GenerateTraceInfo	  off
+	  GenerateTraceReport	  off
+	  GenerateTraceReportSl	  off
+	  GenerateTraceReportSf	  off
+	  GenerateTraceReportEml  off
+	  GenerateCodeInfo	  off
+	  GenerateSLWebview	  off
+	  GenerateCodeMetricsReport off
+	  RTWCompilerOptimization "Off"
+	  CheckMdlBeforeBuild	  "Off"
+	  CustomRebuildMode	  "OnUpdate"
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    2
+	    Simulink.CodeAppCC {
+	      $ObjectID		      12
+	      Version		      "1.11.0"
+	      Array {
+		Type			"Cell"
+		Dimension		21
+		Cell			"IgnoreCustomStorageClasses"
+		Cell			"IgnoreTestpoints"
+		Cell			"InsertBlockDesc"
+		Cell			"InsertPolySpaceComments"
+		Cell			"SFDataObjDesc"
+		Cell			"MATLABFcnDesc"
+		Cell			"SimulinkDataObjDesc"
+		Cell			"DefineNamingRule"
+		Cell			"SignalNamingRule"
+		Cell			"ParamNamingRule"
+		Cell			"InlinedPrmAccess"
+		Cell			"CustomSymbolStr"
+		Cell			"CustomSymbolStrGlobalVar"
+		Cell			"CustomSymbolStrType"
+		Cell			"CustomSymbolStrField"
+		Cell			"CustomSymbolStrFcn"
+		Cell			"CustomSymbolStrFcnArg"
+		Cell			"CustomSymbolStrBlkIO"
+		Cell			"CustomSymbolStrTmpVar"
+		Cell			"CustomSymbolStrMacro"
+		Cell			"ReqsInCode"
+		PropName		"DisabledProps"
+	      }
+	      ForceParamTrailComments off
+	      GenerateComments	      on
+	      IgnoreCustomStorageClasses on
+	      IgnoreTestpoints	      off
+	      IncHierarchyInIds	      off
+	      MaxIdLength	      31
+	      PreserveName	      off
+	      PreserveNameWithParent  off
+	      ShowEliminatedStatement off
+	      IncAutoGenComments      off
+	      SimulinkDataObjDesc     off
+	      SFDataObjDesc	      off
+	      MATLABFcnDesc	      off
+	      IncDataTypeInIds	      off
+	      MangleLength	      1
+	      CustomSymbolStrGlobalVar "$R$N$M"
+	      CustomSymbolStrType     "$N$R$M"
+	      CustomSymbolStrField    "$N$M"
+	      CustomSymbolStrFcn      "$R$N$M$F"
+	      CustomSymbolStrFcnArg   "rt$I$N$M"
+	      CustomSymbolStrBlkIO    "rtb_$N$M"
+	      CustomSymbolStrTmpVar   "$N$M"
+	      CustomSymbolStrMacro    "$R$N$M"
+	      DefineNamingRule	      "None"
+	      ParamNamingRule	      "None"
+	      SignalNamingRule	      "None"
+	      InsertBlockDesc	      off
+	      InsertPolySpaceComments off
+	      SimulinkBlockComments   on
+	      MATLABSourceComments    off
+	      EnableCustomComments    off
+	      InlinedPrmAccess	      "Literals"
+	      ReqsInCode	      off
+	      UseSimReservedNames     off
+	    }
+	    Simulink.GRTTargetCC {
+	      $BackupClass	      "Simulink.TargetCC"
+	      $ObjectID		      13
+	      Version		      "1.11.0"
+	      Array {
+		Type			"Cell"
+		Dimension		16
+		Cell			"GeneratePreprocessorConditionals"
+		Cell			"IncludeMdlTerminateFcn"
+		Cell			"CombineOutputUpdateFcns"
+		Cell			"SuppressErrorStatus"
+		Cell			"ERTCustomFileBanners"
+		Cell			"GenerateSampleERTMain"
+		Cell			"GenerateTestInterfaces"
+		Cell			"ModelStepFunctionPrototypeControlCompliant"
+		Cell			"CPPClassGenCompliant"
+		Cell			"MultiInstanceERTCode"
+		Cell			"PurelyIntegerCode"
+		Cell			"SupportComplex"
+		Cell			"SupportAbsoluteTime"
+		Cell			"SupportContinuousTime"
+		Cell			"SupportNonInlinedSFcns"
+		Cell			"PortableWordSizes"
+		PropName		"DisabledProps"
+	      }
+	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
+	      TargetLibSuffix	      ""
+	      TargetPreCompLibLocation ""
+	      TargetFunctionLibrary   "ANSI_C"
+	      UtilityFuncGeneration   "Auto"
+	      ERTMultiwordTypeDef     "System defined"
+	      FunctionExecutionProfile off
+	      CodeExecutionProfiling  off
+	      ERTCodeCoverageTool     "None"
+	      ERTMultiwordLength      256
+	      MultiwordLength	      2048
+	      GenerateFullHeader      on
+	      GenerateSampleERTMain   off
+	      GenerateTestInterfaces  off
+	      IsPILTarget	      off
+	      ModelReferenceCompliant on
+	      ParMdlRefBuildCompliant on
+	      CompOptLevelCompliant   on
+	      IncludeMdlTerminateFcn  on
+	      GeneratePreprocessorConditionals "Disable all"
+	      CombineOutputUpdateFcns off
+	      CombineSignalStateStructs	off
+	      SuppressErrorStatus     off
+	      ERTFirstTimeCompliant   off
+	      IncludeFileDelimiter    "Auto"
+	      ERTCustomFileBanners    off
+	      SupportAbsoluteTime     on
+	      LogVarNameModifier      "rt_"
+	      MatFileLogging	      on
+	      MultiInstanceERTCode    off
+	      SupportNonFinite	      on
+	      SupportComplex	      on
+	      PurelyIntegerCode	      off
+	      SupportContinuousTime   on
+	      SupportNonInlinedSFcns  on
+	      SupportVariableSizeSignals off
+	      EnableShiftOperators    on
+	      ParenthesesLevel	      "Nominal"
+	      PortableWordSizes	      off
+	      ModelStepFunctionPrototypeControlCompliant off
+	      CPPClassGenCompliant    off
+	      AutosarCompliant	      off
+	      UseMalloc		      off
+	      ExtMode		      off
+	      ExtModeStaticAlloc      off
+	      ExtModeTesting	      off
+	      ExtModeStaticAllocSize  1000000
+	      ExtModeTransport	      0
+	      ExtModeMexFile	      "ext_comm"
+	      ExtModeIntrfLevel	      "Level1"
+	      RTWCAPISignals	      off
+	      RTWCAPIParams	      off
+	      RTWCAPIStates	      off
+	      RTWCAPIRootIO	      off
+	      GenerateASAP2	      off
+	    }
+	    PropName		    "Components"
+	  }
+	}
+	hdlcoderui.hdlcc {
+	  $ObjectID		  14
+	  Version		  "1.11.0"
+	  Description		  "HDL Coder custom configuration component"
+	  Name			  "HDL Coder"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    1
+	    Cell		    ""
+	    PropName		    "HDLConfigFile"
+	  }
+	  HDLCActiveTab		  "0"
+	}
+	PropName		"Components"
+      }
+      Name		      "Configuration"
+      CurrentDlgPage	      "Optimization"
+      ConfigPrmDlgPosition     [ 520, 225, 1400, 855 ] 
+    }
+    PropName		    "ConfigurationSets"
+  }
+  Simulink.ConfigSet {
+    $PropName		    "ActiveConfigurationSet"
+    $ObjectID		    3
+  }
+  BlockDefaults {
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    NamePlacement	    "normal"
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    ShowName		    on
+    BlockRotation	    0
+    BlockMirror		    off
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    "center"
+    VerticalAlignment	    "middle"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    UseDisplayTextAsClickCallback off
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  BlockParameterDefaults {
+    Block {
+      BlockType		      Clock
+      DisplayTime	      off
+    }
+    Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      SamplingMode	      "Sample based"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      LockScale		      off
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+      PreserveConstantTs      off
+    }
+    Block {
+      BlockType		      Demux
+      Outputs		      "4"
+      DisplayOption	      "none"
+      BusSelectionMode	      off
+    }
+    Block {
+      BlockType		      Derivative
+      LinearizePole	      "inf"
+    }
+    Block {
+      BlockType		      Gain
+      Gain		      "1"
+      Multiplication	      "Element-wise(K.*u)"
+      ParamMin		      "[]"
+      ParamMax		      "[]"
+      ParamDataTypeStr	      "Inherit: Same as input"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Inport
+      Port		      "1"
+      OutputFunctionCall      off
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      LatchByDelayingOutsideSignal off
+      LatchInputForFeedbackSignals off
+      Interpolate	      on
+    }
+    Block {
+      BlockType		      Mux
+      Inputs		      "4"
+      DisplayOption	      "none"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      NonVirtualBus	      off
+    }
+    Block {
+      BlockType		      Outport
+      Port		      "1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      SourceOfInitialOutputValue "Dialog"
+      OutputWhenDisabled      "held"
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      S-Function
+      FunctionName	      "system"
+      SFunctionModules	      "''"
+      PortCounts	      "[]"
+      SFunctionDeploymentMode off
+    }
+    Block {
+      BlockType		      Scope
+      ModelBased	      off
+      TickLabels	      "OneTimeTick"
+      ZoomMode		      "on"
+      Grid		      "on"
+      TimeRange		      "auto"
+      YMin		      "-5"
+      YMax		      "5"
+      SaveToWorkspace	      off
+      SaveName		      "ScopeData"
+      LimitDataPoints	      on
+      MaxDataPoints	      "5000"
+      Decimation	      "1"
+      SampleInput	      off
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      SubSystem
+      ShowPortLabels	      "FromPortIcon"
+      Permissions	      "ReadWrite"
+      PermitHierarchicalResolution "All"
+      TreatAsAtomicUnit	      off
+      CheckFcnCallInpInsideContextMsg off
+      SystemSampleTime	      "-1"
+      RTWFcnNameOpts	      "Auto"
+      RTWFileNameOpts	      "Auto"
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      SimViewingDevice	      off
+      DataTypeOverride	      "UseLocalSettings"
+      DataTypeOverrideAppliesTo	"AllNumericTypes"
+      MinMaxOverflowLogging   "UseLocalSettings"
+      Variant		      off
+      GeneratePreprocessorConditionals off
+    }
+    Block {
+      BlockType		      Terminator
+    }
+    Block {
+      BlockType		      ToWorkspace
+      VariableName	      "simulink_output"
+      MaxDataPoints	      "1000"
+      Decimation	      "1"
+      SampleTime	      "0"
+      FixptAsFi		      off
+      NumInputs		      "1"
+    }
+    Block {
+      BlockType		      UnitDelay
+      X0		      "0"
+      InputProcessing	      "Inherited"
+      SampleTime	      "1"
+      StateMustResolveToSignalObject off
+      RTWStateStorageClass    "Auto"
+    }
+  }
+  System {
+    Name		    "HoppingLEG"
+    Location		    [1166, 160, 1882, 494]
+    Open		    on
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "white"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "usletter"
+    PaperUnits		    "inches"
+    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+    TiledPageScale	    1
+    ShowPageBoundaries	    off
+    ZoomFactor		    "100"
+    ReportName		    "simulink-default.rpt"
+    SIDHighWatermark	    "28"
+    Block {
+      BlockType		      SubSystem
+      Name		      "Chart"
+      SID		      "1"
+      Ports		      [5, 2]
+      Position		      [160, 31, 360, 259]
+      LibraryVersion	      "1.235"
+      ErrorFcn		      "Stateflow.Translate.translate"
+      PermitHierarchicalResolution "ExplicitOnly"
+      TreatAsAtomicUnit	      on
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Stateflow"
+      MaskDescription	      "Stateflow diagram"
+      MaskSelfModifiable      on
+      MaskDisplay	      "plot(sf('Private','sfblk','xIcon'),sf('Private','sfblk','yIcon'));text(0.5,0,sf('Private', 's"
+      "fblk', 'tIcon'),'HorizontalAl','Center','VerticalAl','Bottom');"
+      MaskIconFrame	      off
+      MaskIconOpaque	      off
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "autoscale"
+      System {
+	Name			"Chart"
+	Location		[257, 457, 812, 717]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	SIDHighWatermark	"30"
+	Block {
+	  BlockType		  Inport
+	  Name			  "k"
+	  SID			  "1::29"
+	  Position		  [20, 101, 40, 119]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "c"
+	  SID			  "1::27"
+	  Position		  [20, 136, 40, 154]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "H"
+	  SID			  "1::28"
+	  Position		  [20, 171, 40, 189]
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "LA"
+	  SID			  "1::25"
+	  Position		  [20, 206, 40, 224]
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "d_LA"
+	  SID			  "1::24"
+	  Position		  [20, 246, 40, 264]
+	  Port			  "5"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Demux
+	  Name			  " Demux "
+	  SID			  "1::14"
+	  Ports			  [1, 1]
+	  Position		  [270, 220, 320, 260]
+	  Outputs		  "1"
+	}
+	Block {
+	  BlockType		  S-Function
+	  Name			  " SFunction "
+	  SID			  "1::13"
+	  Tag			  "Stateflow S-Function HoppingLEG 1"
+	  Ports			  [5, 3]
+	  Position		  [180, 100, 230, 220]
+	  FunctionName		  "sf_sfun"
+	  PortCounts		  "[5 3]"
+	  EnableBusSupport	  on
+	  Port {
+	    PortNumber		    2
+	    Name		    "y_out"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	  Port {
+	    PortNumber		    3
+	    Name		    "State"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  " Terminator "
+	  SID			  "1::18"
+	  Position		  [460, 231, 480, 249]
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "y_out"
+	  SID			  "1::20"
+	  Position		  [460, 101, 480, 119]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "State"
+	  SID			  "1::30"
+	  Position		  [460, 136, 480, 154]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "k"
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "c"
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "H"
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "LA"
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "d_LA"
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  5
+	}
+	Line {
+	  Name			  "y_out"
+	  Labels		  [0, 0; 0, 0]
+	  SrcBlock		  " SFunction "
+	  SrcPort		  2
+	  DstBlock		  "y_out"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "State"
+	  Labels		  [0, 0]
+	  SrcBlock		  " SFunction "
+	  SrcPort		  3
+	  DstBlock		  "State"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  " Demux "
+	  SrcPort		  1
+	  DstBlock		  " Terminator "
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  " SFunction "
+	  SrcPort		  1
+	  DstBlock		  " Demux "
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      Clock
+      Name		      "Clock"
+      SID		      "14"
+      Position		      [445, 45, 465, 65]
+      Decimation	      "10"
+    }
+    Block {
+      BlockType		      Derivative
+      Name		      "Derivative"
+      SID		      "6"
+      Position		      [105, 210, 135, 240]
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "Gain"
+      SID		      "25"
+      Position		      [45, 175, 75, 205]
+      Gain		      "0.4"
+      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Height"
+      SID		      "21"
+      Position		      [65, 130, 95, 160]
+      Value		      "6"
+    }
+    Block {
+      BlockType		      Mux
+      Name		      "Mux"
+      SID		      "7"
+      Ports		      [3, 1]
+      Position		      [425, 126, 430, 164]
+      ShowName		      off
+      Inputs		      "3"
+      DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Scope"
+      SID		      "2"
+      Ports		      [1]
+      Position		      [480, 129, 510, 161]
+      Floating		      off
+      Location		      [1206, 582, 1812, 1007]
+      Open		      on
+      NumInputPorts	      "1"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+      }
+      TimeRange		      "5               "
+      YMin		      "0"
+      YMax		      "3.75"
+      DataFormat	      "StructureWithTime"
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "SpringC"
+      SID		      "20"
+      Position		      [65, 85, 95, 115]
+      Value		      "2"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "SpringK"
+      SID		      "19"
+      Position		      [65, 40, 95, 70]
+      Value		      "300"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace"
+      SID		      "13"
+      Ports		      [1]
+      Position		      [465, 180, 525, 210]
+      VariableName	      "output"
+      MaxDataPoints	      "inf"
+      SampleTime	      "0.001"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace1"
+      SID		      "15"
+      Ports		      [1]
+      Position		      [520, 40, 580, 70]
+      VariableName	      "t"
+      MaxDataPoints	      "inf"
+      SampleTime	      "0.001"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      UnitDelay
+      Name		      "Unit Delay"
+      SID		      "24"
+      Position		      [40, 258, 75, 292]
+      BlockMirror	      on
+      NamePlacement	      "alternate"
+      InputProcessing	      "Elements as channels (sample based)"
+      SampleTime	      "-1"
+    }
+    Line {
+      SrcBlock		      "Chart"
+      SrcPort		      1
+      Points		      [0, 45]
+      DstBlock		      "Mux"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Mux"
+      SrcPort		      1
+      Points		      [15, 0]
+      Branch {
+	DstBlock		"Scope"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"To Workspace"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Derivative"
+      SrcPort		      1
+      Points		      [5, 0]
+      DstBlock		      "Chart"
+      DstPort		      5
+    }
+    Line {
+      SrcBlock		      "Clock"
+      SrcPort		      1
+      DstBlock		      "To Workspace1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "SpringC"
+      SrcPort		      1
+      DstBlock		      "Chart"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "SpringK"
+      SrcPort		      1
+      DstBlock		      "Chart"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Height"
+      SrcPort		      1
+      DstBlock		      "Chart"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "Chart"
+      SrcPort		      2
+      Points		      [10, 0]
+      Branch {
+	Points			[35, 0]
+	DstBlock		"Mux"
+	DstPort			3
+      }
+      Branch {
+	Points			[0, 70]
+	DstBlock		"Unit Delay"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Unit Delay"
+      SrcPort		      1
+      Points		      [-5, 0]
+      DstBlock		      "Gain"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Gain"
+      SrcPort		      1
+      Points		      [5, 0]
+      Branch {
+	DstBlock		"Chart"
+	DstPort			4
+      }
+      Branch {
+	Points			[0, 35]
+	DstBlock		"Derivative"
+	DstPort			1
+      }
+    }
+  }
+}
+# Finite State Machines
+#
+#    Stateflow Version 7.5 (R2010a) dated Mar  5 2011, 00:01:50
+#
+#
+
+
+Stateflow {
+  machine {
+    id			    1
+    name		    "HoppingLEG"
+    created		    "25-Oct-2012 12:24:52"
+    isLibrary		    0
+    firstTarget		    22
+    debug {
+      breakOn		      [0 0 1]
+    }
+    sfVersion		    75014001
+  }
+  chart {
+    id			    2
+    name		    "Chart"
+    windowPosition	    [21.75 176.25 563.25 505.5]
+    viewLimits		    [0 523.388 -0 472.786]
+    zoomFactor		    1.007
+    screen		    [1 1 1920 1080 1.333333333333333]
+    treeNode		    [0 3 0 0]
+    firstTransition	    5
+    viewObj		    2
+    visible		    1
+    machine		    1
+    subviewS {
+      y1		      0.072
+      zoomFactor	      1.007
+    }
+    ssIdHighWaterMark	    90
+    decomposition	    CLUSTER_CHART
+    firstData		    8
+    updateMethod	    CONTINUOUS
+    chartFileNumber	    1
+    userSpecifiedStateTransitionExecutionOrder 1
+    disableImplicitCasting  1
+    plantModelingInfo {
+    }
+  }
+  state {
+    id			    3
+    labelString		    "Swing\ndu:\ny_dot=yv;\nyv_dot=-9.81;\n//output\ny_out = y;\nState=0;"
+    position		    [55.375 71.625 92.6667 107.5]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 0 4]
+    subviewer		    2
+    ssIdNumber		    12
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+  }
+  state {
+    id			    4
+    labelString		    "Stancedown\ndu:\nl_dot = lv;\nlv_dot =k/mass*(l0+LA-l)-9.81-c/mass*lv+c/mass*d_LA;\ny_out = l;\n"
+    "State = 1;"
+    position		    [81.64 288.7054 398.4036 148.8856]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 3 0]
+    subviewer		    2
+    ssIdNumber		    72
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    debug		    [1 0 0]
+  }
+  transition {
+    id			    5
+    labelString		    "{\ny=H;yv=0;\n}"
+    labelPosition	    [100.446 11.657 52.087 42.212]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 74.9583 4.375 0 0]
+    }
+    dst {
+      id		      3
+      intersection	      [1 0 -1 0.2113 74.9583 71.625 0 0]
+    }
+    midPoint		    [74.9583 35.2013]
+    chart		    2
+    linkNode		    [2 0 7]
+    dataLimits		    [72.558 77.358 4.375 71.625]
+    subviewer		    2
+    drawStyle		    SMART
+    executionOrder	    1
+    ssIdNumber		    14
+  }
+  transition {
+    id			    6
+    labelString		    "[y<=l0 && yv<0]\n{\n   //ako pada prebaci\n    l = y;\n    lv = yv;\n\n}"
+    labelPosition	    [53.518 215.277 109.458 96.484]
+    fontSize		    12
+    src {
+      id		      3
+      intersection	      [3 0 1 0.1565 133.5394 179.125 0 14.5]
+    }
+    dst {
+      id		      4
+      intersection	      [1 0 -1 0.3268 211.8382 288.7054 0 -14.5]
+    }
+    midPoint		    [175.3683 232.0701]
+    chart		    2
+    linkNode		    [2 7 0]
+    dataLimits		    [133.539 214.238 179.125 288.705]
+    stampAngle		    NaN
+    subviewer		    2
+    slide {
+      mode		      MIRROR_SLIDE
+    }
+    executionOrder	    1
+    ssIdNumber		    49
+  }
+  transition {
+    id			    7
+    labelString		    "[l>l0 && lv>0]\n{\n   //ako pada prebaci\ny=l;\nyv = lv;\n\n}"
+    labelPosition	    [251.72 45.991 109.458 96.484]
+    fontSize		    12
+    src {
+      id		      4
+      intersection	      [1 0 -1 0.4721 269.7394 288.7054 0 168.031]
+    }
+    dst {
+      id		      3
+      intersection	      [1 0 -1 0.8468 133.844 71.625 0 -168.031]
+    }
+    midPoint		    [345.7439 47.284]
+    chart		    2
+    linkNode		    [2 5 6]
+    dataLimits		    [131.444 364.934 21.308 288.705]
+    stampAngle		    NaN
+    subviewer		    2
+    drawStyle		    SMART
+    slide {
+      mode		      MIRROR_SLIDE
+      sticky		      BOTH_STICK
+      midPointSticky	      1
+    }
+    executionOrder	    1
+    ssIdNumber		    75
+  }
+  data {
+    id			    8
+    ssIdNumber		    6
+    name		    "l"
+    linkNode		    [2 0 9]
+    scope		    LOCAL_DATA
+    machine		    1
+    props {
+      updateMethod	      SF_CONTINUOUS_TIME_DATA
+      type {
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+    }
+    dataType		    "double"
+  }
+  data {
+    id			    9
+    ssIdNumber		    8
+    name		    "yv"
+    linkNode		    [2 8 10]
+    scope		    LOCAL_DATA
+    paramIndexForInitFromWorkspace 1
+    machine		    1
+    props {
+      updateMethod	      SF_CONTINUOUS_TIME_DATA
+      type {
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+    }
+    dataType		    "double"
+  }
+  data {
+    id			    10
+    ssIdNumber		    11
+    name		    "y_out"
+    linkNode		    [2 9 11]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      type {
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "double"
+  }
+  data {
+    id			    11
+    ssIdNumber		    53
+    name		    "y"
+    linkNode		    [2 10 12]
+    scope		    LOCAL_DATA
+    machine		    1
+    props {
+      updateMethod	      SF_CONTINUOUS_TIME_DATA
+      type {
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+    }
+    dataType		    "double"
+  }
+  data {
+    id			    12
+    ssIdNumber		    59
+    name		    "lv"
+    linkNode		    [2 11 13]
+    scope		    LOCAL_DATA
+    machine		    1
+    props {
+      updateMethod	      SF_CONTINUOUS_TIME_DATA
+      type {
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+    }
+    dataType		    "double"
+  }
+  data {
+    id			    13
+    ssIdNumber		    60
+    name		    "k"
+    linkNode		    [2 12 14]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      initialValue	      "800"
+      type {
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+    }
+    dataType		    "double"
+  }
+  data {
+    id			    14
+    ssIdNumber		    61
+    name		    "mass"
+    linkNode		    [2 13 15]
+    scope		    CONSTANT_DATA
+    machine		    1
+    props {
+      initialValue	      "1"
+      type {
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+    }
+    dataType		    "double"
+  }
+  data {
+    id			    15
+    ssIdNumber		    62
+    name		    "l0"
+    linkNode		    [2 14 16]
+    scope		    CONSTANT_DATA
+    machine		    1
+    props {
+      initialValue	      "3"
+      type {
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+    }
+    dataType		    "double"
+  }
+  data {
+    id			    16
+    ssIdNumber		    66
+    name		    "c"
+    linkNode		    [2 15 17]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      initialValue	      "6"
+      type {
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+    }
+    dataType		    "double"
+  }
+  data {
+    id			    17
+    ssIdNumber		    88
+    name		    "H"
+    linkNode		    [2 16 18]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      updateMethod	      SF_CONTINUOUS_TIME_DATA
+      type {
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+    }
+    dataType		    "double"
+  }
+  data {
+    id			    18
+    ssIdNumber		    82
+    name		    "LA"
+    linkNode		    [2 17 19]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      initialValue	      "0"
+      type {
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+    }
+    dataType		    "double"
+  }
+  data {
+    id			    19
+    ssIdNumber		    78
+    name		    "d_LA"
+    linkNode		    [2 18 20]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      initialValue	      "0"
+      type {
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+    }
+    dataType		    "double"
+  }
+  data {
+    id			    20
+    ssIdNumber		    90
+    name		    "State"
+    linkNode		    [2 19 0]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      type {
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "double"
+  }
+  instance {
+    id			    21
+    name		    "Chart"
+    machine		    1
+    chart		    2
+  }
+  target {
+    id			    22
+    name		    "sfun"
+    description		    "Default Simulink S-Function Target."
+    machine		    1
+    linkNode		    [1 0 0]
+  }
+}

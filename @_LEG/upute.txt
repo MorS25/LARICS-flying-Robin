@@ -1,0 +1,5 @@
+FFM - sadrzi FFM analizu nozice
+HoppingSIM - ovdje je model nozice, mozes pokrenuti HoppingLEG.mdl
+@LEG_clanak - ovdje je definirano kako je odreden period skakanja, uglavnom ono sto sam provjerio
+i sto cu iskoristit
+

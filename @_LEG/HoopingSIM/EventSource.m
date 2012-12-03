@@ -1,0 +1,83 @@
+%function [dq] = racunaj_VIV_Jacobian(dx,dy,dz,curr_x,curr_y,curr_z,curr_q1,curr_q2,curr_q3,curr_q4)
+
+function [sys,x0,str,ts] = EventSource(t,x,u,flag, p1, p2)
+
+switch flag
+    
+    case 0 %initialize
+        
+        [sys,x0,str,ts] = mdlInitializeSizes; % Initialization
+
+    case 2
+         sys = mdlDerivatives(t,x,u); % Calculate outputs
+         
+    case 3 %output
+         sys = mdlOutput(t,x,u);
+
+    case {4 9}
+         sys=[];
+    
+    otherwise
+        error(['unhandled flag=',num2str(flag)])    ;
+end
+
+%============================================================== 
+% Function mdlInitializeSizes initializes the states, sample 
+% times, state ordering strings (str), and sizes structure.
+%==============================================================
+function [sys,x0,str,ts] = mdlInitializeSizes
+% Call function simsizes to create the sizes structure.
+sizes = simsizes;
+% Load the sizes structure with the initialization information.
+sizes.NumContStates= 0;
+sizes.NumDiscStates= 1;
+sizes.NumOutputs=    1;
+sizes.NumInputs=     1;
+sizes.DirFeedthrough=0;
+sizes.NumSampleTimes=1;
+% Load the sys vector with the sizes information.
+sys = simsizes(sizes);
+%
+x0 = [0 0]; 
+% 
+str = []; % No state ordering
+% 
+ts = [0.001 0]; % Inherited sample time
+% End of mdlInitializeSizes.
+
+
+
+%==============================================================
+% Function mdlOutputs performs the calculations.
+%==============================================================
+function sys = mdlDerivatives(t,x,u)
+
+
+syms q1 q2;
+l1=0.082;
+l2=0.066;
+q1=u(1);
+q2=u(2);
+
+%rezultat direktne kinematike
+dq(1) = l1*cos(q1)+l2*cos(q1+q2)
+dq(2) = l1*sin(q1)+l2*sin(q1+q2)
+ 
+x=dq;
+sys = dq;
+
+function sys = mdlOutput(t,x,u)
+sys = x;
+
+
+
+      
+
+
+
+
+
+
+
+
+
