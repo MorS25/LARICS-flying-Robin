@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.227"
+    ComputedModelVersion    "1.272"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -37,9 +37,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Alan Mutka"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Dec 03 11:37:03 2012"
-  RTWModifiedTimeStamp	  276435355
-  ModelVersionFormat	  "1.%<AutoIncrement:227>"
+  LastModifiedDate	  "Tue Dec 04 15:08:57 2012"
+  RTWModifiedTimeStamp	  276533952
+  ModelVersionFormat	  "1.%<AutoIncrement:272>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -143,7 +143,7 @@ Model {
 	  StartTime		  "0.0"
 	  StopTime		  "inf"
 	  AbsTol		  "auto"
-	  FixedStep		  "0.001"
+	  FixedStep		  "0.01"
 	  InitialStep		  "auto"
 	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
@@ -628,7 +628,7 @@ Model {
 	PropName		"Components"
       }
       Name		      "Configuration"
-      CurrentDlgPage	      "Optimization"
+      CurrentDlgPage	      "Solver"
       ConfigPrmDlgPosition     [ 520, 225, 1400, 855 ] 
     }
     PropName		    "ConfigurationSets"
@@ -755,11 +755,41 @@ Model {
       InitialOutput	      "[]"
     }
     Block {
+      BlockType		      Product
+      Inputs		      "2"
+      Multiplication	      "Element-wise(.*)"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Zero"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      S-Function
       FunctionName	      "system"
       SFunctionModules	      "''"
       PortCounts	      "[]"
       SFunctionDeploymentMode off
+    }
+    Block {
+      BlockType		      Saturate
+      UpperLimitSource	      "Dialog"
+      UpperLimit	      "0.5"
+      LowerLimitSource	      "Dialog"
+      LowerLimit	      "-0.5"
+      LinearizeAsGain	      on
+      ZeroCross		      on
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as input"
+      LockScale		      off
+      RndMeth		      "Floor"
     }
     Block {
       BlockType		      Scope
@@ -777,6 +807,19 @@ Model {
       Decimation	      "1"
       SampleInput	      off
       SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Sin
+      SineType		      "Time based"
+      TimeSource	      "Use simulation time"
+      Amplitude		      "1"
+      Bias		      "0"
+      Frequency		      "1"
+      Phase		      "0"
+      Samples		      "10"
+      Offset		      "0"
+      SampleTime	      "-1"
+      VectorParams1D	      on
     }
     Block {
       BlockType		      SubSystem
@@ -801,6 +844,22 @@ Model {
       GeneratePreprocessorConditionals off
     }
     Block {
+      BlockType		      Sum
+      IconShape		      "rectangular"
+      Inputs		      "++"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      Terminator
     }
     Block {
@@ -823,7 +882,7 @@ Model {
   }
   System {
     Name		    "HoppingLEG"
-    Location		    [1166, 160, 1882, 494]
+    Location		    [962, 119, 1770, 572]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -837,7 +896,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "27"
+    SIDHighWatermark	    "77"
     Block {
       BlockType		      SubSystem
       Name		      "Chart"
@@ -1040,6 +1099,13 @@ Model {
       Decimation	      "10"
     }
     Block {
+      BlockType		      Constant
+      Name		      "Constant4"
+      SID		      "59"
+      Position		      [415, 240, 445, 270]
+      Value		      "30"
+    }
+    Block {
       BlockType		      Derivative
       Name		      "Derivative"
       SID		      "6"
@@ -1050,6 +1116,7 @@ Model {
       Name		      "Gain"
       SID		      "25"
       Position		      [45, 175, 75, 205]
+      Gain		      "0.2"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
@@ -1060,6 +1127,124 @@ Model {
       SID		      "21"
       Position		      [65, 130, 95, 160]
       Value		      "6"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "MATLAB Function"
+      SID		      "58"
+      Ports		      [1, 1]
+      Position		      [65, 277, 135, 323]
+      BlockMirror	      on
+      NamePlacement	      "alternate"
+      LibraryVersion	      "1.32"
+      ErrorFcn		      "Stateflow.Translate.translate"
+      PermitHierarchicalResolution "ExplicitOnly"
+      TreatAsAtomicUnit	      on
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Stateflow"
+      MaskDescription	      "Embedded MATLAB block"
+      MaskSelfModifiable      on
+      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('pr"
+      "ivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'fcn']);"
+      MaskIconFrame	      on
+      MaskIconOpaque	      off
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      System {
+	Name			"MATLAB Function"
+	Location		[257, 457, 812, 717]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	SIDHighWatermark	"17"
+	Block {
+	  BlockType		  Inport
+	  Name			  "u"
+	  SID			  "58::1"
+	  Position		  [20, 101, 40, 119]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Demux
+	  Name			  " Demux "
+	  SID			  "58::15"
+	  Ports			  [1, 1]
+	  Position		  [270, 160, 320, 200]
+	  Outputs		  "1"
+	}
+	Block {
+	  BlockType		  S-Function
+	  Name			  " SFunction "
+	  SID			  "58::14"
+	  Tag			  "Stateflow S-Function HoppingLEG 2"
+	  Ports			  [1, 2]
+	  Position		  [180, 100, 230, 160]
+	  FunctionName		  "sf_sfun"
+	  PortCounts		  "[1 2]"
+	  EnableBusSupport	  on
+	  Port {
+	    PortNumber		    2
+	    Name		    "y"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  " Terminator "
+	  SID			  "58::17"
+	  Position		  [460, 171, 480, 189]
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "y"
+	  SID			  "58::5"
+	  Position		  [460, 101, 480, 119]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "u"
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "y"
+	  Labels		  [0, 0]
+	  SrcBlock		  " SFunction "
+	  SrcPort		  2
+	  DstBlock		  "y"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  " Demux "
+	  SrcPort		  1
+	  DstBlock		  " Terminator "
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  " SFunction "
+	  SrcPort		  1
+	  DstBlock		  " Demux "
+	  DstPort		  1
+	}
+      }
     }
     Block {
       BlockType		      Mux
@@ -1078,7 +1263,7 @@ Model {
       Ports		      [1]
       Position		      [480, 129, 510, 161]
       Floating		      off
-      Location		      [1206, 582, 1812, 1007]
+      Location		      [1152, 622, 1758, 1047]
       Open		      on
       NumInputPorts	      "1"
       List {
@@ -1087,8 +1272,39 @@ Model {
       }
       TimeRange		      "5               "
       YMin		      "0"
-      YMax		      "8"
+      YMax		      "3.75"
       DataFormat	      "StructureWithTime"
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Scope1"
+      SID		      "33"
+      Ports		      [1]
+      Position		      [330, 339, 360, 371]
+      Floating		      off
+      Location		      [1065, 581, 1671, 1006]
+      Open		      off
+      NumInputPorts	      "1"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+      }
+      TimeRange		      "4               "
+      YMin		      "154.75"
+      YMax		      "160.25"
+      SaveName		      "ScopeData1"
+      DataFormat	      "StructureWithTime"
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Sin
+      Name		      "Sine Wave"
+      SID		      "60"
+      Ports		      [0, 1]
+      Position		      [415, 285, 445, 315]
+      Amplitude		      "5"
+      Frequency		      "0.3"
       SampleTime	      "0"
     }
     Block {
@@ -1103,7 +1319,7 @@ Model {
       Name		      "SpringK"
       SID		      "19"
       Position		      [65, 40, 95, 70]
-      Value		      "300"
+      Value		      "100"
     }
     Block {
       BlockType		      ToWorkspace
@@ -1113,7 +1329,7 @@ Model {
       Position		      [465, 180, 525, 210]
       VariableName	      "output"
       MaxDataPoints	      "inf"
-      SampleTime	      "0.001"
+      SampleTime	      "0.01"
       SaveFormat	      "Array"
     }
     Block {
@@ -1124,25 +1340,325 @@ Model {
       Position		      [520, 40, 580, 70]
       VariableName	      "t"
       MaxDataPoints	      "inf"
-      SampleTime	      "0.001"
+      SampleTime	      "0.01"
       SaveFormat	      "Array"
     }
     Block {
       BlockType		      UnitDelay
       Name		      "Unit Delay"
       SID		      "24"
-      Position		      [40, 258, 75, 292]
+      Position		      [165, 283, 200, 317]
       BlockMirror	      on
       NamePlacement	      "alternate"
       InputProcessing	      "Elements as channels (sample based)"
       SampleTime	      "-1"
     }
+    Block {
+      BlockType		      SubSystem
+      Name		      "VRML model jedne noge"
+      SID		      "62"
+      Ports		      [2]
+      Position		      [690, 105, 730, 165]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      System {
+	Name			"VRML model jedne noge"
+	Location		[939, 634, 1731, 921]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "H"
+	  SID			  "63"
+	  Position		  [25, 78, 55, 92]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "I0"
+	  SID			  "64"
+	  Position		  [25, 113, 55, 127]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Constant1"
+	  SID			  "65"
+	  Position		  [395, 25, 425, 55]
+	  Value			  "0"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Constant3"
+	  SID			  "66"
+	  Position		  [410, 230, 440, 260]
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "Divide"
+	  SID			  "67"
+	  Ports			  [2, 1]
+	  Position		  [325, 177, 355, 208]
+	  Inputs		  "*/"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain"
+	  SID			  "76"
+	  Position		  [95, 70, 125, 100]
+	  Gain			  "10"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain1"
+	  SID			  "77"
+	  Position		  [110, 185, 140, 215]
+	  Gain			  "10"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux"
+	  SID			  "68"
+	  Ports			  [3, 1]
+	  Position		  [455, 61, 460, 99]
+	  ShowName		  off
+	  Inputs		  "3"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux1"
+	  SID			  "69"
+	  Ports			  [3, 1]
+	  Position		  [480, 156, 485, 194]
+	  ShowName		  off
+	  Inputs		  "3"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Saturate
+	  Name			  "Saturation"
+	  SID			  "70"
+	  Ports			  [1, 1]
+	  Position		  [410, 180, 440, 210]
+	  InputPortMap		  "u0"
+	  UpperLimit		  "1"
+	  LowerLimit		  "0.5"
+	}
+	Block {
+	  BlockType		  Saturate
+	  Name			  "Saturation1"
+	  SID			  "71"
+	  Ports			  [1, 1]
+	  Position		  [290, 50, 320, 80]
+	  InputPortMap		  "u0"
+	  UpperLimit		  "10000"
+	  LowerLimit		  "4"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum"
+	  SID			  "72"
+	  Ports			  [2, 1]
+	  Position		  [220, 55, 240, 75]
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "|+-"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "VR Sink"
+	  SID			  "73"
+	  Ports			  [2]
+	  Position		  [525, 46, 620, 119]
+	  LibraryVersion	  "1.241"
+	  SourceBlock		  "vrlib/VR Sink"
+	  SourceType		  "Virtual Reality Sink"
+	  SampleTime		  "-1"
+	  ViewEnable		  on
+	  RemoteChange		  off
+	  RemoteView		  on
+	  FieldsWritten		  "ALFA.translation.3.1.1.double#Opruga.scale.3.1.1.double"
+	  WorldFileName		  "B:\\LARICS_GIT\\LARICS-flying-Robin\\@_LEG\\VRML_MODEL\\skakac.WRL"
+	  AutoView		  off
+	  VideoDimensions	  "[]"
+	  FigureProperties	  "{'Position', 'Name', 'Viewpoint', 'CameraBound', 'CameraDirection', 'CameraPosition', 'CameraUp"
+	  "Vector', 'ZoomFactor', 'Antialiasing', 'Headlight', 'Lighting', 'NavPanel', 'StatusBar', 'ToolBar', 'Textures', 'Tr"
+	  "ansparency', 'Wireframe', 'NavZones', 'NavMode', 'NavSpeed', 'Record2DCompressMethod', 'Record2DCompressQuality', '"
+	  "Record2D', 'Record2DFileName', 'Record2DFPS'; [5.0000000000000000e+000  9.2000000000000000e+001  6.8400000000000000"
+	  "e+002  5.1300000000000000e+002], '', '', 'on', [-5.5153091574051807e-002  2.1884603019478926e-001 -9.74199441365991"
+	  "79e-001], [0.0000000000000000e+000  0.0000000000000000e+000  1.2300000000000000e+002], [2.7043022875712985e-002  9."
+	  "7565400181538420e-001  2.1764177828572354e-001], [1.0000000000000000e+000], 'on', 'on', 'on', 'halfbar', 'on', 'on'"
+	  ", 'on', 'on', 'off', 'off', 'fly', 'normal', 'auto', [7.5000000000000000e+001], 'off', '%f_anim_%n.avi', [1.5000000"
+	  "000000000e+001]} "
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "lo-4mm"
+	  SID			  "74"
+	  Position		  [215, 100, 245, 130]
+	  Value			  "26"
+	}
+	Line {
+	  SrcBlock		  "I0"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, 80]
+	  DstBlock		  "Gain1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "H"
+	  SrcPort		  1
+	  DstBlock		  "Gain"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum"
+	  SrcPort		  1
+	  DstBlock		  "Saturation1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "lo-4mm"
+	  SrcPort		  1
+	  Points		  [0, -25]
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Divide"
+	  SrcPort		  1
+	  DstBlock		  "Saturation"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Saturation1"
+	  SrcPort		  1
+	  Points		  [45, 0; 0, 15]
+	  DstBlock		  "Mux"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Constant3"
+	  SrcPort		  1
+	  Points		  [10, 0; 0, -60]
+	  Branch {
+	    DstBlock		    "Mux1"
+	    DstPort		    3
+	  }
+	  Branch {
+	    Points		    [-10, 0; 0, -20]
+	    DstBlock		    "Mux1"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Saturation"
+	  SrcPort		  1
+	  Points		  [0, -20]
+	  DstBlock		  "Mux1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Mux1"
+	  SrcPort		  1
+	  Points		  [20, 0]
+	  DstBlock		  "VR Sink"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Mux"
+	  SrcPort		  1
+	  Points		  [45, 0]
+	  DstBlock		  "VR Sink"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Constant1"
+	  SrcPort		  1
+	  Points		  [0, 30]
+	  Branch {
+	    Points		    [0, 20]
+	    DstBlock		    "Mux"
+	    DstPort		    3
+	  }
+	  Branch {
+	    DstBlock		    "Mux"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Gain"
+	  SrcPort		  1
+	  Points		  [25, 0]
+	  Branch {
+	    Points		    [0, 100]
+	    DstBlock		    "Divide"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, -20]
+	    DstBlock		    "Sum"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Gain1"
+	  SrcPort		  1
+	  DstBlock		  "Divide"
+	  DstPort		  2
+	}
+      }
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "l0"
+      SID		      "75"
+      Position		      [620, 135, 650, 165]
+      Value		      "3"
+    }
     Line {
       SrcBlock		      "Chart"
       SrcPort		      1
-      Points		      [0, 45]
-      DstBlock		      "Mux"
-      DstPort		      1
+      Points		      [0, 45; 35, 0]
+      Branch {
+	DstBlock		"Mux"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -25; 275, 0]
+	DstBlock		"VRML model jedne noge"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Mux"
@@ -1191,23 +1707,8 @@ Model {
     Line {
       SrcBlock		      "Chart"
       SrcPort		      2
-      Points		      [10, 0]
-      Branch {
-	Points			[35, 0]
-	DstBlock		"Mux"
-	DstPort			3
-      }
-      Branch {
-	Points			[0, 70]
-	DstBlock		"Unit Delay"
-	DstPort			1
-      }
-    }
-    Line {
-      SrcBlock		      "Unit Delay"
-      SrcPort		      1
-      Points		      [-5, 0]
-      DstBlock		      "Gain"
+      Points		      [10, 0; 0, 95]
+      DstBlock		      "Unit Delay"
       DstPort		      1
     }
     Line {
@@ -1215,14 +1716,41 @@ Model {
       SrcPort		      1
       Points		      [5, 0]
       Branch {
-	DstBlock		"Chart"
-	DstPort			4
-      }
-      Branch {
 	Points			[0, 35]
 	DstBlock		"Derivative"
 	DstPort			1
       }
+      Branch {
+	Points			[45, 0]
+	Branch {
+	  DstBlock		  "Chart"
+	  DstPort		  4
+	}
+	Branch {
+	  Points		  [0, -20; 280, 0]
+	  DstBlock		  "Mux"
+	  DstPort		  2
+	}
+      }
+    }
+    Line {
+      SrcBlock		      "Unit Delay"
+      SrcPort		      1
+      DstBlock		      "MATLAB Function"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "MATLAB Function"
+      SrcPort		      1
+      Points		      [-40, 0; 0, -110]
+      DstBlock		      "Gain"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "l0"
+      SrcPort		      1
+      DstBlock		      "VRML model jedne noge"
+      DstPort		      2
     }
   }
 }
@@ -1239,7 +1767,7 @@ Stateflow {
     name		    "HoppingLEG"
     created		    "25-Oct-2012 12:24:52"
     isLibrary		    0
-    firstTarget		    22
+    firstTarget		    29
     debug {
       breakOn		      [0 0 1]
     }
@@ -1248,14 +1776,13 @@ Stateflow {
   chart {
     id			    2
     name		    "Chart"
-    windowPosition	    [21.75 176.25 563.25 505.5]
+    windowPosition	    [101.25 200.25 563.25 505.5]
     viewLimits		    [5.087 528.475 0 472.786]
     zoomFactor		    1.007
     screen		    [1 1 1920 1080 1.333333333333333]
     treeNode		    [0 3 0 0]
     firstTransition	    5
     viewObj		    2
-    visible		    1
     machine		    1
     subviewS {
       x1		      5.087
@@ -1599,8 +2126,124 @@ Stateflow {
     machine		    1
     chart		    2
   }
-  target {
+  chart {
     id			    22
+    name		    "MATLAB Function"
+    windowPosition	    [375.75 203.25 200.25 189.75]
+    viewLimits		    [0 156.75 0 153.75]
+    screen		    [1 1 1920 1080 1.333333333333333]
+    treeNode		    [0 23 0 0]
+    firstTransition	    25
+    firstJunction	    24
+    viewObj		    22
+    machine		    1
+    ssIdHighWaterMark	    5
+    decomposition	    CLUSTER_CHART
+    type		    EML_CHART
+    firstData		    26
+    chartFileNumber	    2
+    disableImplicitCasting  1
+    eml {
+      name		      "fcn"
+    }
+  }
+  state {
+    id			    23
+    labelString		    "eML_blk_kernel()"
+    position		    [18 64.5 118 66]
+    fontSize		    12
+    chart		    22
+    treeNode		    [22 0 0 0]
+    superState		    SUBCHART
+    subviewer		    22
+    ssIdNumber		    1
+    type		    FUNC_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+      isEML		      1
+      script		      "function y = fcn(u)\n%#codegen\n%#codegen\npersistent tick started\nif isempty(tick)\n    tick = "
+      "0;\n    started = 0;\nend\ny=0;\nif u == 1\n    started = 1;\nend\nif started\n    if tick<50\n        tick=tick"
+      "+1;\n        y = 2;\n    else\n        tick = 0;\n        started = 0;\n    end \nend\n"
+      editorLayout	      "100 M4x1[403 213 657 497]"
+    }
+  }
+  junction {
+    id			    24
+    position		    [23.5747 49.5747 7]
+    chart		    22
+    linkNode		    [22 0 0]
+    subviewer		    22
+    ssIdNumber		    3
+    type		    CONNECTIVE_JUNCTION
+  }
+  transition {
+    id			    25
+    labelString		    "{eML_blk_kernel();}"
+    labelPosition	    [32.125 19.875 102.544 14.964]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 23.5747 14.625 0 0]
+    }
+    dst {
+      id		      24
+      intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
+    }
+    midPoint		    [23.5747 24.9468]
+    chart		    22
+    linkNode		    [22 0 0]
+    dataLimits		    [23.575 23.575 14.625 34.575]
+    subviewer		    22
+    drawStyle		    SMART
+    executionOrder	    1
+    ssIdNumber		    2
+  }
+  data {
+    id			    26
+    ssIdNumber		    4
+    name		    "u"
+    linkNode		    [22 0 27]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    27
+    ssIdNumber		    5
+    name		    "y"
+    linkNode		    [22 26 0]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  instance {
+    id			    28
+    name		    "MATLAB Function"
+    machine		    1
+    chart		    22
+  }
+  target {
+    id			    29
     name		    "sfun"
     description		    "Default Simulink S-Function Target."
     machine		    1
