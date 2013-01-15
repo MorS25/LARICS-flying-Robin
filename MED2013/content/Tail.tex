@@ -2,17 +2,7 @@
 In order to devise a mathematical model of tail dynamics, we propose modeling the tail as a kinematic chain manipulator attached to robot body. Much like in aerial robots, when the robot is in the air, the tail acts frealy on its body. We propose using the tail as a dynamic stabilizator for the hopping. First we build the kinematic model using Denavit-Hartenberg parametrization metod, after that we devise a dynamic model of the arms using recursive Newton-Euler algorithm.
 
 \subsection{Kinematic model}
-Kinematic chain of the tail is shown in Fig. \ref{fig:rmax}, and the kinematic parameters are shown in table \ref{tab:DHParameters}. Kinematic chain consists of the body coordinate system, 2 revolute joints on of the tail, one virtual prismatic joint in the tail (i.e. Tail length parameter), and the tail tip coordinate system. As can be seen from DH parameters table, the two revolute joints have no linear, only angular dislacement from each other, therefore their masses and moments of inertia are all zero. The third prismatic joint represents the tail length and is modeled as a long stick with infitesimal thickness. Its moment of inertia is, therefore, written as:
-
-\begin{equation}
-J_3=\frac{{Q_3}^2 m_3}{12}\left(
-\begin{array}{ccc}
- 1 & 0 & 0 \\
- 0 & 1 & 0 \\
- 0 & 0 & 0
-\end{array}
-\right)
-\end{equation} 
+Kinematic chain of the tail is shown in Fig. \ref{fig:rmax}, and the kinematic parameters are shown in table \ref{tab:DHParameters}. Kinematic chain consists of the body coordinate system, 2 revolute joints on of the tail, one virtual prismatic joint in the tail (i.e. Tail length parameter), and the tail tip coordinate system. As can be seen from DH parameters table, the two revolute joints have no linear, only angular dislacement from each other, therefore their masses and moments of inertia are all zero. The third prismatic joint represents the tail length and is modeled as a long stick with infitesimal thickness. 
 
 \begin{table}
 	\centering
@@ -79,11 +69,31 @@ J_{c_i}=\frac{m}{12}\begin{bmatrix}
 \end{equation} 
 and the body center of mass is placed directly in the center of body coordinate system. For any other arrangment, tensor matrix will not be symmetric, and what is even worse, the body center of mass will be missaligned.
 
+Acting as an active spring, while quadriped is hoping, each leg excerts force on its body. The legs are positioned symetrically around the geometric center, and similarly as quadrotor aircraft produce the following forces and torques:
 
+\begin{gather}\label{eq:Forces}
+\vec{F_{tot}}=\sum_{i=1}^{4}(\vec{T_{i}}+\vec{S_{i}})\\
+\vec{\tau_{tot}}=\sum_{i=1}^{4}\vec{\rho _i}(\vec{T_{i}}+\vec{S_{i}})
+\end{gather}  
+
+Where $\vec{T_{i}}$ represents the $i$-th cuboid thrust force that causes vertical movement (i.e. hopping), $\vec{S_{i}}$ $i$-th cuboid side force that moves the qudriped in x direction, and $\rho _i$ $i$-th distance between the geometric center and forces.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=85mm]{./pictures/RobinMoment.jpg}
+	\includegraphics[width=85mm]{./pictures/RobinMoment.pdf}
 	\caption{Robin moment}
 	\label{fig:rmoment}
 \end{figure}
+
+\subsection{Tail dynamics}
+Its moment of inertia is, therefore, written as:
+
+\begin{equation}
+J_3=\frac{{Q_3}^2 m_3}{12}\left(
+\begin{array}{ccc}
+ 1 & 0 & 0 \\
+ 0 & 1 & 0 \\
+ 0 & 0 & 0
+\end{array}
+\right)
+\end{equation} 
