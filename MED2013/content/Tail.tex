@@ -85,7 +85,7 @@ Acting as an active spring, while quadriped is hoping, each leg excerts force on
 \vec{\tau_{tot}}=\sum_{i=1}^{4}\vec{\rho _i}(\vec{T_{i}}+\vec{S_{i}})
 \end{gather}  
 
-Where $\vec{T_{i}}$ represents the $i$-th cuboid thrust force that causes vertical movement (i.e. hopping), $\vec{S_{i}}$ $i$-th cuboid side force that moves the qudriped in x direction, and $\rho _i$ $i$-th distance between the geometric center and forces.
+Where $\vec{T_{i}}$ represents the $i$-th cuboid thrust force that causes vertical movement (i.e. hopping), $\vec{S_{i}}$ $i$-th cuboid side force that moves the qudriped in x direction, and $\rho _i$ $i$-th distance between the geometric center and the forces.
 
 \begin{figure}
 	\centering
@@ -94,6 +94,7 @@ Where $\vec{T_{i}}$ represents the $i$-th cuboid thrust force that causes vertic
 	\label{fig:rmoment}
 \end{figure}
 
+For a perfect symetric body follows that the total torque (\label{eq:Forces}) acting on the body is equal to zero, and the total force is the sum of all 4 active springs. For this, the neccessary condition is that all four springs have exactly the same parameters, and thus excert the same forces. In reality, neither the springs are the same, nor there can be a perfectly symetric body. Therefore, we propose, adding a tail to the quadriped in order to balance the robot. 
 \subsection{Tail dynamics}
 In Fig. \ref{fig:rmoment}, tail coordinate system is depicted. Due to the tail's infitesimal thickness, its moment of inertia, written in this frame is:
 
