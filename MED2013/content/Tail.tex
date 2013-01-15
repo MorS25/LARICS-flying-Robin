@@ -19,6 +19,15 @@ Kinematic chain of the tail is shown in Fig. \ref{fig:rmax}, and the kinematic p
 	\caption{Denavit-Hartenberg Parameters}\label{tab:DHParameters}
 \end{table}
 
+\begin{equation}
+T_0^3=\begin{bmatrix}
+C_1 C_2 & -S_1 & C_1 S_2 & C_1 S_2 Q_3 \\
+C_2 S_1 & C_1 & S_1 S_2 & S_1 S_2 Q_3 \\
+-S_2 & 0 & C_2 & C_2 Q_3 \\
+ 0 & 0 & 0 & 1
+\end{bmatrix}
+\end{equation}
+
 %\begin{multicols}{1}
 \begin{equation}
 \tau_b=\begin{bmatrix}
@@ -81,12 +90,12 @@ Where $\vec{T_{i}}$ represents the $i$-th cuboid thrust force that causes vertic
 \begin{figure}
 	\centering
 	\includegraphics[width=85mm]{./pictures/RobinMoment.pdf}
-	\caption{Robin moment}
+	\caption{Robin body dynamics}
 	\label{fig:rmoment}
 \end{figure}
 
 \subsection{Tail dynamics}
-Its moment of inertia is, therefore, written as:
+In Fig. \ref{fig:rmoment}, tail coordinate system is depicted. Due to the tail's infitesimal thickness, its moment of inertia, written in this frame is:
 
 \begin{equation}
 J_3=\frac{{Q_3}^2 m_3}{12}\left(
@@ -97,3 +106,4 @@ J_3=\frac{{Q_3}^2 m_3}{12}\left(
 \end{array}
 \right)
 \end{equation} 
+
