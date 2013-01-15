@@ -29,7 +29,7 @@ J_3=\frac{{Q_3}^2 m_3}{12}\left(
 	\caption{Denavit-Hartenberg Parameters}\label{tab:DHParameters}
 \end{table}
 
-\begin{multicols}{2}
+%\begin{multicols}{1}
 \begin{equation}
 \tau_b=\begin{bmatrix}
 \frac{1}{24} m_3 Q_3 \left(-12 g S_1 S_2+Q_3 \left(3 S_1 S2_2 {\dot{Q}_1}^2-2 C_1\left(5+3 C2_2\right) \dot{Q}_1 \dot{Q}_2-3 C_1 S2_2 \ddot{Q}_1-8 S_1 \ddot{Q}_2\right)\right)\\
@@ -37,7 +37,7 @@ J_3=\frac{{Q_3}^2 m_3}{12}\left(
 \frac{1}{4} S_2 m_3 Q_3^2 \left(2 C_2 \dot{Q}_1 \dot{Q}_2+S_2 \ddot{Q}_1\right)
 \end{bmatrix}
 \end{equation}
-\end{multicols}
+%\end{multicols}
 
 \begin{figure}
 	\centering
@@ -45,6 +45,41 @@ J_3=\frac{{Q_3}^2 m_3}{12}\left(
 	\caption{Robin Tail kinematic chain model}
 	\label{fig:rmax}
 \end{figure}
+
+\subsection{Robin body}
+In order to simplify the complexity of this analysis, we propose modeling Robin as a cuboid body, as shown in Fig \ref{fig:rmoment}. Moreover, Robin's body is a "container" for 4 cuboids, equaly displaced from the body center. Ideally, when Robin's body is fully simetric, all four cuboids have the same mass. Since in most situations this is not the case, each cuboid has its own mass $m_i$, its own center of mass $cm_i$ placed in its center, and $\vec{r}_i$, the distance between the $cm_i$ and the body coordinate system. The overall center of mass is then easily calculated from: 
+\begin{equation}
+CM=\frac{\sum_{i=1}^{4}m_i\vec{r}_i}{\sum_{i=1}^{4}m_i}
+\end{equation}
+Next important dynamic parameter is the moment of inertia tensor. Having for cuboid bodys as the basis of robot body model, tensor of inertia can easily be derived by using the Parallel axis theorem:
+\begin{equation}
+J_R=\sum_{i=1}^{4}\left \{J_{c_i}+m_i\begin{bmatrix}
+{_yr_i}^2+{_zr_i}^2 & {_xr_i}\cdot {_yr_i} & {_xr_i}\cdot {_zr_i} \\ 
+-{_xr_i}\cdot {_yr_i} & {_xr_i}^2+{_zr_i}^2 & {_yr_i}\cdot {_zr_i}\\ 
+-{_xr_i}\cdot {_zr_i} & {_yr_i}\cdot {_zr_i} & {_yr_i}^2+{_xr_i}^2
+\end{bmatrix} \right \}
+\end{equation}
+
+where, $_xr_i, _yr_i, _zr_i$ represent $\vec{r}_i$ projection in $x,y,z$ respectively, and $J_{c_i}$ is the moment of inertia of the single cuboid element of height $h_i$, width $w_i$ and length $l_i$:
+\begin{equation}
+J_{c_i}=\frac{m_i}{12}\begin{bmatrix}
+w_i^2+d_i^2 &0&0 \\ 
+0 &h_i^2+d_i^2&0\\ 
+0 &0& w_i^2+h_i^2
+\end{bmatrix}
+\end{equation} 
+
+It could be easily shown that if all four cuboids have the same mass and size (i.e. $m,h,d,w$) and are simetrically displaced from the body center, as shown in Fig \ref{fig:rmoment}, the total body moment of inertira $J_R$ comes down to a symetric matrix:
+
+\begin{equation}
+J_{c_i}=\frac{m}{12}\begin{bmatrix}
+(2w)^2+d^2 &0&0 \\ 
+0 &(2h)^2+d^2&0\\ 
+0 &0& (2w)^2+(2h)^2
+\end{bmatrix}
+\end{equation} 
+
+and the body center of mass is placed directly in the center of body coordinate system.
 
 \begin{figure}
 	\centering
