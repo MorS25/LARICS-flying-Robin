@@ -29,6 +29,7 @@ C_2 S_1 & C_1 & S_1 S_2 & S_1 S_2 Q_3 \\
 \end{equation}
 
 %\begin{multicols}{1}
+\tiny
 \begin{equation}
 \tau_b=\begin{bmatrix}
 \frac{1}{24} m_3 Q_3 \left(-12 g S_1 S_2+Q_3 \left(3 S_1 S2_2 {\dot{Q}_1}^2-2 C_1\left(5+3 C2_2\right) \dot{Q}_1 \dot{Q}_2-3 C_1 S2_2 \ddot{Q}_1-8 S_1 \ddot{Q}_2\right)\right)\\
@@ -36,6 +37,7 @@ C_2 S_1 & C_1 & S_1 S_2 & S_1 S_2 Q_3 \\
 \frac{1}{4} S_2 m_3 Q_3^2 \left(2 C_2 \dot{Q}_1 \dot{Q}_2+S_2 \ddot{Q}_1\right)
 \end{bmatrix}
 \end{equation}
+\normalsize
 %\end{multicols}
 
 \begin{figure}
@@ -47,16 +49,19 @@ C_2 S_1 & C_1 & S_1 S_2 & S_1 S_2 Q_3 \\
 
 \subsection{Robin body}
 In order to simplify the complexity of this analysis, we propose modeling Robin as a cuboid body, as shown in Fig \ref{fig:rmoment}. Moreover, Robin's body is a "container" for 4 cuboids, equaly displaced from the body center. Ideally, when Robin's body is fully simetric, all four cuboids have the same mass. Since in most situations this is not the case, each cuboid has its own mass $m_i$, its own center of mass $cm_i$ placed in its center, and $\vec{r}_i$, the distance between the $cm_i$ and the body coordinate system. The overall center of mass is then easily calculated from: 
-\begin{equation}
+\begin{equation}\label{eq:CMrobot}
 CM=\frac{\sum_{i=1}^{4}m_i\vec{r}_i}{\sum_{i=1}^{4}m_i}
 \end{equation}
 Next important dynamic parameter is the moment of inertia tensor. Having for cuboid bodys as the basis of robot body model, tensor of inertia can easily be derived by using the Parallel axis theorem:
+
 \begin{equation}
+\tiny
 J_R=\sum_{i=1}^{4}\left \{J_{c_i}+m_i\begin{bmatrix}
 {_yr_i}^2+{_zr_i}^2 & {_xr_i}\cdot {_yr_i} & {_xr_i}\cdot {_zr_i} \\ 
 -{_xr_i}\cdot {_yr_i} & {_xr_i}^2+{_zr_i}^2 & {_yr_i}\cdot {_zr_i}\\ 
 -{_xr_i}\cdot {_zr_i} & {_yr_i}\cdot {_zr_i} & {_yr_i}^2+{_xr_i}^2
 \end{bmatrix} \right \}
+\normalsize
 \end{equation}
 
 where, $_xr_i, _yr_i, _zr_i$ represent $\vec{r}_i$ projection in $x,y,z$ respectively, and $J_{c_i}$ is the moment of inertia of the single cuboid element of height $h_i$, width $w_i$ and length $l_i$:
@@ -82,7 +87,7 @@ Acting as an active spring, while quadriped is hoping, each leg excerts force on
 
 \begin{gather}\label{eq:Forces}
 \vec{F_{tot}}=\sum_{i=1}^{4}(\vec{T_{i}}+\vec{S_{i}})\\
-\vec{\tau_{tot}}=\sum_{i=1}^{4}\vec{\rho _i}(\vec{T_{i}}+\vec{S_{i}})
+\vec{\tau_{tot}}=\sum_{i=1}^{4}\vec{\rho _i}\times(\vec{T_{i}}+\vec{S_{i}})
 \end{gather}  
 
 Where $\vec{T_{i}}$ represents the $i$-th cuboid thrust force that causes vertical movement (i.e. hopping), $\vec{S_{i}}$ $i$-th cuboid side force that moves the qudriped in x direction, and $\rho _i$ $i$-th distance between the geometric center and the forces.
@@ -94,12 +99,37 @@ Where $\vec{T_{i}}$ represents the $i$-th cuboid thrust force that causes vertic
 	\label{fig:rmoment}
 \end{figure}
 
-For a perfect symetric body follows that the total torque (\label{eq:Forces}) acting on the body is equal to zero, and the total force is the sum of all 4 active springs. For this, the neccessary condition is that all four springs have exactly the same parameters, and thus excert the same forces. In reality, neither the springs are the same, nor there can be a perfectly symetric body. Therefore, we propose, adding a tail to the quadriped in order to balance the robot. 
-\subsection{Tail dynamics}
-In Fig. \ref{fig:rmoment}, tail coordinate system is depicted. Due to the tail's infitesimal thickness, its moment of inertia, written in this frame is:
+For a perfect symetric body follows that the total torque (\ref{eq:Forces}) acting on the body is equal to zero, and the total force is the sum of all 4 active springs. For this, the neccessary condition is that all four springs have exactly the same parameters, and thus excert the same forces. In reality, neither the springs are the same, nor there can be a perfectly symetric body. We write the body torque equation for a non-symmetric body, with the center of mass displaced for $\vec{\Delta CM}$:
 
+\begin{equation}\label{eq:Torques}
+\vec{\tau}_{tot}=\begin{bmatrix}
+\Delta \textsc{cm}_y \:\bar{T} & -\left ( \Delta \textsc{cm}_x \:\bar{T} +\Delta \textsc{cm}_z \:\bar{S}\right ) & -\Delta \textsc{cm}_y \:\bar{S}
+\end{bmatrix}^T
+\end{equation}
+where $\bar{T}$ and $\bar{S}$ represent the average thrust and side forces of each leg. In this analysis, the displacement of the center of mass is used to model the unballanced body dynamics. In practice, the displacement vector  $\vec{\Delta CM}$ can incorporate all possible imperfections: design symmetry, leg differences, motor dyanmics and so on.  
+
+In order to achieve successfull hopping average forces $\bar{T}$ and $\bar{S}$ have to exist. On the other hand, for a stable jump, we need to counteract the undesired torque (\ref{eq:Torques}). Therefore, we propose, adding a tail to the quadriped in order to balance the robot. 
+\subsection{Tail dynamics}
+In Fig. \ref{fig:rmoment}, a tail with its ${L_T}$ coordinate system, placed in its center of mass is depicted. Introducing a new body in the quadriped construction, the overall center of mass will change accordingly:
 \begin{equation}
-J_3=\frac{{Q_3}^2 m_3}{12}\left(
+CM=\frac{\sum_{i=1}^{4}m_i\vec{r}_i+m_T\vec{p}_T}{\sum_{i=1}^{4}m_i+m_T}= \frac{\Delta\vec{\textsc{cm}}+\mu\cdot\textsc{cm}_T}{1+\mu}
+\end{equation}
+In the previous equation we introduced the mass ratio $\mu=\frac{m_T}{\sum_{i=1}^{4}m_i}$ and $\Delta\vec{\textsc{cm}}$ is the center of mass of the robot without the tail from equation (\ref{eq:CMrobot}). 
+\begin{equation}
+\begin{bmatrix}
+\Delta \textsc{cm}_x\\ 
+\Delta \textsc{cm}_y\\ 
+\Delta \textsc{cm}_z
+\end{bmatrix}+
+\frac{\mu Q_3}{2}\begin{bmatrix}
+S_1C_2\\ 
+S_1S_2\\ 
+C_2
+\end{bmatrix}=0
+\end{equation}
+Due to the tail's infitesimal thickness, its moment of inertia, written in this frame can be simplified:
+\begin{equation}
+J_T=J_3=\frac{{Q_3}^2 m_3}{12}\left(
 \begin{array}{ccc}
  1 & 0 & 0 \\
  0 & 1 & 0 \\
@@ -107,4 +137,14 @@ J_3=\frac{{Q_3}^2 m_3}{12}\left(
 \end{array}
 \right)
 \end{equation} 
+\small
+\begin{equation}
+{J_T}^*={R_0^3}^TJ_TR_0^3+m_T\begin{bmatrix}
+{cm_y^T}^2 +{cm_z^T}^2& {cm_x^T}{cm_y^T}& {cm_x^T}{cm_z^T} \\ 
+-{cm_x^T}{cm_y^T} & {cm_x^T}^2+{cm_z^T}^2 & {cm_y^T}{cm_z^T}\\ 
+-{cm_x^T}{cm_z^T} & -{cm_y^T}{cm_z^T} & {cm_x^T}^2+{cm_y^T}^2
+\end{bmatrix}
+\end{equation}
+\normalsize
+
 
