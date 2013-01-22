@@ -134,12 +134,13 @@ From a strict mathematical point of view, the necessary condition for (\ref{eq:C
 \frac{\mu Q_3}{2}\geq \textup{MAX}\left \{ \left | \Delta \textsc{cm}_x \right |, \left | \Delta \textsc{cm}_y \right |,\left | \Delta \textsc{cm}_z \right |\right \}
 \end{equation}
 When the condtion (\ref{eq:CMcondition}) is met, the analitical solution to equation (\ref{eq:CMzeroing}) can easily be derived:
-\begin{gather}
+\begin{gather}\label{eq:CMsolution}
 Q_1=atan2\left({\Delta \textsc{cm}_y},\, {\Delta \textsc{cm}_x}\right)\\
 Q_2=asin\left(\frac{2\sqrt{{\Delta \textsc{cm}_x}^2+{\Delta \textsc{cm}_y}^2}}{\mu Q_3} \right)
 \end{gather}
 
-
+\subsubsection{Iterative Center of Mass displacement compensation}
+In reality, the distribution of center of mass of the body is not known, and therefore, analytic solution give with (\ref{eq:CMsolution}) is impossible. Thus an iterative method, based on hopping response is proposed. When a quadriped is hopping, its contact with the ground is infitesimally short, and consequently, reaction forces and torques are aproximated with the dirac function $\delta (s)$. During the jump, the body behaves acording to Euler body dynamics function (\ref{eq:EulerBody}). Taking account the infitessimally short time the body has to accelerate the cross coupling term $\vec{\omega}\times J_B\vec{\omega}$ can be neglected and the rotation speed vector can be approximated with (\ref{eq:RotSpeedAprox}).
 \begin{figure}
 	\centering
 	\includegraphics[width=85mm]{./pictures/RobinRepicCM.pdf}
@@ -147,6 +148,21 @@ Q_2=asin\left(\frac{2\sqrt{{\Delta \textsc{cm}_x}^2+{\Delta \textsc{cm}_y}^2}}{\
 	\label{fig:rmoment}
 \end{figure}
 
+\begin{equation}\label{eq:EulerBody}
+\tau_{tot}=J_B\vec{\dot{\omega}}+\vec{\omega}\times J_B\vec{\omega}
+\end{equation}
+
+\begin{equation}\label{eq:RotSpeedAprox}
+\vec{\omega}\approx \frac{1}{s}{J_B}^{-1}\begin{bmatrix}
+\Delta \textsc{cm}_y & -\Delta \textsc{cm}_x & 0
+\end{bmatrix}^T\bar{T}\delta(s)
+\end{equation}
+
+Calculating the distance of vector (\ref{eq:RotSpeedAprox}) it is easy to show how the size of rotation speed vector is proportional to the displacement of center of mass. This effectively shows how moving the displacement of center of mass to the construction center of the robot eliminates the generation of unwanted rotations. 
+
+\begin{equation}
+\left \| \vec{\omega} \right \|\sim \sqrt{{\Delta \textsc{cm}_x}^2+{\Delta \textsc{cm}_y}^2}
+\end{equation}
 Due to the tail's infitesimal thickness, its moment of inertia, written in this frame can be simplified:
 \begin{equation}
 J_T=J_3=\frac{{Q_3}^2 m_3}{12}\left(
@@ -166,5 +182,3 @@ J_T=J_3=\frac{{Q_3}^2 m_3}{12}\left(
 \end{bmatrix}
 \end{equation}
 \normalsize
-
-
