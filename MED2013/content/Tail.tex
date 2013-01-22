@@ -111,22 +111,33 @@ where $\bar{T}$ and $\bar{S}$ represent the average thrust and side forces of ea
 In order to achieve successfull hopping average forces $\bar{T}$ and $\bar{S}$ have to exist. On the other hand, for a stable jump, we need to counteract the undesired torque (\ref{eq:Torques}). Therefore, we propose, adding a tail to the quadriped in order to balance the robot. 
 \subsection{Tail dynamics}
 In Fig. \ref{fig:rmoment}, a tail with its ${L_T}$ coordinate system, placed in its center of mass is depicted. Introducing a new body in the quadriped construction, the overall center of mass will change accordingly:
-\begin{equation}
+\begin{equation}\label{eq:CMrobotAndTail}
 CM=\frac{\sum_{i=1}^{4}m_i\vec{r}_i+m_T\vec{p}_T}{\sum_{i=1}^{4}m_i+m_T}= \frac{\Delta\vec{\textsc{cm}}+\mu\cdot\textsc{cm}_T}{1+\mu}
 \end{equation}
-In the previous equation we introduced the mass ratio $\mu=\frac{m_T}{\sum_{i=1}^{4}m_i}$ and $\Delta\vec{\textsc{cm}}$ is the center of mass of the robot without the tail from equation (\ref{eq:CMrobot}). 
-\begin{equation}
+In the previous equation we introduced the mass ratio $\mu=\frac{m_T}{\sum_{i=1}^{4}m_i}$ and $\Delta\vec{\textsc{cm}}$ is the center of mass of the robot without the tail from equation (\ref{eq:CMrobot}). If we want to keep the center of mass in the construction center of the robot (i.e. $CM=0$), then the following condition has to be met:
+\begin{equation}\label{eq:CMzeroing}
 \begin{bmatrix}
 \Delta \textsc{cm}_x\\ 
 \Delta \textsc{cm}_y\\ 
 \Delta \textsc{cm}_z
 \end{bmatrix}+
 \frac{\mu Q_3}{2}\begin{bmatrix}
-S_1C_2\\ 
+C_1S_2\\ 
 S_1S_2\\ 
 C_2
 \end{bmatrix}=0
 \end{equation}
+that is to say, that the numerator in (\ref{eq:CMrobotAndTail}) has to be zero. Given that in (\ref{eq:CMzeroing}) there exists only two variables, $Q_1$ and $Q_2$ respectively, one can eliminate only two components of center of mass displacement vector $\Delta \vec{\textsc{cm}}$. Under a reasonable assumption that $\bar{T}\gg \bar{S}$, from equation (\ref{eq:Torques}) follows that for a stable jump one needs to successfully eliminate $x$ and $y$ components of center of mass displacement vector. This assumption is reasonable because in most cases the forward motion is slow compared to the jumping action, and in z direction one needs to overcome the gravity acceleration $g$, making $\bar{T}$ by the order of magnitude larger then $\bar{S}$.
+
+From a strict mathematical point of view, the necessary condition for (\ref{eq:CMzeroing}) to have a solution is:
+\begin{equation}\label{eq:CMcondition}
+\frac{\mu Q_3}{2}\geq \textup{MAX}\left \{ \left | \Delta \textsc{cm}_x \right |, \left | \Delta \textsc{cm}_y \right |,\left | \Delta \textsc{cm}_z \right |\right \}
+\end{equation}
+When the condtion (\ref{eq:CMcondition}) is met, the analitical solution to equation (\ref{eq:CMzeroing}) can easily be derived:
+\begin{gather}
+Q_1=atan2\left({\Delta \textsc{cm}_y},\, {\Delta \textsc{cm}_x}\right)\\
+Q_2=asin\left(\frac{2\sqrt{{\Delta \textsc{cm}_x}^2+{\Delta \textsc{cm}_y}^2}}{\mu Q_3} \right)
+\end{gather}
 Due to the tail's infitesimal thickness, its moment of inertia, written in this frame can be simplified:
 \begin{equation}
 J_T=J_3=\frac{{Q_3}^2 m_3}{12}\left(
