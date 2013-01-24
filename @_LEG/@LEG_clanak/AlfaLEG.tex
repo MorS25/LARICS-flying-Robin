@@ -52,7 +52,7 @@
     \par\marginpar{{\Large\color{red}$\star$}}}}
 
 \title{\LARGE \bf
-Alpha leg
+$@$LEG
 }
 
 
@@ -86,10 +86,178 @@ Hopping robot
 
 \section{Mass-Spring-Damper Model}
 
-When the leg is in contact with the ground, the equation of motion is:
-\begin{equation}\label{eq1}
-m\ddot{y}+c\dot{y}+ky = -m g
+ \begin{figure}[!hb]
+      \centering
+      \includegraphics[scale=0.8]{MassSpringDamplerActuator.pdf}
+      \caption{MassSpringDamperActuation,flight-stance phase}
+      \label{MSDA}
+  \end{figure}
+ 
+Introduction to Lagrange Euler  modeling approach.Virtual work. 
+
+The Lagrangian function:
+\begin{equation}\label{Lagrangian}
+L\left ( q_i,\dot{q_i} \right )=T(q_i,\dot{q_i})-V(y)
 \end{equation}
+The Lagrangian equation:
+\begin{equation}\label{Lagrangian_eq}
+\frac{d}{dt}\frac{\partial }{\partial \dot{q_i}}L(q_i,\dot{q_i})-\frac{\partial }{\partial q_i}L(q_i,\dot{q_i})=Q_i
+\end{equation}
+
+
+$Q_i$ - generalized nonconservative force derived by using virtual work principle
+
+Virual work principle assumes infinitesimal virtual displacement on the system which results the virtual work done on the system. 
+
+\begin{equation}\label{virtual_work}
+\delta W_j = Q_j\cdot \delta q_j
+\end{equation}
+  
+\subsection{Flight Phase}
+
+The potential energy of $@$LEG (Fig.\ref{MSDA}) is defined as:
+
+\begin{equation}\label{Efpot}
+V_{flight}=m_1\cdot g\cdot y+m_2\cdot g(y-u)+\frac{1}{2}k_{u}(u_0-u)^{2}
+\end{equation}
+
+where $u_0$ is motor reference position.
+
+The kinetic energy of $@$LEG (Fig.\ref{MSDA}) is defined as:
+
+\begin{equation}\label{Efkin}
+T_{flight}=\frac{1}{2}m_1\cdot \dot{y}^{2}+\frac{1}{2}m_2(\dot{y}-\dot{u})^{2}
+\end{equation}
+
+The Lagrangian function:
+
+\begin{equation}\label{Lflight}
+\begin{split}
+L=T_{flight}-V_{flight}=\frac{1}{2}m_1\cdot \dot{y}^{2}+\frac{1}{2}m_2(\dot{y}-\dot{u})^{2} \\
+ - m_1\cdot g\cdot y-m_2\cdot g(y-u)-\frac{1}{2}k_{u}(u_0-u)^{2}
+\end{split}
+\end{equation}
+
+The $@$LEG contains one generalized forces, the spring damping force $Q_c$. Because there is no mass $m_3$ at the end of the leg($s=s_0$), the flight phase does not sense any virtual work.
+
+Two cases of virtual displacement are observed separately.
+
+CASE 1:Suppose there is virtual displacement $\delta y\neq 0$ while $\delta u=0$(by using the (\ref{Lagrangian_eq}) follows):
+
+
+\begin{equation}\label{flight_fin_1}
+(m_1+m_2)\ddot{y}-m_2\ddot{u}+(m_1+m_2)g=0
+\end{equation}
+
+CASE 2:Suppose there is virtual displacement $\delta u\neq 0$ while $\delta y=0$(by using the (\ref{Lagrangian_eq}) follows):
+
+\begin{equation}\label{flight_fin_2}
+m_2(\ddot{u}-\ddot{y})-m_2g-k_u(u_0-u)=0
+\end{equation}
+
+\subsection{Stance Phase}
+  
+The potential energy of @LEG (Fig.1) is defined as:
+
+\begin{equation}\label{Espot}
+V_{stance}=m_1\cdot g\cdot y+m_2\cdot g(y-u)+\frac{1}{2}k_{eq}(s_0-y+u)^{2}+\frac{1}{2}k_{u}(u_0-u)^{2}
+\end{equation}
+
+The kinetic energy of $@$LEG (Fig.\ref{MSDA}) is defined as:
+
+\begin{equation}\label{Eskin}
+T_{stance}=\frac{1}{2}m_1\cdot \dot{y}^{2}+\frac{1}{2}m_2(\dot{y}-\dot{u})^{2}
+\end{equation}
+
+The Lagrangian function:
+
+\begin{equation}\label{Lstance}
+\begin{split}
+L=T_{stance}-V_{stance}=\frac{1}{2}m_1\cdot \dot{y}^{2}+\frac{1}{2}m_2(\dot{y}-\dot{u})^{2} \\
+ - m_1\cdot g\cdot y-m_2\cdot g(y-u)-\frac{1}{2}k_{eq}(s_0-y+u)^{2}
+ \\
+ -\frac{1}{2}k_{u}(u_0-u)^{2}
+\end{split}
+\end{equation}
+ 
+Again two virtual displacement are observed separately, $\delta y$ and $\delta u$. Suppose there is virtual displacement $\delta y\neq 0$ while $\delta u=0$.
+
+\begin{equation}\label{virtual_work_stance_1}
+\begin{split}
+W_{yS} = Q_{yS}\cdot \delta y=-c(\dot{y}-\dot{u}) \delta s \\
+s=y-u \Rightarrow  \dot{s}=\dot{y}-\dot{u} \\
+\delta s=\delta y, \delta u=0
+\end{split}
+\end{equation}
+
+
+Finally:
+\begin{equation}\label{virtual_work_stance_3}
+Q_{yS} = -c \cdot (\dot{y}-\dot{u})
+\end{equation}
+
+Virtual displacement $\delta u\neq 0$ while $\delta y=0$ provides:
+
+\begin{equation}\label{virtual_work_stance_4}
+\begin{split}
+W_{uS} = Q_{uS}\cdot \delta u=c(\dot{y}-\dot{u}) \delta s \\
+s=y-u \Rightarrow  \dot{s}=\dot{y}-\dot{u} \\
+\delta s=-\delta u, \delta y=0
+\end{split}\end{equation}
+
+Finally:
+\begin{equation}\label{virtual_work_stance_5}
+Q_{uS} = c \cdot (\dot{y}-\dot{u})
+\end{equation}
+  
+
+By using the lagrangian Equation (\ref{Lagrangian_eq}) and Equations (\ref{virtual_work_stance_3}) and (\ref{virtual_work_stance_5}) follows:
+
+\begin{equation}\label{stance_fin_1}
+(m_1+m_2)\ddot{y}-m_2\ddot{u}+(m_1+m_2)g-k_{eq}(s_0-y+u)=-c(\dot{y}-\dot{u})
+\end{equation}
+
+\begin{equation}\label{stance_fin_2}
+m_2\ddot{u}-m_2\ddot{y}-m_2g+k_{eq}(s_0-y+u)-k_u(u_0-u)=c(\dot{y}-\dot{u})
+\end{equation}
+  
+
+ \newpage
+  
+  
+  
+  
+  
+
+
+The potential energy of the mass \textit{m} is defined as:
+
+\begin{equation}\label{Epot}
+E_{pot}= mg\cdot y(t) + \frac{k\cdot (y(t)-u(t)-l_0)^{2}}{2}
+\end{equation}
+
+The kinetic energy of the mass \textit{m} is defined as:
+
+\begin{equation}\label{Epot}
+E_{kin}= \frac{m\cdot \dot{y}^{2}}{2}
+\end{equation}
+
+
+By using the Lagrangian function, the equation of motion can be obtained as:
+
+where $F_c$ is damping force defined as:
+
+\begin{equation}\label{DampingForce}
+F_c = -c\cdot \left [\dot{y}(t)-\dot{u}(t))  \right ]
+\end{equation}
+
+
+
+When the leg is in contact with the ground, the final equation of motion is:
+\begin{equation}\label{eq1}
+m\ddot{y}+c[\dot{y}(t)-\dot{u}(t)]+k[y(t)-u(t)-l_0] = -m g
+\end{equation}
+
 
 The general solution for $y(t)$ and is:
 
@@ -179,7 +347,7 @@ The loss of energy coused by damping factor $c$ can be obtained from difference 
 The same energy loss can be obtained with:
 
 \begin{equation}\label{dEcloss}
-E_{Closs} = \int_{0}^{T_c} c\dot{y}^{2} dy
+E_{Closs} = \int Fd\cdot dy=\int (c\cdot \frac{dy}{dt})\frac{dy}{dt}dt =\int_{0}^{T_c} c\dot{y}^{2} dy
 \end{equation}
 
 \begin{equation}\label{dEcloss2}

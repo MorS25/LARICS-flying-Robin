@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.272"
+    ComputedModelVersion    "1.339"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -37,9 +37,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Alan Mutka"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Dec 04 15:08:57 2012"
-  RTWModifiedTimeStamp	  276533952
-  ModelVersionFormat	  "1.%<AutoIncrement:272>"
+  LastModifiedDate	  "Fri Dec 28 13:42:01 2012"
+  RTWModifiedTimeStamp	  278519776
+  ModelVersionFormat	  "1.%<AutoIncrement:339>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -143,7 +143,7 @@ Model {
 	  StartTime		  "0.0"
 	  StopTime		  "inf"
 	  AbsTol		  "auto"
-	  FixedStep		  "0.01"
+	  FixedStep		  "Td"
 	  InitialStep		  "auto"
 	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
@@ -629,7 +629,7 @@ Model {
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition     [ 520, 225, 1400, 855 ] 
+      ConfigPrmDlgPosition     [ 206, 121, 1075, 841 ] 
     }
     PropName		    "ConfigurationSets"
   }
@@ -882,7 +882,7 @@ Model {
   }
   System {
     Name		    "HoppingLEG"
-    Location		    [962, 119, 1770, 572]
+    Location		    [514, 168, 1322, 621]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -896,13 +896,23 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "77"
+    SIDHighWatermark	    "80"
+    Block {
+      BlockType		      Sum
+      Name		      "Add"
+      SID		      "80"
+      Ports		      [2, 1]
+      Position		      [620, 132, 650, 163]
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
     Block {
       BlockType		      SubSystem
       Name		      "Chart"
       SID		      "1"
       Ports		      [5, 2]
-      Position		      [160, 31, 360, 259]
+      Position		      [165, 31, 365, 259]
       LibraryVersion	      "1.235"
       ErrorFcn		      "Stateflow.Translate.translate"
       PermitHierarchicalResolution "ExplicitOnly"
@@ -1115,8 +1125,8 @@ Model {
       BlockType		      Gain
       Name		      "Gain"
       SID		      "25"
-      Position		      [45, 175, 75, 205]
-      Gain		      "0.2"
+      Position		      [30, 175, 60, 205]
+      Gain		      "0.5"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
@@ -1127,6 +1137,12 @@ Model {
       SID		      "21"
       Position		      [65, 130, 95, 160]
       Value		      "6"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Height1"
+      SID		      "78"
+      Position		      [15, 350, 45, 380]
     }
     Block {
       BlockType		      SubSystem
@@ -1263,7 +1279,7 @@ Model {
       Ports		      [1]
       Position		      [480, 129, 510, 161]
       Floating		      off
-      Location		      [1152, 622, 1758, 1047]
+      Location		      [36, 506, 642, 955]
       Open		      on
       NumInputPorts	      "1"
       List {
@@ -1272,28 +1288,7 @@ Model {
       }
       TimeRange		      "5               "
       YMin		      "0"
-      YMax		      "3.75"
-      DataFormat	      "StructureWithTime"
-      SampleTime	      "0"
-    }
-    Block {
-      BlockType		      Scope
-      Name		      "Scope1"
-      SID		      "33"
-      Ports		      [1]
-      Position		      [330, 339, 360, 371]
-      Floating		      off
-      Location		      [1065, 581, 1671, 1006]
-      Open		      off
-      NumInputPorts	      "1"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      TimeRange		      "4               "
-      YMin		      "154.75"
-      YMax		      "160.25"
-      SaveName		      "ScopeData1"
+      YMax		      "27.5"
       DataFormat	      "StructureWithTime"
       SampleTime	      "0"
     }
@@ -1312,14 +1307,14 @@ Model {
       Name		      "SpringC"
       SID		      "20"
       Position		      [65, 85, 95, 115]
-      Value		      "2"
+      Value		      "3"
     }
     Block {
       BlockType		      Constant
       Name		      "SpringK"
       SID		      "19"
       Position		      [65, 40, 95, 70]
-      Value		      "100"
+      Value		      "800"
     }
     Block {
       BlockType		      ToWorkspace
@@ -1329,7 +1324,7 @@ Model {
       Position		      [465, 180, 525, 210]
       VariableName	      "output"
       MaxDataPoints	      "inf"
-      SampleTime	      "0.01"
+      SampleTime	      "Td"
       SaveFormat	      "Array"
     }
     Block {
@@ -1340,7 +1335,7 @@ Model {
       Position		      [520, 40, 580, 70]
       VariableName	      "t"
       MaxDataPoints	      "inf"
-      SampleTime	      "0.01"
+      SampleTime	      "Td"
       SaveFormat	      "Array"
     }
     Block {
@@ -1368,7 +1363,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"VRML model jedne noge"
-	Location		[939, 634, 1731, 921]
+	Location		[472, 632, 1264, 919]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1511,15 +1506,6 @@ Model {
 	  WorldFileName		  "B:\\LARICS_GIT\\LARICS-flying-Robin\\@_LEG\\VRML_MODEL\\skakac.WRL"
 	  AutoView		  off
 	  VideoDimensions	  "[]"
-	  FigureProperties	  "{'Position', 'Name', 'Viewpoint', 'CameraBound', 'CameraDirection', 'CameraPosition', 'CameraUp"
-	  "Vector', 'ZoomFactor', 'Antialiasing', 'Headlight', 'Lighting', 'NavPanel', 'StatusBar', 'ToolBar', 'Textures', 'Tr"
-	  "ansparency', 'Wireframe', 'NavZones', 'NavMode', 'NavSpeed', 'Record2DCompressMethod', 'Record2DCompressQuality', '"
-	  "Record2D', 'Record2DFileName', 'Record2DFPS'; [5.0000000000000000e+000  9.2000000000000000e+001  6.8400000000000000"
-	  "e+002  5.1300000000000000e+002], '', '', 'on', [-5.5153091574051807e-002  2.1884603019478926e-001 -9.74199441365991"
-	  "79e-001], [0.0000000000000000e+000  0.0000000000000000e+000  1.2300000000000000e+002], [2.7043022875712985e-002  9."
-	  "7565400181538420e-001  2.1764177828572354e-001], [1.0000000000000000e+000], 'on', 'on', 'on', 'halfbar', 'on', 'on'"
-	  ", 'on', 'on', 'off', 'off', 'fly', 'normal', 'auto', [7.5000000000000000e+001], 'off', '%f_anim_%n.avi', [1.5000000"
-	  "000000000e+001]} "
 	}
 	Block {
 	  BlockType		  Constant
@@ -1643,13 +1629,13 @@ Model {
       BlockType		      Constant
       Name		      "l0"
       SID		      "75"
-      Position		      [620, 135, 650, 165]
+      Position		      [565, 125, 595, 155]
       Value		      "3"
     }
     Line {
       SrcBlock		      "Chart"
       SrcPort		      1
-      Points		      [0, 45; 35, 0]
+      Points		      [0, 45; 30, 0]
       Branch {
 	DstBlock		"Mux"
 	DstPort			1
@@ -1676,7 +1662,7 @@ Model {
     Line {
       SrcBlock		      "Derivative"
       SrcPort		      1
-      Points		      [5, 0]
+      Points		      [10, 0]
       DstBlock		      "Chart"
       DstPort		      5
     }
@@ -1707,14 +1693,14 @@ Model {
     Line {
       SrcBlock		      "Chart"
       SrcPort		      2
-      Points		      [10, 0; 0, 95]
+      Points		      [5, 0; 0, 95]
       DstBlock		      "Unit Delay"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Gain"
       SrcPort		      1
-      Points		      [5, 0]
+      Points		      [20, 0]
       Branch {
 	Points			[0, 35]
 	DstBlock		"Derivative"
@@ -1740,17 +1726,23 @@ Model {
       DstPort		      1
     }
     Line {
-      SrcBlock		      "MATLAB Function"
+      SrcBlock		      "l0"
       SrcPort		      1
-      Points		      [-40, 0; 0, -110]
-      DstBlock		      "Gain"
+      DstBlock		      "Add"
       DstPort		      1
     }
     Line {
-      SrcBlock		      "l0"
+      SrcBlock		      "Add"
       SrcPort		      1
       DstBlock		      "VRML model jedne noge"
       DstPort		      2
+    }
+    Line {
+      SrcBlock		      "MATLAB Function"
+      SrcPort		      1
+      Points		      [-55, 0; 0, -110]
+      DstBlock		      "Gain"
+      DstPort		      1
     }
   }
 }
@@ -1776,16 +1768,16 @@ Stateflow {
   chart {
     id			    2
     name		    "Chart"
-    windowPosition	    [101.25 200.25 563.25 505.5]
-    viewLimits		    [5.087 528.475 0 472.786]
+    windowPosition	    [179.25 162.75 563.25 505.5]
+    viewLimits		    [6.015 529.403 0 472.786]
     zoomFactor		    1.007
-    screen		    [1 1 1920 1080 1.333333333333333]
+    screen		    [1 1 1280 1024 1.333333333333333]
     treeNode		    [0 3 0 0]
     firstTransition	    5
     viewObj		    2
     machine		    1
     subviewS {
-      x1		      5.087
+      x1		      6.015
       zoomFactor	      1.007
     }
     ssIdHighWaterMark	    90
@@ -1847,8 +1839,8 @@ Stateflow {
   }
   transition {
     id			    6
-    labelString		    "[y<=l0 && yv<0]\n{\n   //ako pada prebaci\n    l = y;\n    lv = yv;\n\n}"
-    labelPosition	    [53.518 215.277 109.458 96.484]
+    labelString		    "[y<=l0+LA && yv<0]\n{\n   //ako pada prebaci\n    l = y;\n    lv = yv;\n\n}"
+    labelPosition	    [62.707 215.655 109.458 96.484]
     fontSize		    12
     src {
       id		      3
@@ -1872,7 +1864,7 @@ Stateflow {
   }
   transition {
     id			    7
-    labelString		    "[l>l0 && lv>0]\n{\n   //ako pada prebaci\ny=l;\nyv = lv;\n\n}"
+    labelString		    "[l>l0+LA && lv>0]\n{\n   //ako pada prebaci\ny=l;\nyv = lv;\n\n}"
     labelPosition	    [251.72 45.991 109.458 96.484]
     fontSize		    12
     src {
@@ -2161,10 +2153,14 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function y = fcn(u)\n%#codegen\n%#codegen\npersistent tick started\nif isempty(tick)\n    tick = "
-      "0;\n    started = 0;\nend\ny=0;\nif u == 1\n    started = 1;\nend\nif started\n    if tick<50\n        tick=tick"
-      "+1;\n        y = 2;\n    else\n        tick = 0;\n        started = 0;\n    end \nend\n"
-      editorLayout	      "100 M4x1[403 213 657 497]"
+      script		      "function y = fcn(u)\n%#codegen\n%#codegen\nTd=0.001;\nLa=0.4;%pola metra izbacaja\n\nTotalActionT"
+      "ime = 0.08;%50ms, vrijeme akcije\nTotalJumpingTime = 0.4;%200ms, vrijeme leta ukuono,bitno da noga ne okine dva "
+      "puta\nTotalActionTick = TotalActionTime/Td;\nTotalJumpingTick = TotalJumpingTime/Td;\n\npersistent tick started\n"
+      "persistent output\nif isempty(tick)\n    tick = 0;\n    started = 0;\nend\ny=0;\nif u == 1\n    started = 1;\n  "
+      "  output=0;\nend\nif started\n    if tick<TotalActionTick\n        tick=tick+1;\n        y=tick*La/TotalActionTi"
+      "ck;\n    elseif tick>=TotalActionTick && tick<TotalJumpingTick\n        tick=tick+1;\n        y=0;\n    else\n  "
+      "      tick = 0;\n        started = 0;\n        output=0;\n    end \nend\n\n"
+      editorLayout	      "100 M4x1[210 533 657 497]"
     }
   }
   junction {
