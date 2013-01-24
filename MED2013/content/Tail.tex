@@ -163,6 +163,25 @@ Calculating the distance of vector (\ref{eq:RotSpeedAprox}) it is easy to show h
 \begin{equation}
 \left \| \vec{\omega} \right \|\sim \sqrt{{\Delta \textsc{cm}_x}^2+{\Delta \textsc{cm}_y}^2}
 \end{equation}
+
+
+In order to iteratively calculate the angles $q1$ and $q2$, angular velocity vector is recorded during start of hopping acceleration phase $F_1$. This phase lasts until one of the leg/spring reaches desired length $L_d$. The leg which carries a minimum mass will achieve the fastest acceleration and the algorithm task is to navigate tail towards this leg. 
+
+For example, mass distribution in figure  (\ref{fig:imassCom}) is equally distributed except for $MASS_2$  which is lighter then others. At the end of phase $F_1$ the body rotates at an angular velocity $\vec{\omega}$. By using the cross product of projection vector $\vec{\omega_{xy}}$ in $XY$ plane and body $\vec{Zb}$, the tail direction vector $\vec{\omega_{TD}}$ is calculated. 
+
+Tail motion control algorithm navigates tail in vector $\vec{\omega_{TD}}$ direction which at the end results the equal mass distribution.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=85mm]{./pictures/IterativeAlgorithm.pdf}
+	\caption{Iterative mass displacement compensation}
+	\label{fig:imassCom}
+\end{figure}
+
+
+
+
+
 Due to the tail's infitesimal thickness, its moment of inertia, written in this frame can be simplified:
 \begin{equation}
 J_T=J_3=\frac{{Q_3}^2 m_3}{12}\left(
