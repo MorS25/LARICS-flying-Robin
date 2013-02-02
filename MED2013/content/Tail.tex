@@ -1,7 +1,102 @@
-\section{Tail mathematical model}
-In order to devise a mathematical model of tail dynamics, we propose modeling the tail as a kinematic chain manipulator attached to robot body. Much like in aerial robots, when the robot is in the air, the tail acts freely on its body. We propose using the tail as a dynamic stabilization for the hopping. First we build the kinematic model using Denavit-Hartenberg parameterization method, after that we devise a dynamic model of the arms using recursive Newton-Euler algorithm.
+\section{Mathematical model}
+The quadruped robot Robin depicted in \ref{fig:rmoment} has three distinctive parts: the main body, the tail and four actuator-legs. Respectively, the following key coordinate systems should be noticed: $L_w$ - world coordinate system, $L_c$ - geometrical center of construction; $L_B$ - main body's center of mass; $L_T$ - tail's center of mass; and $L_{pi}$ - $i$-th leg point of contact. The proposed mathematical model is derived under the assumption of a stable galloping maneuver which includes vertical (jumping) and horizontal movement of the robot. For such a maneuver, the actuators (i.e. legs) need to develop periodic horizontal and vertical forces at the point of contact with the ground, side force $S_{pi}$ and thrust force $T_{pi}$ respectively. In order to achieve these forces, an adaquate leg joint trajectory needs to be planned. Trajectory planing for the leg joints goes beyonde the scope of this paper, and the reader is addressed to the following papers. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=85mm]{./pictures/RobinMoment.pdf}
+	\caption{Robin body dynamics}
+	\label{fig:rmoment}
+\end{figure}
+
+\subsection{Main body dynamics}
+In order to simplify the complexity of the analysis, quadruped's main body is modeled as a system of four, equaly displaced cuboid shaped bodies, as shown in Fig \ref{fig:rmoment}. Ideally, when Robin's body is fully symmetric, all four cuboids have the same mass. Since, in most situations, this is not the case, each cuboid has its own mass $m_i$, its own center of mass $cm_i$ placed in its center, and $\vec{r}_i$, the distance between the $cm_i$ and the body coordinate system. The overall center of mass is then easily calculated from: 
+\begin{equation}\label{eq:CMrobot}
+CM=\frac{\sum_{i=1}^{4}m_i\vec{r}_i}{\sum_{i=1}^{4}m_i}
+\end{equation}
+Next important dynamic parameter is the moment of inertia tensor. Having for cuboid bodys as the basis of robot body model, tensor of inertia can easily be derived by using the Parallel axis theorem:
+
+\begin{equation}
+\tiny
+J_R=\sum_{i=1}^{4}\left \{J_{c_i}+m_i\begin{bmatrix}
+{_yr_i}^2+{_zr_i}^2 & {_xr_i}\cdot {_yr_i} & {_xr_i}\cdot {_zr_i} \\ 
+-{_xr_i}\cdot {_yr_i} & {_xr_i}^2+{_zr_i}^2 & {_yr_i}\cdot {_zr_i}\\ 
+-{_xr_i}\cdot {_zr_i} & {_yr_i}\cdot {_zr_i} & {_yr_i}^2+{_xr_i}^2
+\end{bmatrix} \right \}
+\normalsize
+\end{equation}
+
+where, $_xr_i, _yr_i, _zr_i$ represent $\vec{r}_i$ projection in $x,y,z$ respectively, and $J_{c_i}$ is the moment of inertia of the single cuboid element of height $h_i$, width $w_i$ and length $l_i$:
+\begin{equation}
+J_{c_i}=\frac{m_i}{12}\begin{bmatrix}
+w_i^2+d_i^2 &0&0 \\ 
+0 &h_i^2+d_i^2&0\\ 
+0 &0& w_i^2+h_i^2
+\end{bmatrix}
+\end{equation} 
+
+It could be easily shown that if all four cuboids have the same mass and size (i.e. $m,h,d,w$) and are symmetrically displaced from the body center, as shown in Fig \ref{fig:rmoment}, the total body moment of inertia $J_R$ comes down to a symmetric matrix: 
+\begin{equation}
+J_{c_i}=\frac{m}{12}\begin{bmatrix}
+(2w)^2+d^2 &0&0 \\ 
+0 &(2h)^2+d^2&0\\ 
+0 &0& (2w)^2+(2h)^2
+\end{bmatrix}
+\end{equation} 
+and the body center of mass is placed directly in the center of body coordinate system. For any other arrangement, tensor matrix will not be symmetric, and what is even worse, the body center of mass will be misaligned.
+
+Acting as an active spring, while quadruped is hoping, each leg exerts force on its body. The legs are positioned symmetrically around the geometric center, and similarly as quadrotor aircraft produce the following forces and torques:
+
+\begin{gather}\label{eq:Forces}
+\vec{F_{tot}}=\sum_{i=1}^{4}(\vec{T_{i}}+\vec{S_{i}})\\
+\vec{\tau_{tot}}=\sum_{i=1}^{4}\vec{\rho _i}\times(\vec{T_{i}}+\vec{S_{i}})
+\end{gather}  
+
+Where $\vec{T_{i}}$ represents the $i$-th cuboid thrust force that causes vertical movement (i.e. hopping), $\vec{S_{i}}$ $i$-th cuboid side force that moves the quadruped in x direction, and $\rho _i$ $i$-th distance between the geometric center and the forces.
+
+For a perfect symmetric body follows that the total torque (\ref{eq:Forces}) acting on the body is equal to zero, and the total force is the sum of all 4 active springs. For this, the necessary condition is that all four springs have exactly the same parameters, and thus exert the same forces. In reality, neither the springs are the same, nor there can be a perfectly symmetric body. We write the body torque equation for a non-symmetric body, with the center of mass displaced for $\vec{\Delta CM}$:
+
+\begin{equation}\label{eq:Torques}
+\vec{\tau}_{tot}=\begin{bmatrix}
+\Delta \textsc{cm}_y \:\bar{T} & -\left ( \Delta \textsc{cm}_x \:\bar{T} +\Delta \textsc{cm}_z \:\bar{S}\right ) & -\Delta \textsc{cm}_y \:\bar{S}
+\end{bmatrix}^T
+\end{equation}
+where $\bar{T}$ and $\bar{S}$ represent the average thrust and side forces of each leg. In this analysis, the displacement of the center of mass is used to model the unbalanced body dynamics. In practice, the displacement vector  $\vec{\Delta CM}$ can incorporate all possible imperfections: design symmetry, leg differences, motor dynamics and so on.  
+
+In order to achieve successful hopping average forces $\bar{T}$ and $\bar{S}$ have to exist. On the other hand, for a stable jump, we need to counteract the undesired torque (\ref{eq:Torques}). Therefore, we propose, adding a tail to the quadruped in order to balance the robot. 
+\subsection{Tail dynamics}
+In Fig. \ref{fig:rmoment}, a tail with its ${L_T}$ coordinate system, placed in its center of mass is depicted. Introducing a new body in the quadruped construction, the overall center of mass will change accordingly:
+\begin{equation}\label{eq:CMrobotAndTail}
+CM=\frac{\sum_{i=1}^{4}m_i\vec{r}_i+m_T\vec{p}_T}{\sum_{i=1}^{4}m_i+m_T}= \frac{\Delta\vec{\textsc{cm}}+\mu\cdot\textsc{cm}_T}{1+\mu}
+\end{equation}
+In the previous equation we introduced the mass ratio $\mu=\frac{m_T}{\sum_{i=1}^{4}m_i}$ and $\Delta\vec{\textsc{cm}}$ is the center of mass of the robot without the tail from equation (\ref{eq:CMrobot}). If we want to keep the center of mass in the construction center of the robot (i.e. $CM=0$), then the following condition has to be met:
+\begin{equation}\label{eq:CMzeroing}
+\begin{bmatrix}
+\Delta \textsc{cm}_x\\ 
+\Delta \textsc{cm}_y\\ 
+\Delta \textsc{cm}_z
+\end{bmatrix}+
+\frac{\mu Q_3}{2}\begin{bmatrix}
+C_1S_2\\ 
+S_1S_2\\ 
+C_2
+\end{bmatrix}=0
+\end{equation}
+that is to say, that the numerator in (\ref{eq:CMrobotAndTail}) has to be zero. Given that in (\ref{eq:CMzeroing}) there exists only two variables, $Q_1$ and $Q_2$ respectively, one can eliminate only two components of center of mass displacement vector $\Delta \vec{\textsc{cm}}$. Under a reasonable assumption that $\bar{T}\gg \bar{S}$, from equation (\ref{eq:Torques}) follows that for a stable jump one needs to successfully eliminate $x$ and $y$ components of center of mass displacement vector. This assumption is reasonable because in most cases the forward motion is slow compared to the jumping action, and in z direction one needs to overcome the gravity acceleration $g$, making $\bar{T}$ by the order of magnitude larger then $\bar{S}$.
+
+From a strict mathematical point of view, the necessary condition for (\ref{eq:CMzeroing}) to have a solution is:
+\begin{equation}\label{eq:CMcondition}
+\frac{\mu Q_3}{2}\geq \textup{MAX}\left \{ \left | \Delta \textsc{cm}_x \right |, \left | \Delta \textsc{cm}_y \right |,\left | \Delta \textsc{cm}_z \right |\right \}
+\end{equation}
+When the condtion (\ref{eq:CMcondition}) is met, the analytical solution to equation (\ref{eq:CMzeroing}) can easily be derived:
+\begin{gather}\label{eq:CMsolution}
+Q_1=atan2\left({\Delta \textsc{cm}_y},\, {\Delta \textsc{cm}_x}\right)\\
+Q_2=asin\left(\frac{2\sqrt{{\Delta \textsc{cm}_x}^2+{\Delta \textsc{cm}_y}^2}}{\mu Q_3} \right)
+\end{gather}
+
 
 \subsection{Kinematic model}
+In order to devise a mathematical model of tail dynamics, we propose modeling the tail as a kinematic chain manipulator attached to robot body. Much like in aerial robots, when the robot is in the air, the tail acts freely on its body. We propose using the tail as a dynamic stabilization for the hopping. First we build the kinematic model using Denavit-Hartenberg parameterization method, after that we devise a dynamic model of the arms using recursive Newton-Euler algorithm.
+
 Kinematic chain of the tail is shown in Fig. \ref{fig:rmax}, and the kinematic parameters are shown in table \ref{tab:DHParameters}. Kinematic chain consists of the body coordinate system, 2 revolute joints  of the tail, one virtual prismatic joint in the tail (i.e. Tail length parameter), and the tail tip coordinate system. As can be seen from DH parameters table, the two revolute joints have no linear, only angular displacement from each other, therefore their masses and moments of inertia are all zero. The third prismatic joint represents the tail length and is modeled as a long stick with infitesimal thickness. 
 
 \begin{table}
@@ -46,98 +141,6 @@ C_2 S_1 & C_1 & S_1 S_2 & S_1 S_2 Q_3 \\
 	\caption{Robin Tail kinematic chain model}
 	\label{fig:rmax}
 \end{figure}
-
-\subsection{Robin body}
-In order to simplify the complexity of this analysis, we propose modeling Robin as a cuboid body, as shown in Fig \ref{fig:rmoment}. Moreover, Robin's body is a "container" for 4 cuboids, equally displaced from the body center. Ideally, when Robin's body is fully symmetric, all four cuboids have the same mass. Since in most situations this is not the case, each cuboid has its own mass $m_i$, its own center of mass $cm_i$ placed in its center, and $\vec{r}_i$, the distance between the $cm_i$ and the body coordinate system. The overall center of mass is then easily calculated from: 
-\begin{equation}\label{eq:CMrobot}
-CM=\frac{\sum_{i=1}^{4}m_i\vec{r}_i}{\sum_{i=1}^{4}m_i}
-\end{equation}
-Next important dynamic parameter is the moment of inertia tensor. Having for cuboid bodys as the basis of robot body model, tensor of inertia can easily be derived by using the Parallel axis theorem:
-
-\begin{equation}
-\tiny
-J_R=\sum_{i=1}^{4}\left \{J_{c_i}+m_i\begin{bmatrix}
-{_yr_i}^2+{_zr_i}^2 & {_xr_i}\cdot {_yr_i} & {_xr_i}\cdot {_zr_i} \\ 
--{_xr_i}\cdot {_yr_i} & {_xr_i}^2+{_zr_i}^2 & {_yr_i}\cdot {_zr_i}\\ 
--{_xr_i}\cdot {_zr_i} & {_yr_i}\cdot {_zr_i} & {_yr_i}^2+{_xr_i}^2
-\end{bmatrix} \right \}
-\normalsize
-\end{equation}
-
-where, $_xr_i, _yr_i, _zr_i$ represent $\vec{r}_i$ projection in $x,y,z$ respectively, and $J_{c_i}$ is the moment of inertia of the single cuboid element of height $h_i$, width $w_i$ and length $l_i$:
-\begin{equation}
-J_{c_i}=\frac{m_i}{12}\begin{bmatrix}
-w_i^2+d_i^2 &0&0 \\ 
-0 &h_i^2+d_i^2&0\\ 
-0 &0& w_i^2+h_i^2
-\end{bmatrix}
-\end{equation} 
-
-It could be easily shown that if all four cuboids have the same mass and size (i.e. $m,h,d,w$) and are symmetrically displaced from the body center, as shown in Fig \ref{fig:rmoment}, the total body moment of inertia $J_R$ comes down to a symmetric matrix: 
-\begin{equation}
-J_{c_i}=\frac{m}{12}\begin{bmatrix}
-(2w)^2+d^2 &0&0 \\ 
-0 &(2h)^2+d^2&0\\ 
-0 &0& (2w)^2+(2h)^2
-\end{bmatrix}
-\end{equation} 
-and the body center of mass is placed directly in the center of body coordinate system. For any other arrangement, tensor matrix will not be symmetric, and what is even worse, the body center of mass will be misaligned.
-
-Acting as an active spring, while quadruped is hoping, each leg exerts force on its body. The legs are positioned symmetrically around the geometric center, and similarly as quadrotor aircraft produce the following forces and torques:
-
-\begin{gather}\label{eq:Forces}
-\vec{F_{tot}}=\sum_{i=1}^{4}(\vec{T_{i}}+\vec{S_{i}})\\
-\vec{\tau_{tot}}=\sum_{i=1}^{4}\vec{\rho _i}\times(\vec{T_{i}}+\vec{S_{i}})
-\end{gather}  
-
-Where $\vec{T_{i}}$ represents the $i$-th cuboid thrust force that causes vertical movement (i.e. hopping), $\vec{S_{i}}$ $i$-th cuboid side force that moves the quadruped in x direction, and $\rho _i$ $i$-th distance between the geometric center and the forces.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=85mm]{./pictures/RobinMoment.pdf}
-	\caption{Robin body dynamics}
-	\label{fig:rmoment}
-\end{figure}
-
-For a perfect symmetric body follows that the total torque (\ref{eq:Forces}) acting on the body is equal to zero, and the total force is the sum of all 4 active springs. For this, the necessary condition is that all four springs have exactly the same parameters, and thus exert the same forces. In reality, neither the springs are the same, nor there can be a perfectly symmetric body. We write the body torque equation for a non-symmetric body, with the center of mass displaced for $\vec{\Delta CM}$:
-
-\begin{equation}\label{eq:Torques}
-\vec{\tau}_{tot}=\begin{bmatrix}
-\Delta \textsc{cm}_y \:\bar{T} & -\left ( \Delta \textsc{cm}_x \:\bar{T} +\Delta \textsc{cm}_z \:\bar{S}\right ) & -\Delta \textsc{cm}_y \:\bar{S}
-\end{bmatrix}^T
-\end{equation}
-where $\bar{T}$ and $\bar{S}$ represent the average thrust and side forces of each leg. In this analysis, the displacement of the center of mass is used to model the unbalanced body dynamics. In practice, the displacement vector  $\vec{\Delta CM}$ can incorporate all possible imperfections: design symmetry, leg differences, motor dynamics and so on.  
-
-In order to achieve successful hopping average forces $\bar{T}$ and $\bar{S}$ have to exist. On the other hand, for a stable jump, we need to counteract the undesired torque (\ref{eq:Torques}). Therefore, we propose, adding a tail to the quadruped in order to balance the robot. 
-\subsection{Tail dynamics}
-In Fig. \ref{fig:rmoment}, a tail with its ${L_T}$ coordinate system, placed in its center of mass is depicted. Introducing a new body in the quadruped construction, the overall center of mass will change accordingly:
-\begin{equation}\label{eq:CMrobotAndTail}
-CM=\frac{\sum_{i=1}^{4}m_i\vec{r}_i+m_T\vec{p}_T}{\sum_{i=1}^{4}m_i+m_T}= \frac{\Delta\vec{\textsc{cm}}+\mu\cdot\textsc{cm}_T}{1+\mu}
-\end{equation}
-In the previous equation we introduced the mass ratio $\mu=\frac{m_T}{\sum_{i=1}^{4}m_i}$ and $\Delta\vec{\textsc{cm}}$ is the center of mass of the robot without the tail from equation (\ref{eq:CMrobot}). If we want to keep the center of mass in the construction center of the robot (i.e. $CM=0$), then the following condition has to be met:
-\begin{equation}\label{eq:CMzeroing}
-\begin{bmatrix}
-\Delta \textsc{cm}_x\\ 
-\Delta \textsc{cm}_y\\ 
-\Delta \textsc{cm}_z
-\end{bmatrix}+
-\frac{\mu Q_3}{2}\begin{bmatrix}
-C_1S_2\\ 
-S_1S_2\\ 
-C_2
-\end{bmatrix}=0
-\end{equation}
-that is to say, that the numerator in (\ref{eq:CMrobotAndTail}) has to be zero. Given that in (\ref{eq:CMzeroing}) there exists only two variables, $Q_1$ and $Q_2$ respectively, one can eliminate only two components of center of mass displacement vector $\Delta \vec{\textsc{cm}}$. Under a reasonable assumption that $\bar{T}\gg \bar{S}$, from equation (\ref{eq:Torques}) follows that for a stable jump one needs to successfully eliminate $x$ and $y$ components of center of mass displacement vector. This assumption is reasonable because in most cases the forward motion is slow compared to the jumping action, and in z direction one needs to overcome the gravity acceleration $g$, making $\bar{T}$ by the order of magnitude larger then $\bar{S}$.
-
-From a strict mathematical point of view, the necessary condition for (\ref{eq:CMzeroing}) to have a solution is:
-\begin{equation}\label{eq:CMcondition}
-\frac{\mu Q_3}{2}\geq \textup{MAX}\left \{ \left | \Delta \textsc{cm}_x \right |, \left | \Delta \textsc{cm}_y \right |,\left | \Delta \textsc{cm}_z \right |\right \}
-\end{equation}
-When the condtion (\ref{eq:CMcondition}) is met, the analytical solution to equation (\ref{eq:CMzeroing}) can easily be derived:
-\begin{gather}\label{eq:CMsolution}
-Q_1=atan2\left({\Delta \textsc{cm}_y},\, {\Delta \textsc{cm}_x}\right)\\
-Q_2=asin\left(\frac{2\sqrt{{\Delta \textsc{cm}_x}^2+{\Delta \textsc{cm}_y}^2}}{\mu Q_3} \right)
-\end{gather}
 
 \subsubsection{Iterative Center of Mass displacement compensation}
 In reality, the distribution of center of mass of the body is not known, and therefore, analytic solution give with (\ref{eq:CMsolution}) is impossible. Thus an iterative method, based on hopping response is proposed. When a quadruped is hopping, its contact with the ground is infitesimally short, and consequently, reaction forces and torques are approximated with the Dirac function $\delta (s)$. During the jump, the body behaves according to Euler body dynamics function (\ref{eq:EulerBody}). Taking account the infitessimally short time the body has to accelerate the cross coupling term $\vec{\omega}\times J_B\vec{\omega}$ can be neglected and the rotation speed vector can be approximated with (\ref{eq:RotSpeedAprox}).
