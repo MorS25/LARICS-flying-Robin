@@ -1,10 +1,10 @@
 \section{Iterative center of mass displacement compensation algorithm}
-In reality, the distribution of center of mass of the body is not known, and therefore, analytic solution give with (\ref{eq:CMsolution}) is impossible. Thus an iterative method, based on hopping response is proposed. When a quadruped is hopping, its contact with the ground is infitesimally short, and consequently, reaction forces and torques are approximated with the Dirac function $\delta (s)$. During the jump, the body behaves according to Euler body dynamics function (\ref{eq:EulerBody}). Taking account the infitessimally short time the body has to accelerate the cross coupling term $\vec{\omega}\times J_B\vec{\omega}$ can be neglected and the rotation speed vector can be approximated with (\ref{eq:RotSpeedAprox}).
+In reality, the distribution of the center of mass within the body is not known, and therefore, an analytic solution provided with (\ref{eq:CMsolution}) is impossible to calculate, thus an iterative method, based on repetitive hopping response is proposed. When a quadruped is continuosly jumping, its contact with the ground is infitesimally short, and consequently, reaction forces and torques can be approximated with the Dirac function $\delta (s)$. During the jump, the body behaves according to the Euler body dynamics function (\ref{eq:EulerBody}). Taking account the infitessimally short time the body has to accelerate (i.e. the rotation speeds are small, and their product is event smaller) the cross coupling term $\vec{\omega}\times J_B\vec{\omega}$ can be neglected and, consequently, the rotation speed vector can be approximated with (\ref{eq:RotSpeedAprox}).
 \begin{figure}
 	\centering
 	\includegraphics[width=85mm]{./pictures/RobinRepicCM.pdf}
 	\caption{Center of mass displacement}
-	\label{fig:rmoment}
+	\label{fig:CM3Dfunction}
 \end{figure}
 
 \begin{equation}\label{eq:EulerBody}
@@ -17,9 +17,9 @@ In reality, the distribution of center of mass of the body is not known, and the
 \end{bmatrix}^T\bar{T}\delta(s)
 \end{equation}
 
-Calculating the distance of vector (\ref{eq:RotSpeedAprox}) it is easy to show how the size of rotation speed vector is proportional to the displacement of center of mass. This effectively shows how moving the displacement of center of mass to the construction center of the robot eliminates the generation of unwanted rotations. 
+Calculating the absolute value of vector (\ref{eq:RotSpeedAprox}) it is easy to show that the size of the rotation speed vector is proportional to the displacement of center of mass \eqref{eq:WpropCM}. In other words, centering the robot and minimizing the displacement of the center of mass eliminates the generation of unwanted rotations. 
 
-\begin{equation}
+\begin{equation}\label{eq:WpropCM}
 \left \| \vec{\omega} \right \|\sim \sqrt{{\Delta \textsc{cm}_x}^2+{\Delta \textsc{cm}_y}^2}
 \end{equation}
 
@@ -30,33 +30,27 @@ For example, mass distribution in figure  (\ref{fig:imassCom}) is equally distri
 
 Tail motion control algorithm navigates tail in vector $\vec{\omega_{TD}}$ direction which at the end results the equal mass distribution.
 
+\begin{algorithm}
+\caption{Minimize $\left \| \vec{\omega} \right \|\sim \sqrt{{\Delta \textsc{cm}_x}^2+{\Delta \textsc{cm}_y}^2}$}
+\begin{algorithmic} 
+\STATE $y \leftarrow 1$
+\REPEAT
+\STATE $Q_1 = $
+\STATE $Q_2 = $
+\REPEAT
+\STATE JUMP
+\STATE $W = \int \left \| \vec{\omega}(t) \right \|  dt$
+\STATE $Dir = atan2(\omega_y,\omega_x)$
+\UNTIL JUMP COMPLETE
+\STATE Calculate new $Q_1$ and $Q_2$
+\UNTIL{$W < $ limit}
+\end{algorithmic}
+\end{algorithm}
+
+
 \begin{figure}
 	\centering
 	\includegraphics[width=85mm]{./pictures/IterativeAlgorithm.pdf}
 	\caption{Iterative mass displacement compensation}
 	\label{fig:imassCom}
 \end{figure}
-
-
-
-
-
-Due to the tail's infitesimal thickness, its moment of inertia, written in this frame can be simplified:
-\begin{equation}
-J_T=J_3=\frac{{Q_3}^2 m_3}{12}\left(
-\begin{array}{ccc}
- 1 & 0 & 0 \\
- 0 & 1 & 0 \\
- 0 & 0 & 0
-\end{array}
-\right)
-\end{equation} 
-\small
-\begin{equation}
-{J_T}^*={R_0^3}^TJ_TR_0^3+m_T\begin{bmatrix}
-{cm_y^T}^2 +{cm_z^T}^2& {cm_x^T}{cm_y^T}& {cm_x^T}{cm_z^T} \\ 
--{cm_x^T}{cm_y^T} & {cm_x^T}^2+{cm_z^T}^2 & {cm_y^T}{cm_z^T}\\ 
--{cm_x^T}{cm_z^T} & -{cm_y^T}{cm_z^T} & {cm_x^T}^2+{cm_y^T}^2
-\end{bmatrix}
-\end{equation}
-\normalsize
