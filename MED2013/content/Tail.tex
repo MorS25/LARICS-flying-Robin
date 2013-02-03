@@ -105,10 +105,22 @@ with a standard abrevation $Cos(q_1):=C_1$ and $Sin(q_2):=S_2$ completes the Kin
 The first part of \eqref{eq:NEGeneral}, $\mathbf{D}$ takes into account the tail joint accelerations $\ddot{q}_i$ and the body initial angular acceleration $\boldsymbol{\alpha}_B$. Next are the coriolis and centrifugal forces contained in $\mathbf{C}$, where the forces are produced from the coupling of joint speeds $\dot{q}_i$ and body angular speed $\boldsymbol{\omega}_B$. The term $\mathbf{H}$ containes the gravity part of the equation. In a stand-still situation, when the robot is at rest and angular speeds and accelerations,  $\boldsymbol{\omega}_B$ and  $\boldsymbol{\alpha}_B$ are zero vectors, then the accleration, coriolis and gravitational part of the equations take the following forms:
  
 \begin{gather}
-\tiny
-\mathbf{D}\left ( \ddot{q_i},\vec{\boldsymbol{\alpha}}_0 \right )=\frac{1}{24} m_3 Q_3 \begin{bmatrix}
+\small
+\mathbf{D}\left ( \ddot{q_i},\vec{\boldsymbol{0}} \right )=\frac{m_3 Q_3^2}{24}\begin{bmatrix}
 -3C_{q_1}S_{2q_2}\ddot{q_1} -8S_{q_1}\ddot{q_2}\\ -3S_{q_1}S_{2q_2}\ddot{q_1} +8C_{q_1}\ddot{q_2} \\ 8S_{q_2}\ddot{q_1}
-\end{bmatrix}^T 
+\end{bmatrix} \\
+\footnotesize
+\mathbf{C}\left ( \dot{q_i},\vec{\boldsymbol{0}} \right )=\frac{m_3 Q_3^2}{24} \begin{bmatrix}
+3S_{q_1}S_{2q_2}{\dot{q_1}}^2-2C_{q_1}(5+3C_{2q_2})\dot{q_1}\dot{q_2}\\ 
+3C_{q_1}S_{2q_2}{\dot{q_1}}^2-2S_{q_1}(5+3C_{2q_2})\dot{q_1}\dot{q_2}\\ 
+6S_{2q_2}\dot{q_1}\dot{q_2}
+\end{bmatrix}\\
+\small
+\mathbf{H}\left ( {q_i} \right )=\frac{m_3 Q_3^2}{24} \begin{bmatrix}
+-12S_1S_2g\\ 
+12C_1S_2g\\ 
+0
+\end{bmatrix}
 \normalsize
 \end{gather}
 
