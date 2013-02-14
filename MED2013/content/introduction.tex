@@ -5,6 +5,21 @@ Animals use their tails in a variety of ways: to propell through water; to help 
 
 The main reason to use tail in quadruped robot locomotion is to apply additional force/moments to stabilize motion gaits during flight phase when robot has minimal contact with the ground. Uniroo \cite{zeglin1991uniroo} is one of the first robot which uses single degree of freedom(DOF) active tail to maintain constant body pitch while emulate hopping kangaroo. A lizard-inspired active tail stabilization presented in \cite{conf/iros/Chang-SiuLTF11} uses tail on wheeled car which provides robust drive over difficult terrain. The momentum based approach is used only for pitch control. The MIT Cheetah robot \cite{DBLP:conf/iros/BriggsLHK12} uses tail to improve running performance up to 30mph. The authors analize also several others artificial mechanisms which can be used to apply non-contact forces/moments like reaction wheel, reaction mass, thrusters etc. 
 
-This paper's goal is to use tail to improove locomotion on quadrupedal hooping robot. The latest research in robot leg design emphasize the use of springs as mechanical part which can accumulate energy in the same way as muscles, tendons and ligaments do in nature world\cite{Zeglin_1999_3268}\cite{Hutter}. Some research uses advanced variable stiffnes leg design \cite{Hurst_2004_4785}\cite{Galloway}\cite{Jun:2009:DSV:1703775.1704089} which allows robot to run over a large variety of terrains while adjusting their leg stiffness. All this research suggests that quadrupedal robot can be dynamically modeled as mass supported on four spring legs as shown in fig. In order to provide stable hopping, additional tail must be included which can statically affect to mass redistribution and dynamically to compensate unwanted roll and pitch rotation. 
+\begin{figure}
+	\centering
+	\includegraphics[width=85mm]{./pictures/Dynarobin_introduction_image.pdf}
+	\caption{Dynarobin}
+	\label{fig:Dynarobin}
+\end{figure}
+
+Inspired by the agility of human and animal locomotion, the number of researchers present robot leg design, modeling and control over the last few decades\cite{CambridgeJournals:1345088}. The quadruped locomotion gaits like walking, running, trotting, and bouncing behaves in nature similary as spring-mass models\cite{Blickhan01}. For a single leg, hopping locomotion can be also described by the spring-mass model. In order to obtain active compliant robot leg behaviour, impedance control is used to simulate virtual spring-mass system.\cite{Havoutis01}. Connecting four legs with one central body a complex dynamics problem arises. In order to provide stabile quadrupedal hopping sequence a lot of parameters needs to be observed: mass distribution, active and passive leg stiffness, ground stiffness etc. This paper invetigates how to improove locomotion stability of four spring-mass dynamical system by using the active controlled tail.
+
+In section II. quadrupedal robot Dynarobin is introduced. Section III.
+
+
+
+
+
+% Some research uses advanced variable stiffnes leg design %\cite{Hurst_2004_4785}\cite{Galloway}\cite{Jun:2009:DSV:1703775.1704089} which allows robot to run over a large variety %of terrains while adjusting their leg stiffness. All this research suggests that quadrupedal robot can be dynamically 5modeled as mass supported on four spring legs as shown in fig. 
 
 
