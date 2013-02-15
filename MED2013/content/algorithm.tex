@@ -24,26 +24,33 @@ Calculating the absolute value of vector (\ref{eq:RotSpeedAprox}) it is easy to 
 \end{equation}
 
 
-In order to iteratively calculate the angles $q1$ and $q2$, angular velocity vector is recorded during start of hopping acceleration phase $F_1$. This phase lasts until one of the leg/spring reaches desired length $L_d$. The leg which carries a minimum mass will achieve the fastest acceleration and the algorithm task is to navigate tail towards this leg. 
+In order to iteratively calculate the angles $q1$ and $q2$, angular velocity vector is recorded during beggining of hopping acceleration phase. The initial actuated spring value $L_{i0}$ is changed by value $\delta L$:
 
-For example, mass distribution in figure  (\ref{fig:imassCom}) is equally distributed except for $MASS_2$  which is lighter then others. At the end of phase $F_1$ the body rotates at an angular velocity $\vec{\omega}$. By using the cross product of projection vector $\vec{\omega_{xy}}$ in $XY$ plane and body $\vec{Zb}$, the tail direction vector $\vec{\omega_{TD}}$ is calculated. 
+\begin{equation}
+\tiny
+L_{i1}=L_{i0}+\delta L
+\normalsize
+\end{equation}  
 
-Tail motion control algorithm navigates tail in vector $\vec{\omega_{TD}}$ direction which at the end results the equal mass distribution.
+This phase is completed ($t_{JC}$) until one of the leg/spring reaches desired length $L_{i1}$. The leg which carries a minimum mass will achieve the fastest acceleration and the algorithm task is to navigate tail towards this leg. At the end of acceleration phase the body rotates at an angular velocity $\vec{\omega}(t_{JC})$. By using the cross product of projection vector $\vec{\omega_{xy}}$ in $XY$ plane and body $\vec{Zb}$, the tail direction vector $\vec{\omega_{TD}}$ is calculated (see Fig.\ref{fig:imassCom}). The tail motion control algorithm navigates tail in $\vec{\omega_{TD}}$ direction by using the simple P($K_o$) regulation. The algorithm finishes when $\left \| \vec{\omega}(t_{JC}) \right \|\ $ is smaller than predefined limit value $\omega_{max}$.  For example, the mass distribution in Fig.\ref{fig:imassCom} is equally distributed except for $MASS_2$  which is lighter then others. As expected, the iterative algorithm will navigate tail towards that mass.
+
+
 
 \begin{algorithm}
 \caption{Minimize $\left \| \vec{\omega} \right \|\sim \sqrt{{\Delta \textsc{cm}_x}^2+{\Delta \textsc{cm}_y}^2}$}
 \begin{algorithmic} 
 \STATE $y \leftarrow 1$
 \REPEAT
-\STATE $Q_1 = $
-\STATE $Q_2 = $
-\REPEAT
+\STATE $Q_1 \leftarrow$ initial value
+\STATE $Q_2 \leftarrow$ initial value
 \STATE JUMP
-\STATE $W = \int \left \| \vec{\omega}(t) \right \|  dt$
-\STATE $Dir = atan2(\omega_y,\omega_x)$
+
+\REPEAT
+\STATE recording $\vec{\omega}(t)$
 \UNTIL JUMP COMPLETE
-\STATE Calculate new $Q_1$ and $Q_2$
-\UNTIL{$W < $ limit}
+\STATE $\vec{\omega_{TD}} = \vec{\omega_{xy}}(t_{JC}) \times \vec{Zb}$
+\STATE Move tail in $\vec{\omega_{TD}}$ direction - gain $K_o$
+\UNTIL{$\left \| \vec{\omega}(t_{JC}) \right \|\ < \omega_{max}$}
 \end{algorithmic}
 \end{algorithm}
 
