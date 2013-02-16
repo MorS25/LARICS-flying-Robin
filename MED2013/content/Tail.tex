@@ -47,13 +47,17 @@ J_{c_i}=\frac{m}{12}\begin{bmatrix}
 and the body center of mass is placed directly in the center of body coordinate system. For any other arrangement, tensor matrix will not be symmetric, and what is even worse, the body center of mass will be misaligned, which in turn, produces undesired in-air rotations.
 
 \subsection{Leg dynamics}
-As it was previously explained, we propose modeling quadruped's legs as active springs. This can be achieved through adequat leg joint path planning, so that when the legs are in the contact with the ground, side forces and thrust forces are produced. The legs are positioned symmetrically around the geometric center, and similarly as quadrotor aircraft exert the following forces and torques on the quadruped main body:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dynarobin,Single leg model 
+\input{content/SingleLeg}
+
+%As it was previously explained, we propose modeling quadruped's legs as active springs. This can be achieved through adequat leg joint path planning, so that when the legs are in the contact with the ground, side forces and thrust forces are produced. 
+The legs are positioned symmetrically around the geometric center and exert forces and torques on the quadruped main body clarified with the following equations:
 
 \begin{gather}\label{eq:Forces}
 \vec{F_{tot}}=\sum_{i=1}^{4}(\vec{T_{i}}+\vec{S_{i}})\\
 \vec{\tau_{tot}}=\sum_{i=1}^{4}\vec{\rho _i}\times(\vec{T_{i}}+\vec{S_{i}})
 \end{gather}  
-
 Where $\vec{T_{i}}$ represents the $i$-th cuboid thrust force that causes vertical movement (i.e. hopping), $\vec{S_{i}}$ $i$-th cuboid side force that moves the quadruped in x direction, and $\rho _i$ $i$-th distance between the geometric center and the forces. In reality, one would have the y - component of the side force, but since this component is of the order of magnitude smaller then the x - component, it is not considered in this paper.
 
 For a perfectly symmetric body follows that the total torque (\ref{eq:Forces}) acting on the body is equal to zero, and the total force is the sum of all 4 active springs. For this, the necessary condition is that all four springs have exactly the same parameters (i.e. Force magnitudes, distance from the geometric center, etc.), and thus exert the same forces. In reality, neither the springs are the same, nor there can be a perfectly symmetric body. We write the body torque equation for a non-symmetric body, with the center of mass displaced for $\vec{\Delta CM}$:
@@ -96,7 +100,9 @@ C_2 S_1 & C_1 & S_1 S_2 & S_1 S_2 Q_3 \\
  0 & 0 & 0 & 1
 \end{bmatrix}
 \end{equation}
-with a standard abrevation $Cos(q_1):=C_1$ and $Sin(q_2):=S_2$ completes the Kinematic model of the tail. For this analysis we place the tail in the geometric center of the quadruped, $L_C$. Therefore, the distances between $L_0$ and $L_c$, $d_B$ and $a_B$ respectively, are both equal to zero. Using the recursive Newton-Euler method to build upon the kinematic model, we can write the complete dynamic model of the robot, which takes the following general form:
+with a standard abrevation $Cos(q_1):=C_1$ and $Sin(q_2):=S_2$ completes the Kinematic model of the tail. 
+
+For this analysis we place the tail in the geometric center of the quadruped, $L_C$. Therefore, the distances between $L_0$ and $L_c$, $d_B$ and $a_B$ respectively, are both equal to zero. Using the recursive Newton-Euler method to build upon the kinematic model, we can write the complete dynamic model of the robot, which takes the following general form:
 
 \begin{equation}\label{eq:NEGeneral}
 \vec{\boldsymbol{\tau}}_B=\mathbf{D}\left ( \ddot{q_i},\vec{\boldsymbol{\alpha}}_B \right )+\mathbf{C}\left ( \dot{q_i},\vec{\boldsymbol{\omega}}_B \right )+\mathbf{H}\left ( {q_i} \right )
