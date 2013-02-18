@@ -41,7 +41,7 @@ $Test$ &  $Mass[kg]$ & $Q$  & $\left \| \vec{\omega} \right \|$ & $K_0$\\
 0   & $[0\: 0\: 1\: 1]$ & $[89.99\: 32.86]$ & 0.0026 & 0.3\\
 1   & $[1\: 1\: 0\: 0]$ & $[-89.99\: 32.20]$ & 0.0038 & 0.3\\
 2   & $[1\: 1\: 1\: 0]$ & $[-25.43\: 29.15]$ &  0.003 & 0.3\\
-3   & $[1\: 1\: 1\: 0]$ & $[-26.02\: 29.05]$ &  0.0025 & 0.6\\
+3   & $[1\: 1\: 1\: 0]$ & $[-23.26\: 29.20]$ &  0.003 & 0.6\\
 \hline
 \end{tabular}
 \caption{Testing parameters}\label{tab:Simulations}
@@ -56,13 +56,13 @@ $Test$ &  $Mass[kg]$ & $Q$  & $\left \| \vec{\omega} \right \|$ & $K_0$\\
 	\label{fig:ODESimulations}
 \end{figure}
 
-Three tests are conducted by changing the initial mass distribution as shown in Table \ref{tab:Simulations}. The first column represents body mass redistribution vector while second and third are final results of tail angles and angular rotation value, respectively. The simulation results are presented in Fig. \ref{fig:ODE graph}. 
+Three four are conducted by changing the initial mass distribution as shown in Table \ref{tab:Simulations}. The first column represents body mass redistribution vector while second and third are final results of tail angles and angular rotation value, respectively. The simulation results are presented in Fig. \ref{fig:ODE graph}. 
 
 Test 1: White and red masses are negligible, the algorithm titled tail in direction $q1=90^{\circ}$. The tail reaches desired position in 7-10 seconds and the final inclination is $q2=32.86^{\circ}$(Fig. \ref{fig:ODESimulations}b). The angular velocity value $\left \| \vec{\omega} \right \|$ goes from $0.14$ to final $0.0025$.
 
 Test 2: Green and blue masses are negligible, the algorithm titled tail in direction $q1=-90^{\circ}$. The final tail inclination is $q2=32.20^{\circ}$(Fig. \ref{fig:ODESimulations}b). The angular velocity value $\left \| \vec{\omega} \right \|$ goes from $0.14$ to final $0.0038$. 
 
-Test 3: The blue mass is negligible, the algorithm titled tail in direction $q1=-26.02^{\circ}$. The final tail inclination is $q2=29.05^{\circ}$(Fig. \ref{fig:ODESimulations}c). The algorithm requires a longer time to minimize $\left \| \vec{\omega} \right \|$ to final $0.0025$(see Table \ref{tab:Simulations2}).
+Test 3: The blue mass is negligible, the algorithm titled tail in direction $q1=-25.43^{\circ}$. The final tail inclination is $q2=29.15^{\circ}$(Fig. \ref{fig:ODESimulations}c). The algorithm requires a longer time to minimize $\left \| \vec{\omega} \right \|$ to final $0.0025$(see Table \ref{tab:Simulations2}).
 
 Test 4: Same initial parameters as in Test 3 except the higher gain $K_0$. The desired position is reached faster as expected. The subsequent increase can cause unstable results. 
 
@@ -72,25 +72,21 @@ Test 4: Same initial parameters as in Test 3 except the higher gain $K_0$. The d
 	\hline
 $Interation$ & $Q_1$ & $Q_1$  & $\left \| \vec{\omega} \right \|$\\
 	\hline
-1 & -53.71 & 3.42 & 0.06\\
-5 & -33.56 & 9.94 & 0.03\\
-10 & -30.72 & 16.24 &  0.025\\
-15 & -29.82 & 20.33 & 0.017\\
-20 & -29.57 & 22.97 &  0.010\\
-25 & -29.09 & 24.83 &  0.008\\
-30 & -28.76 & 25.92 &   0.006\\
-35 & -28.23 & 27.03 & 0.005\\
-40 & -27.40 & 27.74 &0.003\\
-45 & -26.34 & 28.40 &  0.0025\\
+1 & -53.71 & 10.19 & 0.060\\
+5 & -36.89 & 21.75 & 0.012\\
+10 & -32.44 & 27.03 &  0.005\\
+15 & -29.09 & 28.81 & 0.004\\
+20 & -25.43 & 29.15 &  0.003\\
 \hline
 \end{tabular}
 \caption{Test 3. results}\label{tab:Simulations2}
 \end{table}
 
-
 \begin{figure}
 	\centering
 	\includegraphics[width=90mm]{./pictures/ODE_graph.pdf}
-	\caption{ODE simulations, Test 1-3.}
+	\caption{ODE simulations, Test 1-4.}
 	\label{fig:ODE graph}
 \end{figure}
+
+
