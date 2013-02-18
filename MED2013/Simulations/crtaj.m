@@ -8,6 +8,8 @@ close all;
 %TEST 1, mase 1 i 2 su jako male, ostale po kilu
 load('logging_TEST1.txt');
 gca1 = gca;% get handle to axes of figure
+figure('Position',[1 1 900 700]);
+hold on;
 subplot(3,2,1);plot(logging_TEST1(:,1),logging_TEST1(:,4),'r','LineWidth',2);
 hold on;
 %title('Test 1');
@@ -19,7 +21,7 @@ subplot(3,2,2);
 plot(logging_TEST1(:,1),logging_TEST1(:,2),'g','LineWidth',2);
 hold on;
 plot(logging_TEST1(:,1),logging_TEST1(:,3),'r','LineWidth',2);
-h = legend('$Q_1$','$Q_2$');
+h = legend('$Q_1$','$Q_2$','Location', 'East');
 set(h,'interpreter','latex')
 grid;
 h = ylabel('$deg[^{\circ}]$');
@@ -41,7 +43,7 @@ subplot(3,2,4);
 plot(logging_TEST2(:,1),logging_TEST2(:,2),'g','LineWidth',2);
 hold on;
 plot(logging_TEST2(:,1),logging_TEST2(:,3),'r','LineWidth',2);
-h = legend('$Q_1$','$Q_2$');
+h = legend('$Q_1$','$Q_2$','Location', 'East');
 set(h,'interpreter','latex')
 grid;
 h = ylabel('$deg[^{\circ}]$');
@@ -63,7 +65,7 @@ subplot(3,2,6);
 plot(logging_TEST3(:,1),logging_TEST3(:,2),'g','LineWidth',2);
 hold on;
 plot(logging_TEST3(:,1),logging_TEST3(:,3),'r','LineWidth',2);
-h = legend('$Q_1$','$Q_2$');
+h = legend('$Q_1$','$Q_2$','Location','SouthEast');
 set(h,'interpreter','latex')
 grid;
 h = ylabel('$deg[^{\circ}]$');
