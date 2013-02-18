@@ -67,9 +67,9 @@ For a perfectly symmetric body follows that the total torque (\ref{eq:Forces}) a
 \Delta \textsc{cm}_y \:\bar{T} & -\left ( \Delta \textsc{cm}_x \:\bar{T} +\Delta \textsc{cm}_z \:\bar{S}\right ) & -\Delta \textsc{cm}_y \:\bar{S}
 \end{bmatrix}^T
 \end{equation}
-where $\bar{T}$ and $\bar{S}$ represent the average thrust and side forces of each leg. The displacement of the center of mass is used to model the unbalanced body dynamics. In practice, the displacement vector  $\vec{\Delta CM}$ incorporates all possible imperfections: design symmetry, leg differences, motor dynamics, unballanced forces and so on.
+where $\bar{T}$ and $\bar{S}$ represent the average thrust and side forces of each leg. The displacement of the center of mass is used to model the unbalanced body dynamics. In practice, the displacement vector  $\vec{\Delta CM}$ incorporates all possible imperfections: design symmetry, leg differences, motor dynamics, unbalanced  forces and so on.
 
-In order to achieve successful gallop locomotion which consists of a jump and forward movement, average forces $\bar{T}$ and $\bar{S}$ have to exist. On the other hand, for a jumping part of the maneuver to remain stable, we need to counteract the undesired torque (\ref{eq:Torques}). Therefore, we propose, adding a tail to the quadruped in order to balance the robot and eliminate the undesired assymetry. 
+In order to achieve successful gallop locomotion which consists of a jump and forward movement, average forces $\bar{T}$ and $\bar{S}$ have to exist. On the other hand, for a jumping part of the maneuver to remain stable, we need to counteract the undesired torque (\ref{eq:Torques}). Therefore, we propose, adding a tail to the quadruped in order to balance the robot and eliminate the undesired asymmetry. 
 
 \subsection{Tail dynamics}
 In order to devise a mathematical model of tail dynamics, we propose modeling the tail as a kinematic chain manipulator attached to robot body. Much like in aerial robots, when the robot is in the air, the tail acts freely on its body. We propose using the tail as a dynamic stabilization for the hopping. First we build the kinematic model using Denavit-Hartenberg parameterization method, after that we devise a dynamic model of the arms using recursive Newton-Euler algorithm.
