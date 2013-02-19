@@ -1,6 +1,6 @@
 \section{Simulations}\label{sec:simulation}
 
-The ODE (open dynamics engine) library \cite{ode:2008} is used for testing the iterative mass displacement compensation algorithm presented in previous section. The initial position of quadruped hopping robot is shown in Fig \ref{fig:ODESimulations}a. Each leg consists of two spring-damper joints, the first passive connects red and green cylinder and the second, active one, connects the green cylinder with the robot body. The body consists of 4 connected masses indexed as 1 (white), 2 (red), 3 (green) and 4 (blue). The whole robot simulation parameters are shown in \ref{tab:RobotDimensions}.
+The ODE (open dynamics engine) library \cite{ode:2008} is used to test the iterative mass displacement compensation algorithm presented in the previous section. The initial position of the hopping quadruped robot is shown in Fig \ref{fig:ODESimulations}a. Each leg is composed of two spring-damper joints, the first one being passive and connects the red and green cylinder together; and the second, active one, connects the green cylinder with the robot body. The body consists of 4 joined masses indexed as 1 (white), 2 (red), 3 (green) and 4 (blue). All the parameters of the  robot simulation are shown in \ref{tab:RobotDimensions}.
 
 \begin{table}
 \centering
@@ -30,7 +30,7 @@ The ODE (open dynamics engine) library \cite{ode:2008} is used for testing the i
 
 
 
-The active springs iteratively generates forces (Td=1s) which accelerate the body and produces rotational vector which is recorded during acceleration phase. The used actuated spring force is minimal to produce measurable angular speed and to minimize time to calm the body consequential oscillations. The acceleration phase lasts for about 200ms after which the body calms in 800ms. The initial tail angles are $q_1=0$ and $q_2=0$ as positioned in Fig. \ref{fig:ODESimulations}a.
+The active springs iteratively generates forces (Td=1s) which accelerate the body and produce rotational vector which is recorded during the acceleration phase. The applied spring force is minimal, but sufficient enough to produce measurable angular speed and to keep the time needed to calm the body oscillations down to a minimum. The acceleration phase lasts for about 200ms after which the body calms in the next 800ms. The initial tail angles are $q_1=0$ and $q_2=0$ as illustrated in Fig. \ref{fig:ODESimulations}a.
 
 \begin{table}
 	\centering
@@ -56,15 +56,15 @@ $Test$ &  $Mass[kg]$ & $Q$  & $\left \| \vec{\omega} \right \|$ & $K_0$\\
 	\label{fig:ODESimulations}
 \end{figure}
 
-Three four are conducted by changing the initial mass distribution as shown in Table \ref{tab:Simulations}. The first column represents body mass redistribution vector while second and third are final results of tail angles and angular rotation value, respectively. The simulation results are presented in Fig. \ref{fig:ODE graph}. 
+For this paper, a series of four experiments is conducted by varying the initial mass distribution of the robot, as shown in Table \ref{tab:Simulations}. The first column represents body mass redistribution vector, while the second and the third are the final results of tail angles and angular rotation values, respectively. The simulation results are presented in Fig. \ref{fig:ODE graph}. 
 
-Test 1: White and red masses are negligible, the algorithm titled tail in direction $q1=90^{\circ}$. The tail reaches desired position in 7-10 seconds and the final inclination is $q2=32.86^{\circ}$(Fig. \ref{fig:ODESimulations}b). The angular velocity value $\left \| \vec{\omega} \right \|$ goes from $0.14$ to final $0.0025$.
+Test 1: For a negligibly small masses of white and red cuboids, the algorithm consequently titled tail in the direction $q1=90^{\circ}$. The tail reaches the desired position in 7-10 seconds and the final inclination is $q2=32.86^{\circ}$(Fig. \ref{fig:ODESimulations}b). The angular velocity value $\left \| \vec{\omega} \right \|$ falls from $0.14$ to final $0.0025$.
 
-Test 2: Green and blue masses are negligible, the algorithm titled tail in direction $q1=-90^{\circ}$. The final tail inclination is $q2=32.20^{\circ}$(Fig. \ref{fig:ODESimulations}b). The angular velocity value $\left \| \vec{\omega} \right \|$ goes from $0.14$ to final $0.0038$. 
+Test 2: When the green and blue cuboid masses are negligible, the algorithm tilts the tail in the direction $q1=-90^{\circ}$. The final tail inclination is $q2=32.20^{\circ}$(Fig. \ref{fig:ODESimulations}b). The angular velocity value $\left \| \vec{\omega} \right \|$ goes from $0.14$ to final $0.0038$. 
 
-Test 3: The blue mass is negligible, the algorithm titled tail in direction $q1=-25.43^{\circ}$. The final tail inclination is $q2=29.15^{\circ}$(Fig. \ref{fig:ODESimulations}c). The algorithm requires a longer time to minimize $\left \| \vec{\omega} \right \|$ to final $0.0025$(see Table \ref{tab:Simulations2}).
+Test 3: When only the blue cuboid mass is negligible, the algorithm tilts the tail in the direction $q1=-25.43^{\circ}$. The final tail inclination is $q2=29.15^{\circ}$(Fig. \ref{fig:ODESimulations}c). The algorithm requires a longer time to minimize $\left \| \vec{\omega} \right \|$ to final $0.0025$(see Table \ref{tab:Simulations2}).
 
-Test 4: Same initial parameters as in Test 3 except the higher gain $K_0$. The desired position is reached faster as expected. The subsequent increase can cause unstable results. 
+Test 4: This experiment was conducted with the same initial parameters as in Test 3, except this time the higher gain $K_0$ was used. The desired position is reached faster as expected. The subsequent increase has shown to cause small oscillations in the result. By comparing Fig. 5, it is interesting to notice how joint angle $q_1$ takes more time to achieve the desired equilibrium. This is obvious, since according to Fig 5, once the algorithm reaches the saddle of equation (22), the slope in $q_1$ direction is very small.
 
 \begin{table}
 	\centering

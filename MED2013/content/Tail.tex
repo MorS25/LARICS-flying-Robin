@@ -1,5 +1,5 @@
 \section{Mathematical model}\label{sec:MathModel}
-The simplified model of quadruped robot Dynarobin depicted in \ref{fig:rmoment} has three distinctive parts: the main body, the new added tail and four actuator-legs. Respectively, the following key coordinate systems should be noticed: $L_w$ - world coordinate system, $L_c$ - geometrical center of construction; $L_B$ - main body's center of mass; $L_T$ - tail's center of mass; and $L_{pi}$ - $i$-th leg point of contact. The proposed mathematical model is derived under the assumption of a stable locomotion maneuver which includes vertical (jumping) and horizontal movement of the robot. For such a maneuver, the actuators (i.e. legs) need to develop periodic horizontal and vertical forces at the point of contact with the ground, side force $S_{pi}$ and thrust force $T_{pi}$ respectively. In order to achieve these forces, an adequate leg joint trajectory needs to be planned. Trajectory planning for the leg joints goes beyonde the scope of this paper, and the reader is addressed to the following papers. 
+A simplified model of a quadruped robot Dynarobin, depicted in \ref{fig:rmoment} has three distinctive parts: the main body, the new added tail and four actuator-legs. Respectively, the following key coordinate systems should be observed: $L_w$ - world coordinate system, $L_c$ - geometrical center of construction; $L_B$ - main body's center of mass; $L_T$ - tail's center of mass; and $L_{pi}$ - $i$-th leg point of contact. The proposed mathematical model is derived under the assumption of a stable locomotion maneuver which includes vertical (jumping) and horizontal movement of the robot. For such a maneuver, the actuators (i.e. legs) need to develop periodic horizontal and vertical forces at the point of contact with the ground, side force $S_{pi}$ and thrust force $T_{pi}$ respectively. In order to achieve these forces, an adequate leg joint trajectory needs to be planned. Trajectory planning for the leg joints goes beyond the scope of this paper. 
 
 \begin{figure}
 	\centering
@@ -9,13 +9,13 @@ The simplified model of quadruped robot Dynarobin depicted in \ref{fig:rmoment} 
 \end{figure}
 
 \subsection{Main body dynamics}
-In order to simplify the complexity of the analysis, quadruped's main body is modeled as a system of four, equally displaced cuboid shaped bodies, as shown in Fig \ref{fig:rmoment}. Ideally, when Robin's body is fully symmetric, all four cuboids have the same mass. Since, in most situations, this is not the case, each cuboid has its own mass $m_i$, with its own center $cm_i$ placed in the middle of the cuboid. Each cuboid element center of mass $cm_i$ is then placed at $\vec{r}_i$ distance from the body geometric center, the $L_c$ coordinate system. The overall main body center of mass is then easily calculated as a set of these for cuboid bodies:
+In order to simplify the complexity of the analysis, quadruped's main body is modeled as a system of four, equally displaced cuboid shaped bodies, as shown in Fig \ref{fig:rmoment}. Ideally, when Robin's body is fully symmetric, all four cuboids have the same mass. Since, in most situations, this is not the case, each cuboid has its own mass $m_i$, with its own center $cm_i$ placed in the middle of the cuboid. Each cuboid element center of mass $cm_i$ is then placed at $\vec{r}_i$ distance from the body geometric center, the $L_c$ coordinate system. The overall main body center of mass is then easily calculated as a set of these four cuboid bodies:
  
 \begin{equation}\label{eq:CMrobot}
 CM=\frac{\sum_{i=1}^{4}m_i\vec{r}_i}{\sum_{i=1}^{4}m_i}
 \end{equation}
 
-The result from \eqref{eq:CMrobot} is a 3D vector pointing from the center of construction $L_C$ to the center of mass $L_B$, quantifying the displacement of the center of mass from the construction center of the robot. Next important dynamic parameter is the inertia tensor. Having four cuboid bodys as the basis of the robot model, tensor of inertia can easily be derived by summing all four bodies using the Parallel axis theorem:
+The result from \eqref{eq:CMrobot} is a 3D vector pointing from the center of construction $L_C$ to the center of mass $L_B$, quantifying the displacement of the center of mass from the construction center of the robot. Next important dynamic parameter is the inertia tensor. Having four cuboid bodies as the basis for the robot model, tensor of inertia can easily be derived by summing all four bodies using the Parallel axis theorem:
 
 \begin{equation}
 \tiny
@@ -36,7 +36,7 @@ w_i^2+d_i^2 &0&0 \\
 \end{bmatrix}
 \end{equation} 
 
-It could be easily shown that if all four cuboids have the same mass and size (i.e. $m,h,d,w$) and are symmetrically displaced from the body center $L_c$, as depicted in Fig \ref{fig:rmoment}, the total body moment of inertia $J_R$ comes down to a symmetric matrix: 
+It could be easily shown that if all four cuboids have the same mass and size (i.e. $m,h,d,w$) in addition to being symmetrically displaced from the body center $L_c$, as depicted in Fig \ref{fig:rmoment}, the total body moment of inertia $J_R$ is reduced to a symmetric matrix,
 \begin{equation}
 J_{c_i}=\frac{m}{12}\begin{bmatrix}
 (2w)^2+d^2 &0&0 \\ 
@@ -44,7 +44,7 @@ J_{c_i}=\frac{m}{12}\begin{bmatrix}
 0 &0& (2w)^2+(2h)^2
 \end{bmatrix}
 \end{equation} 
-and the body center of mass is placed directly in the center of body coordinate system. For any other arrangement, tensor matrix will not be symmetric, and what is even worse, the body center of mass will be misaligned, which in turn, produces undesired in-air rotations.
+and the body center of mass is placed directly in the center of the body coordinate system. For any other arrangement, tensor matrix will not be symmetric, and what is even worse, the body center of mass will be misaligned, which in turn, produces undesired in-air rotations.
 
 \subsection{Leg dynamics}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -60,7 +60,7 @@ The legs are positioned symmetrically around the geometric center and exert forc
 \end{gather}  
 Where $\vec{T_{i}}$ represents the $i$-th cuboid thrust force that causes vertical movement (i.e. hopping), $\vec{S_{i}}$ $i$-th cuboid side force that moves the quadruped in x direction, and $\rho _i$ $i$-th distance between the geometric center and the forces. In reality, one would have the y - component of the side force, but since this component is of the order of magnitude smaller then the x - component, it is not considered in this paper.
 
-For a perfectly symmetric body follows that the total torque (\ref{eq:Forces}) acting on the body is equal to zero, and the total force is the sum of all 4 active springs. For this, the necessary condition is that all four springs have exactly the same parameters (i.e. Force magnitudes, distance from the geometric center, etc.), and thus exert the same forces. In reality, neither the springs are the same, nor there can be a perfectly symmetric body. We write the body torque equation for a non-symmetric body, with the center of mass displaced for $\vec{\Delta CM}$:
+For a perfectly symmetric body follows that the total torque (\ref{eq:Forces}) acting on the body is equal to zero, and the total force is the sum of all 4 active springs. For this, the necessary condition is that all four springs have exactly the same parameters (i.e. Force magnitudes, distance from the geometric center, etc.), and thus exert the same forces. In reality, neither the springs are the same, nor can there be a perfectly symmetric body. We write the body torque equation for a non-symmetric body, with the center of mass displaced for $\vec{\Delta CM}$:
 
 \begin{equation}\label{eq:Torques}
 \vec{\tau}_{tot}=\begin{bmatrix}
@@ -72,7 +72,7 @@ where $\bar{T}$ and $\bar{S}$ represent the average thrust and side forces of ea
 In order to achieve successful gallop locomotion which consists of a jump and forward movement, average forces $\bar{T}$ and $\bar{S}$ have to exist. On the other hand, for a jumping part of the maneuver to remain stable, we need to counteract the undesired torque (\ref{eq:Torques}). Therefore, we propose, adding a tail to the quadruped in order to balance the robot and eliminate the undesired asymmetry. 
 
 \subsection{Tail dynamics}
-In order to devise a mathematical model of tail dynamics, we propose modeling the tail as a kinematic chain manipulator attached to robot body. Much like in aerial robots, when the robot is in the air, the tail acts freely on its body. We propose using the tail as a dynamic stabilization for the hopping. First we build the kinematic model using Denavit-Hartenberg parameterization method, after that we devise a dynamic model of the arms using recursive Newton-Euler algorithm.
+In order to devise a mathematical model of tail dynamics, we propose modeling the tail as a kinematic chain manipulator attached to the robot body. Much like in aerial robots, when the robot is in the air \cite{Korpela2013ICRA,Orsag2012JINT}, the tail acts freely on its body. We propose using the tail as a dynamic stabilization for the hopping. First we build the kinematic model using Denavit-Hartenberg parameterization method, after that we devise a dynamic model of the tail using the recursive Newton-Euler algorithm.
 \subsubsection{Complete kinematic and dynamic tail model}
 Kinematic chain of the tail is shown in Fig. \ref{fig:rmax}, and the kinematic parameters are shown in table \ref{tab:DHParameters}. Kinematic chain consists of the body coordinate system, 2 tail revolute joints, one virtual prismatic joint in the tail (i.e. tail length parameter), and the tail center of mass coordinate system. As can be seen from DH parameters table, the two revolute joints have no linear, only angular displacement from each other, therefore their masses and moments of inertia are all zero. The third prismatic joint represents the tail length and is modeled as a long stick with infitesimal thickness. Normally, kinematic chains end with a tool at the tip of the last link, but here, the end effector is actually the tail center of mass, and thus it acts as the "tool" coordinate system.
 
@@ -100,7 +100,7 @@ C_2 S_1 & C_1 & S_1 S_2 & S_1 S_2 Q_3 \\
  0 & 0 & 0 & 1
 \end{bmatrix}
 \end{equation}
-with a standard abrevation $Cos(q_1):=C_1$ and $Sin(q_2):=S_2$ completes the Kinematic model of the tail. 
+with a standard abbreviation $Cos(q_1):=C_1$ and $Sin(q_2):=S_2$ completes the Kinematic model of the tail. 
 
 For this analysis we place the tail in the geometric center of the quadruped, $L_C$. Therefore, the distances between $L_0$ and $L_c$, $d_B$ and $a_B$ respectively, are both equal to zero. Using the recursive Newton-Euler method to build upon the kinematic model, we can write the complete dynamic model of the robot, which takes the following general form:
 
@@ -108,7 +108,7 @@ For this analysis we place the tail in the geometric center of the quadruped, $L
 \vec{\boldsymbol{\tau}}_B=\mathbf{D}\left ( \ddot{q_i},\vec{\boldsymbol{\alpha}}_B \right )+\mathbf{C}\left ( \dot{q_i},\vec{\boldsymbol{\omega}}_B \right )+\mathbf{H}\left ( {q_i} \right )
 \end{equation}
 
-The first part of \eqref{eq:NEGeneral}, $\mathbf{D}$ takes into account the tail joint accelerations $\ddot{q}_i$ and the body initial angular acceleration $\boldsymbol{\alpha}_B$. Next are the coriolis and centrifugal forces contained in $\mathbf{C}$, where the forces are produced from the coupling of joint speeds $\dot{q}_i$ and body angular speed $\boldsymbol{\omega}_B$. The term $\mathbf{H}$ containes the gravity part of the equation. In a stand-still situation, when the robot is at rest and angular speeds and accelerations,  $\boldsymbol{\omega}_B$ and  $\boldsymbol{\alpha}_B$ are zero vectors, then the accleration, coriolis and gravitational part of the equations take the following forms:
+The first part of \eqref{eq:NEGeneral}, $\mathbf{D}$ takes into account the tail joint accelerations $\ddot{q}_i$ and the body initial angular acceleration $\boldsymbol{\alpha}_B$. Next are the Coriolis and centrifugal forces contained in $\mathbf{C}$, where the forces are produced from the coupling of joint speeds $\dot{q}_i$ and body angular speed $\boldsymbol{\omega}_B$. The term $\mathbf{H}$ contains the gravity part of the equation. In a stand-still situation, when the robot is at rest and angular speeds and accelerations,  $\boldsymbol{\omega}_B$ and  $\boldsymbol{\alpha}_B$ are zero vectors, then the acceleration, coriolis and gravitational part of the equations take the following forms:
  
 \begin{gather}\label{eq:DCH_matrix}
 \small
@@ -137,9 +137,9 @@ The first part of \eqref{eq:NEGeneral}, $\mathbf{D}$ takes into account the tail
 	\label{fig:rmax}
 \end{figure}
 
-Equations \eqref{eq:DCH_matrix} show full complexity of \eqref{eq:NEGeneral} even for a particular case when the quadruped body is at rest. Therefore it is clear, that an analitycal solution to the problem of dynamic stabilization through tail motion is not a straight forward process. Instead, we propose using a tail to compensate the imperfections in quadruped construction. Positioning the tail at the right pose, it is possible to shift the balance of the robot and make it symmetric. 
+Equations \eqref{eq:DCH_matrix} show the full complexity of \eqref{eq:NEGeneral} even for a particular case when the quadruped body is at rest. Therefore it is clear, that an analytical solution to the problem of dynamic stabilization through tail motion is not a straight forward process. Instead, we propose using a tail to compensate the imperfections in quadruped construction. Positioning the tail at the right pose, it is possible to shift the balance of the robot and make it symmetric. 
 \subsubsection{Tail inertia tensor}
-In Fig. \ref{fig:rmoment}, a tail with its ${L_T}$ coordinate system, placed in its center of mass is depicted. Introducing an inertial appendages as a new body in the quadruped construction, the overall center of mass will change accordingly:
+In Fig. \ref{fig:rmoment}, a tail with its ${L_T}$ coordinate system, placed in its center of mass is depicted. Introducing an inertial appendage as a new body in the quadruped construction, the overall center of mass will change accordingly:
 \begin{equation}\label{eq:CMrobotAndTail}
 CM=\frac{\sum_{i=1}^{4}m_i\vec{r}_i+m_T\vec{p}_T}{\sum_{i=1}^{4}m_i+m_T}= \frac{\Delta\vec{\textsc{cm}}+\mu\cdot\textsc{cm}_T}{1+\mu}
 \end{equation}
@@ -156,7 +156,7 @@ S_1S_2\\
 C_2
 \end{bmatrix}=0
 \end{equation}
-that is to say, that the numerator in (\ref{eq:CMrobotAndTail}) has to be zero. Given that in (\ref{eq:CMzeroing}) there exist only two variables, $Q_1$ and $Q_2$ respectively, one can eliminate only two components of the center of mass displacement vector $\Delta \vec{\textsc{cm}}$. Under a reasonable assumption that $\bar{T}\gg \bar{S}$, it follows from the applied torque equation (\ref{eq:Torques}) that for a stable jump one needs to successfully eliminate $x$ and $y$ components of the center of mass displacement vector. This hypothesis is reasonable because in most cases the forward motion is slow compared to vertical jumping, and additionally in z direction one needs to overcome the gravity acceleration $g$. Combining these two assumptions makes the $\bar{T}$ by the order of magnitude larger then $\bar{S}$.
+that is to say, that the numerator in (\ref{eq:CMrobotAndTail}) has to be zero. Given that in (\ref{eq:CMzeroing}) there exist only two variables, $Q_1$ and $Q_2$ respectively, one can eliminate only two components of the center of mass displacement vector $\Delta \vec{\textsc{cm}}$. Under a reasonable assumption that $\bar{T}\gg \bar{S}$, it follows from the applied torque equation (\ref{eq:Torques}) that for a stable jump one needs to successfully eliminate $x$ and $y$ components of the center of mass displacement vector. This hypothesis is reasonable because in most cases the forward motion is slow compared to vertical jumping, and additionally in z direction one needs to overcome the gravity acceleration $g$. Combining these two assumptions makes the $\bar{T}$ by the order of magnitude larger than $\bar{S}$.
 
 From a strict mathematical point of view, the necessary condition for (\ref{eq:CMzeroing}) to have a solution is:
 \begin{equation}\label{eq:CMcondition}
@@ -167,7 +167,7 @@ When the condtion (\ref{eq:CMcondition}) is met, the analytical solution to equa
 Q_1=atan2\left({\Delta \textsc{cm}_y},\, {\Delta \textsc{cm}_x}\right)\\
 Q_2=asin\left(\frac{2\sqrt{{\Delta \textsc{cm}_x}^2+{\Delta \textsc{cm}_y}^2}}{\mu Q_3} \right)\label{eq:CMsolution2}
 \end{gather}
-Moving the tail joints $Q_1$ and $Q_2$ to the values calculated with \eqref{eq:CMsolution1} and \eqref{eq:CMsolution2} respectively, balances the quadruped. On the other hand, repositioning the tail changes the overall inertia tensor. This change in the overall inertia can be calculated using the Parallel axis theorem and basic rotation matricies. We start by writing the tail inertia tensro, which, due to the approximation that the tail is infitesimal thin, can be simplified. Written in $L_T$ frame, the tail moment of inertia is:
+Moving the tail joints $Q_1$ and $Q_2$ to the values calculated with \eqref{eq:CMsolution1} and \eqref{eq:CMsolution2} respectively, balances the quadruped. On the other hand, repositioning the tail changes the overall inertia tensor. This change in the overall inertia can be calculated using the Parallel axis theorem and basic rotation matrices. We start by writing the tail inertia tensor, which, due to the approximation that the tail is infitesimal thin, can be simplified. Written in $L_T$ frame, the tail moment of inertia is:
 \begin{equation}\label{eq:JT_LT}
 J_T=J_3=\frac{{Q_3}^2 m_3}{12}\left(
 \begin{array}{ccc}
@@ -177,7 +177,7 @@ J_T=J_3=\frac{{Q_3}^2 m_3}{12}\left(
 \end{array}
 \right)
 \end{equation}
-However, in order to write \eqref{eq:JT_LT} in the body coodrinate system $L_B$ it needs to be rotated first. After that, the Parallel axis theorem is applied, yielding the equation for the tensor of inertia $J_T$ of the tail. 
+However, in order to write \eqref{eq:JT_LT} in the body coordinate system $L_B$ it needs to be rotated first. After that, the Parallel axis theorem is applied, yielding the equation for the tensor of inertia $J_T$ of the tail. 
 \begin{equation}
 \begin{aligned}
 \scriptsize
