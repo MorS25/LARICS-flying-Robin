@@ -1,5 +1,5 @@
 \section{Mathematical model}\label{sec:MathModel}
-A simplified model of a quadruped robot Dynarobin, depicted in \ref{fig:rmoment} has three distinctive parts: the main body, the new added tail and four actuator-legs. Respectively, the following key coordinate systems should be observed: $L_w$ - world coordinate system, $L_c$ - geometrical center of construction; $L_B$ - main body's center of mass; $L_T$ - tail's center of mass; and $L_{pi}$ - $i$-th leg point of contact. The proposed mathematical model is derived under the assumption of a stable locomotion maneuver which includes vertical (jumping) and horizontal movement of the robot. For such a maneuver, the actuators (i.e. legs) need to develop periodic horizontal and vertical forces at the point of contact with the ground, side force $S_{pi}$ and thrust force $T_{pi}$ respectively. In order to achieve these forces, an adequate leg joint trajectory needs to be planned. Trajectory planning for the leg joints goes beyond the scope of this paper. 
+A simplified model of a quadruped robot Dynarobin, depicted in \ref{fig:rmoment} has three distinctive parts: the main body, the new added tail and four actuator-legs. Respectively, the following key coordinate systems should be observed: $L_w$ - world coordinate system, $L_c$ - geometrical center of construction; $L_B$ - main body's center of mass; $L_T$ - tail's center of mass; and $L_{pi}$ - $i$-th leg point of contact. The proposed mathematical model is derived under the assumption of a stable locomotion maneuver which includes vertical (jumping) and horizontal movement of the robot. For such a maneuver, the actuators (i.e. legs) need to develop periodic horizontal and vertical forces at the point of contact with the ground, side force $\textbf{S}_{pi}$ and thrust force $\textbf{T}_{pi}$ respectively. In order to achieve these forces, an adequate leg joint trajectory needs to be planned. Trajectory planning for the leg joints goes beyond the scope of this paper. 
 
 \begin{figure}
 	\centering
@@ -9,17 +9,17 @@ A simplified model of a quadruped robot Dynarobin, depicted in \ref{fig:rmoment}
 \end{figure}
 
 \subsection{Main body dynamics}
-In order to simplify the complexity of the analysis, quadruped's main body is modeled as a system of four, equally displaced cuboid shaped bodies, as shown in Fig \ref{fig:rmoment}. Ideally, when Robin's body is fully symmetric, all four cuboids have the same mass. Since, in most situations, this is not the case, each cuboid has its own mass $m_i$, with its own center $cm_i$ placed in the middle of the cuboid. Each cuboid element center of mass $cm_i$ is then placed at $\vec{r}_i$ distance from the body geometric center, the $L_c$ coordinate system. The overall main body center of mass is then easily calculated as a set of these four cuboid bodies:
+In order to simplify the complexity of the analysis, quadruped's main body is modeled as a system of four, equally displaced cuboid shaped bodies, as shown in Fig \ref{fig:rmoment}. Ideally, when Robin's body is fully symmetric, all four cuboids have the same mass. Since, in most situations, this is not the case, each cuboid has its own mass $m_i$, with its own center $cm_i$ placed in the middle of the cuboid. Each cuboid element center of mass $cm_i$ is then placed at $\vec{\textbf{r}}_i$ distance from the body geometric center, the $L_c$ coordinate system. The overall main body center of mass is then easily calculated as a set of these four cuboid bodies:
  
 \begin{equation}\label{eq:CMrobot}
-CM=\frac{\sum_{i=1}^{4}m_i\vec{r}_i}{\sum_{i=1}^{4}m_i}
+\vec{\textbf{r}_{CM}}=\frac{\sum_{i=1}^{4}m_i\vec{\textbf{r}}_i}{\sum_{i=1}^{4}m_i}
 \end{equation}
 
 The result from \eqref{eq:CMrobot} is a 3D vector pointing from the center of construction $L_C$ to the center of mass $L_B$, quantifying the displacement of the center of mass from the construction center of the robot. Next important dynamic parameter is the inertia tensor. Having four cuboid bodies as the basis for the robot model, tensor of inertia can easily be derived by summing all four bodies using the Parallel axis theorem:
 
 \begin{equation}
-\tiny
-J_R=\sum_{i=1}^{4}\left \{J_{c_i}+m_i\begin{bmatrix}
+\footnotesize
+\textbf{J}_R=\sum_{i=1}^{4}\left \{\textbf{J}_{c_i}+m_i\begin{bmatrix}
 {_yr_i}^2+{_zr_i}^2 & {_xr_i}\cdot {_yr_i} & {_xr_i}\cdot {_zr_i} \\ 
 -{_xr_i}\cdot {_yr_i} & {_xr_i}^2+{_zr_i}^2 & {_yr_i}\cdot {_zr_i}\\ 
 -{_xr_i}\cdot {_zr_i} & {_yr_i}\cdot {_zr_i} & {_yr_i}^2+{_xr_i}^2
@@ -27,9 +27,9 @@ J_R=\sum_{i=1}^{4}\left \{J_{c_i}+m_i\begin{bmatrix}
 \normalsize
 \end{equation}
 
-where, $_xr_i, _yr_i, _zr_i$ represent $\vec{r}_i$ projection in $x,y,z$ respectively, and $J_{c_i}$ is the moment of inertia of the single cuboid element of height $h_i$, width $w_i$ and length $d_i$ as indicated in Fig. \ref{fig:rmoment}:
+where, $_xr_i, _yr_i, _zr_i$ represent $\vec{\textbf{r}}_i$ projection in $x,y,z$ respectively, and $\textbf{J}_{c_i}$ is the moment of inertia of the single cuboid element of height $h_i$, width $w_i$ and length $d_i$ as indicated in Fig. \ref{fig:rmoment}:
 \begin{equation}
-J_{c_i}=\frac{m_i}{3}\begin{bmatrix}
+\textbf{J}_{c_i}=\frac{m_i}{3}\begin{bmatrix}
 w_i^2+d_i^2 &0&0 \\ 
 0 &h_i^2+d_i^2&0\\ 
 0 &0& w_i^2+h_i^2
@@ -38,7 +38,7 @@ w_i^2+d_i^2 &0&0 \\
 
 It could be easily shown that if all four cuboids have the same mass and size (i.e. $m,h,d,w$) in addition to being symmetrically displaced from the body center $L_c$, as depicted in Fig \ref{fig:rmoment}, the total body moment of inertia $J_R$ is reduced to a symmetric matrix,
 \begin{equation}
-J_{c_i}=\frac{m}{12}\begin{bmatrix}
+\textbf{J}_{R}=\frac{m}{12}\begin{bmatrix}
 (2w)^2+d^2 &0&0 \\ 
 0 &(2h)^2+d^2&0\\ 
 0 &0& (2w)^2+(2h)^2
