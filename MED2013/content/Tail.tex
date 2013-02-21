@@ -52,11 +52,11 @@ and the body center of mass is placed directly in the center of the body coordin
 \input{content/SingleLeg}
 
 %As it was previously explained, we propose modeling quadruped's legs as active springs. This can be achieved through adequat leg joint path planning, so that when the legs are in the contact with the ground, side forces and thrust forces are produced. 
-The legs are positioned symmetrically around the geometric center and exert forces and torques on the quadruped main body clarified with the following equations:
+The legs positioned symmetrically around the geometric center exert forces and torques on the quadruped main body: according to:
 
 \begin{gather}\label{eq:Forces}
-\vec{F_{tot}}=\sum_{i=1}^{4}(\vec{T_{i}}+\vec{S_{i}})\\
-\vec{\tau_{tot}}=\sum_{i=1}^{4}\vec{\rho _i}\times(\vec{T_{i}}+\vec{S_{i}})
+\vec{\textbf{F}_{tot}}=\sum_{i=1}^{4}(\vec{\textbf{T}_{i}}+\vec{\textbf{S}_{i}})\\
+\vec{\boldsymbol{\tau}_{tot}}=\sum_{i=1}^{4}\vec{\boldsymbol{\rho} _i}\times(\vec{\textbf{T}_{i}}+\vec{\textbf{S}_{i}})
 \end{gather}  
 Where $\vec{T_{i}}$ represents the $i$-th cuboid thrust force that causes vertical movement (i.e. hopping), $\vec{S_{i}}$ $i$-th cuboid side force that moves the quadruped in x direction, and $\rho _i$ $i$-th distance between the geometric center and the forces. In reality, one would have the y - component of the side force, but since this component is of the order of magnitude smaller then the x - component, it is not considered in this paper.
 
