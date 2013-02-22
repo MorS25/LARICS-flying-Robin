@@ -1,6 +1,6 @@
 \section{Simulations}\label{sec:simulation}
 
-The ODE (Open Dynamics Engine) library \cite{ode:2008} is used to test the iterative mass displacement compensation algorithm presented in the previous section. The initial position of the hopping quadruped robot is shown in Fig \ref{fig:ODESimulations}a. Each leg is composed of two spring-damper joints, the first, passive, connects the red and green cylinder together; and the second, active one, connects the green cylinder with the robot body. The body consists of 4 composite masses indexed as 1 (white), 2 (red), 3 (green) and 4 (blue). All the parameters of the robot simulation are shown in Table \ref{tab:RobotDimensions}.
+The ODE (Open Dynamics Engine) library \cite{ode:2008} is used to test the iterative mass displacement compensation algorithm presented in the previous section. The initial position of the hopping quadruped robot is shown in Fig \ref{fig:ODESimulations}a. Each leg is composed of two spring-damper joints, the first, passive, connects the red and green cylinder together; and the second, active one, connects the green cylinder with the robot body. The body consists of 4 composite masses indexed as 1 (white), 2 (red), 3 (green) and 4 (blue). All the parameters of the  robot simulation are shown in Table \ref{tab:RobotDimensions}.
 
 \begin{table}[!t]
 \centering
@@ -78,7 +78,7 @@ $Interation$ & $q_1$ & $q_1$  & $\left \| \vec{\boldsymbol{\omega}} \right \|$\\
 \caption{Test 3. results}\label{tab:Simulations2}
 \end{table}
 
-Test 3: When only the blue cuboid mass is negligible, the algorithm tilts the tail in the direction $q1=-25.43^{\circ}$. The final tail inclination is $q2=29.15^{\circ}$(Fig. \ref{fig:ODESimulations}c). The algorithm requires a longer time to minimize $\left \| \vec{\boldsymbol{\omega}} \right \|$ to final $0.0025$ (see Table \ref{tab:Simulations2}).
+Test 3: When only the blue cuboid mass is negligible, the algorithm tilts the tail in the direction $q1=-25.43^{\circ}$. The final tail inclination is $q2=29.15^{\circ}$(Fig. \ref{fig:ODESimulations}c). The algorithm requires a longer time to minimize $\left \| \vec{\boldsymbol{\omega}} \right \|$ to final $0.0025$(see Table \ref{tab:Simulations2}).
 
 
 
@@ -89,7 +89,7 @@ A video showing the simulation results in the ODE environment is available at \c
 
 \begin{figure*}[!t]
 	\centering
-	\includegraphics[width=120mm,height=220]{./pictures/ODE_graph.pdf}
+	\includegraphics[width=120mm]{./pictures/ODE_graph.pdf}
 	\caption{ODE simulations, Test 1-4.}
 	\label{fig:ODE graph}
 \end{figure*}
