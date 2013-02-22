@@ -58,21 +58,21 @@ Positioned symmetrically around the geometric center the legs exert forces and t
 \vec{\textbf{F}_{tot}}=\sum_{i=1}^{4}(\vec{\textbf{T}_{i}}+\vec{\textbf{S}_{i}})\\
 \vec{\boldsymbol{\tau}_{tot}}=\sum_{i=1}^{4}\vec{\boldsymbol{\rho} _i}\times(\vec{\textbf{T}_{i}}+\vec{\textbf{S}_{i}})
 \end{gather}  
-where $\vec{T_{i}}$ represents the $i$-th body part thrust force that causes vertical movement (i.e. hopping), $\vec{S_{i}}$ $i$-th cuboid 
+where $\vec{\textbf{T}_{i}}$ represents the $i$-th body part thrust force that causes vertical movement (i.e. hopping), $\vec{\textbf{S}_{i}}$ $i$-th cuboid 
 
 
-side force that moves the quadruped in x direction, and $\vec{\mathbf{\rho}} _i$ denotes the $i$-th distance between the center mass and 
-the origin of forces ($\vec{\mathbf{\rho}} _i=\vec{\textbf{r}} _CM+\vec{\textbf{r}} _i$). In reality, one would have the y - component of
+side force that moves the quadruped in x direction, and $\vec{\boldsymbol{\rho}} _i$ denotes the $i$-th distance between the center mass and 
+the origin of forces ($\vec{\boldsymbol{\rho}} _i=\vec{\textbf{r}} _CM+\vec{\textbf{r}} _i$). In reality, one would have the y - component of
 the side force, but since this component is of the order of magnitude smaller then the x - component, it can be disregarded.
 
-For a perfectly symmetric body it follows that the total torque (\ref{eq:Forces}) acting on the body is equal to zero, and the total force is the sum of all 4 active springs. For this, the necessary condition is that all four springs have exactly the same parameters (i.e. force magnitudes, distance from the geometric center, etc.), and thus exert the same forces. In reality, neither the springs are the same, nor can there be a perfectly symmetric body. We write the body torque equation for a non-symmetric body, with the center of mass displaced for $\vec{\Delta CM}$:
+For a perfectly symmetric body it follows that the total torque (\ref{eq:Forces}) acting on the body is equal to zero, and the total force is the sum of all 4 active springs. For this, the necessary condition is that all four springs have exactly the same parameters (i.e. force magnitudes, distance from the geometric center, etc.), and thus exert the same forces. In reality, neither the springs are the same, nor can there be a perfectly symmetric body. We write the body torque equation for a non-symmetric body, with the center of mass displaced for $\vec{\Delta\textbf{r}_{CM}}$:
 
 \begin{equation}\label{eq:Torques}
-\vec{\tau}_{tot}=\begin{bmatrix}
-\Delta \textsc{cm}_y \:\bar{T} & -\left ( \Delta \textsc{cm}_x \:\bar{T} +\Delta \textsc{cm}_z \:\bar{S}\right ) & -\Delta \textsc{cm}_y \:\bar{S}
+\vec{\boldsymbol{\tau}}_{tot}=\begin{bmatrix}
+\Delta \textsc{y}_{CM} \:\bar{T} & -\left ( \Delta \textsc{x}_{CM} \:\bar{T} +\Delta \textsc{z}_{CM} \:\bar{S}\right ) & -\Delta \textsc{y}_{CM} \:\bar{S}
 \end{bmatrix}^T
 \end{equation}
-where $\bar{T}$ and $\bar{S}$ represent the average thrust and side forces of each leg. The displacement of the center of mass is used to model the unbalanced body dynamics. In practice, the displacement vector  $\vec{\Delta CM}$ incorporates all possible imperfections: design asymmetry, leg differences, motor dynamics, unbalanced  forces and so on.
+where $\bar{T}$ and $\bar{S}$ represent the average thrust and side forces of each leg. The displacement of the center of mass is used to model the unbalanced body dynamics. In practice, the displacement vector  $\vec{\Delta\textbf{r}_{CM}}$ incorporates all possible imperfections: design asymmetry, leg differences, motor dynamics, unbalanced  forces and so on.
 
 In order to achieve successful gallop locomotion which consists of a combined jump and forward movement, average forces $\bar{T}$ and $\bar{S}$ must exist. On the other hand, for a jumping part of the maneuver to remain stable, we need to counteract the undesired torque (\ref{eq:Torques}). Therefore, we propose, adding a tail to the quadruped in order to balance the robot and eliminate the undesired asymmetry. 
 
@@ -98,10 +98,10 @@ Kinematic chain of the tail is shown in Fig. \ref{fig:rmax}, and the kinematic p
 
 The corresponding kinematic chain transformation matrix:
 \begin{equation}
-T_0^3=\begin{bmatrix}
-C_1 C_2 & -S_1 & C_1 S_2 & C_1 S_2 Q_3 \\
-C_2 S_1 & C_1 & S_1 S_2 & S_1 S_2 Q_3 \\
--S_2 & 0 & C_2 & C_2 Q_3 \\
+\textbf{T}_0^3=\begin{bmatrix}
+C_1 C_2 & -S_1 & C_1 S_2 & C_1 S_2 q_3 \\
+C_2 S_1 & C_1 & S_1 S_2 & S_1 S_2 q_3 \\
+-S_2 & 0 & C_2 & C_2 q_3 \\
  0 & 0 & 0 & 1
 \end{bmatrix}
 \end{equation}
@@ -113,21 +113,21 @@ For this analysis we place the tail in the geometric center of the quadruped, $L
 \vec{\boldsymbol{\tau}}_B=\mathbf{D}\left ( \ddot{q_i},\vec{\boldsymbol{\alpha}}_B \right )+\mathbf{C}\left ( \dot{q_i},\vec{\boldsymbol{\omega}}_B \right )+\mathbf{H}\left ( {q_i} \right )
 \end{equation}
 
-The first part of \eqref{eq:NEGeneral}, $\mathbf{D}$ takes into account the tail joint accelerations $\ddot{q}_i$ and the body initial angular acceleration $\boldsymbol{\alpha}_B$. Next are the Coriolis and centrifugal forces contained in $\mathbf{C}$, where the forces are produced from the coupling of joint speeds $\dot{q}_i$ and body angular speed $\boldsymbol{\omega}_B$. The term $\mathbf{H}$ contains the gravity part of the equation. In a stand-still situation, when the robot is at rest and angular speeds and accelerations,  $\boldsymbol{\omega}_B$ and  $\boldsymbol{\alpha}_B$ are zero vectors, then the acceleration, coriolis and gravitational part of the equations take the following forms:
+The first part of \eqref{eq:NEGeneral}, $\mathbf{D}$ takes into account the tail joint accelerations $\ddot{q}_i$ and the body initial angular acceleration $\vec{\boldsymbol{\alpha}}_B$. Next are the Coriolis and centrifugal forces contained in $\mathbf{C}$, where the forces are produced from the coupling of joint speeds $\dot{q}_i$ and body angular speed $\vec{\boldsymbol{\omega}}_B$. The term $\mathbf{H}$ contains the gravity part of the equation. In a stand-still situation, when the robot is at rest and angular speeds and accelerations,  $\vec{\boldsymbol{\omega}}_B$ and  $\vec{\boldsymbol{\alpha}}_B$ are zero vectors, then the acceleration, coriolis and gravitational part of the equations take the following forms:
  
 \begin{gather}\label{eq:DCH_matrix}
 \small
-\mathbf{D}\left ( \ddot{q_i},\vec{\boldsymbol{0}} \right )=\frac{m_3 Q_3^2}{24}\begin{bmatrix}
+\mathbf{D}\left ( \ddot{q_i},\vec{\boldsymbol{0}} \right )=\frac{m_3 q_3^2}{24}\begin{bmatrix}
 -3C_{q_1}S_{2q_2}\ddot{q_1} -8S_{q_1}\ddot{q_2}\\ -3S_{q_1}S_{2q_2}\ddot{q_1} +8C_{q_1}\ddot{q_2} \\ 8S_{q_2}\ddot{q_1}
 \end{bmatrix} \\
 \footnotesize
-\mathbf{C}\left ( \dot{q_i},\vec{\boldsymbol{0}} \right )=\frac{m_3 Q_3^2}{24} \begin{bmatrix}
+\mathbf{C}\left ( \dot{q_i},\vec{\boldsymbol{0}} \right )=\frac{m_3 q_3^2}{24} \begin{bmatrix}
 3S_{q_1}S_{2q_2}{\dot{q_1}}^2-2C_{q_1}(5+3C_{2q_2})\dot{q_1}\dot{q_2}\\ 
 3C_{q_1}S_{2q_2}{\dot{q_1}}^2-2S_{q_1}(5+3C_{2q_2})\dot{q_1}\dot{q_2}\\ 
 6S_{2q_2}\dot{q_1}\dot{q_2}
 \end{bmatrix}\\
 \small
-\mathbf{H}\left ( {q_i} \right )=\frac{m_3 Q_3^2}{24} \begin{bmatrix}
+\mathbf{H}\left ( {q_i} \right )=\frac{m_3 q_3^2}{24} \begin{bmatrix}
 -12S_1S_2g\\ 
 12C_1S_2g\\ 
 0
@@ -146,35 +146,37 @@ Equations \eqref{eq:DCH_matrix} show the full complexity of \eqref{eq:NEGeneral}
 \subsubsection{Tail inertia tensor}
 In Fig. \ref{fig:rmoment}, a tail with its ${L_T}$ coordinate system, placed in its center of mass is depicted. Introducing an inertial appendage as a new body in the quadruped construction, the overall center of mass will change accordingly:
 \begin{equation}\label{eq:CMrobotAndTail}
-CM=\frac{\sum_{i=1}^{4}m_i\vec{r}_i+m_T\vec{p}_T}{\sum_{i=1}^{4}m_i+m_T}= \frac{\Delta\vec{\textsc{cm}}+\mu\cdot\textsc{cm}_T}{1+\mu}
+\vec{\textbf{r}_{CM}}=\frac{\sum_{i=1}^{4}m_i\vec{\textbf{r}}_i+m_T\vec{\textbf{p}}_T}{\sum_{i=1}^{4}m_i+m_T}= \frac{\Delta\vec{\textbf{r}_{CMB}}+\mu\cdot\vec{\textbf{r}_{CMT}}}{1+\mu}
 \end{equation}
-In the previous equation we introduced the mass ratio $\mu=\frac{m_T}{\sum_{i=1}^{4}m_i}$ and $\Delta\vec{\textsc{cm}}$ as the center of mass of the robot without the tail, from equation (\ref{eq:CMrobot}). If we are to keep the center of mass in the construction center of the robot (i.e. $CM=0$), then the following condition has to be met:
+
+
+In the previous equation we introduced the mass ratio $\mu=\frac{m_T}{\sum_{i=1}^{4}m_i}$ and $\Delta\vec{\textbf{r}_{CM}}$ as the center of mass of the robot without the tail, from equation (\ref{eq:CMrobot}). If we are to keep the center of mass in the construction center of the robot (i.e. $\vec{\textbf{r}_{CM}}=0$), then the following condition has to be met:
 \begin{equation}\label{eq:CMzeroing}
 \begin{bmatrix}
-\Delta \textsc{cm}_x\\ 
-\Delta \textsc{cm}_y\\ 
-\Delta \textsc{cm}_z
+\Delta \textsc{x}_{cm}\\ 
+\Delta \textsc{y}_{cm}\\ 
+\Delta \textsc{z}_{cm}
 \end{bmatrix}+
-\frac{\mu Q_3}{2}\begin{bmatrix}
+\frac{\mu q_3}{2}\begin{bmatrix}
 C_1S_2\\ 
 S_1S_2\\ 
 C_2
 \end{bmatrix}=0
 \end{equation}
-that is to say, that the numerator in (\ref{eq:CMrobotAndTail}) has to be zero. Given that in (\ref{eq:CMzeroing}) there exist only two variables, $Q_1$ and $Q_2$ respectively, one can eliminate only two components of the center of mass displacement vector $\Delta \vec{\textsc{cm}}$. Under a reasonable assumption that $\bar{T}\gg \bar{S}$, it follows from the applied torque equation (\ref{eq:Torques}) that for a stable jump one needs to successfully eliminate $x$ and $y$ components of the center of mass displacement vector. This hypothesis is reasonable because in most cases the forward motion is slow compared to vertical jumping, and additionally in z direction one needs to overcome the gravity acceleration $g$. Combining these two assumptions makes the $\bar{T}$ by the order of magnitude larger than $\bar{S}$.
+that is to say, that the numerator in (\ref{eq:CMrobotAndTail}) has to be zero. Given that in (\ref{eq:CMzeroing}) there exist only two variables, $q_1$ and $q_2$ respectively, one can eliminate only two components of the center of mass displacement vector $\Delta \vec{\textbf{r}_{CM}}$. Under a reasonable assumption that $\bar{T}\gg \bar{S}$, it follows from the applied torque equation (\ref{eq:Torques}) that for a stable jump one needs to successfully eliminate $x$ and $y$ components of the center of mass displacement vector. This hypothesis is reasonable because in most cases the forward motion is slow compared to vertical jumping, and additionally in z direction one needs to overcome the gravity acceleration $g$. Combining these two assumptions makes the $\bar{T}$ by the order of magnitude larger than $\bar{S}$.
 
 From a strict mathematical point of view, the necessary condition for (\ref{eq:CMzeroing}) to have a solution is:
 \begin{equation}\label{eq:CMcondition}
-\frac{\mu Q_3}{2}\geq \textup{MAX}\left \{ \left | \Delta \textsc{cm}_x \right |, \left | \Delta \textsc{cm}_y \right |,\left | \Delta \textsc{cm}_z \right |\right \}
+\frac{\mu q_3}{2}\geq \textup{MAX}\left \{ \left | \Delta \textsc{x}_{CM} \right |, \left | \Delta \textsc{y}_{CM} \right |,\left | \Delta \textsc{z}_{CM} \right |\right \}
 \end{equation}
 When the condtion (\ref{eq:CMcondition}) is met, the analytical solution to equation (\ref{eq:CMzeroing}) can easily be derived:
 \begin{gather}\label{eq:CMsolution1}
-Q_1=atan2\left({\Delta \textsc{cm}_y},\, {\Delta \textsc{cm}_x}\right)\\
-Q_2=asin\left(\frac{2\sqrt{{\Delta \textsc{cm}_x}^2+{\Delta \textsc{cm}_y}^2}}{\mu Q_3} \right)\label{eq:CMsolution2}
+q_1=atan2\left({\Delta \textsc{y}_{CM}},\, {\Delta \textsc{x}_{CM}}\right)\\
+q_2=asin\left(\frac{2\sqrt{{\Delta \textsc{x}_{CM}}^2+{\Delta \textsc{y}_{CM}}^2}}{\mu q_3} \right)\label{eq:CMsolution2}
 \end{gather}
-Moving the tail joints $Q_1$ and $Q_2$ to the values calculated with \eqref{eq:CMsolution1} and \eqref{eq:CMsolution2} respectively, balances the quadruped. On the other hand, repositioning the tail changes the overall inertia tensor. This change in the overall inertia can be calculated using the Parallel axis theorem and basic rotation matrices. We start by writing the tail inertia tensor, which, due to the approximation that the tail is infitesimal thin, can be simplified. Written in $L_T$ frame, the tail moment of inertia is:
+Moving the tail joints $q_1$ and $q_2$ to the values calculated with \eqref{eq:CMsolution1} and \eqref{eq:CMsolution2} respectively, balances the quadruped. On the other hand, repositioning the tail changes the overall inertia tensor. This change in the overall inertia can be calculated using the Parallel axis theorem and basic rotation matrices. We start by writing the tail inertia tensor, which, due to the approximation that the tail is infitesimal thin, can be simplified. Written in $L_T$ frame, the tail moment of inertia is:
 \begin{equation}\label{eq:JT_LT}
-J_T=J_3=\frac{{Q_3}^2 m_3}{12}\left(
+\textbf{J}_T=\textbf{J}_3=\frac{{q_3}^2 m_3}{12}\left(
 \begin{array}{ccc}
  1 & 0 & 0 \\
  0 & 1 & 0 \\
@@ -186,7 +188,7 @@ However, in order to write \eqref{eq:JT_LT} in the body coordinate system $L_B$ 
 \begin{equation}
 \begin{aligned}
 \scriptsize
-{J_T}^*={R_0^3}^TJ_TR_0^3+\\+m_T\begin{bmatrix}
+{\textbf{J}_T}^*={\textbf{R}_0^3}^T\textbf{J}_T\textbf{R}_0^3+\\+m_T\begin{bmatrix}
 {cm_y^T}^2 +{cm_z^T}^2& {cm_x^T}{cm_y^T}& {cm_x^T}{cm_z^T} \\ 
 -{cm_x^T}{cm_y^T} & {cm_x^T}^2+{cm_z^T}^2 & {cm_y^T}{cm_z^T}\\ 
 -{cm_x^T}{cm_z^T} & -{cm_y^T}{cm_z^T} & {cm_x^T}^2+{cm_y^T}^2
@@ -194,7 +196,7 @@ However, in order to write \eqref{eq:JT_LT} in the body coordinate system $L_B$ 
 \normalsize
 \end{aligned}
 \end{equation}
-Finally, the total moment of inertia is then a sum of the body moment of inertia $J_B$ and the tail moment of inertia $J_T^*$, both written in the body coordinate system.
+Finally, the total moment of inertia is then a sum of the body moment of inertia $\textbf{J}_B$ and the tail moment of inertia $\textbf{J}_T^*$, both written in the body coordinate system.
 \begin{equation*}
-J_{tot}=J_B+J_T^*
+\textbf{J}_{tot}=\textbf{J}_B+\textbf{J}_T^*
 \end{equation*}
