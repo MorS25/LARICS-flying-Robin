@@ -1,5 +1,5 @@
 \section{Mathematical model}\label{sec:MathModel}
-A simplified model of a quadruped robot, depicted in Fig. \ref{fig:rmoment} has three distinctive parts: the main body, the tail and four legs. Let the frame $L$ be defined with its origin $\vec{O}$ and the respective coordinate system, then the following key frames should be observed: $L_w$ - world frame, $L_c$ - geometrical center of construction frame; $L_B$ - main body's center of mass frame; $L_T$ - tail's center of mass frame; and $L_{pi}$ - $i$-th leg point of contact frame. The proposed mathematical model is derived under the assumption of a stable locomotion maneuver which includes vertical (jumping) and horizontal movement of the robot. For such a maneuver, the legs need to develop periodic horizontal and vertical forces denoted as side force $\vec{\textbf{S}}_{pi}$ and thrust force $\vec{\textbf{T}}_{pi}$ respectively. In order to achieve these forces, an adequate leg joint trajectory needs to be planned. Trajectory planning for the leg joints goes beyond the scope of this paper. 
+A simplified model of a quadruped robot, depicted in Fig. \ref{fig:rmoment}, has three distinctive parts: the main body, the tail and four legs. Let the frame $L$ be defined with its origin $\vec{O}$ and the respective coordinate system, then the following key frames should be observed: $L_w$ - world frame, $L_c$ - geometrical center of construction frame; $L_B$ - main body's center of mass frame; $L_T$ - tail's center of mass frame; and $L_{pi}$ - $i$-th leg point of contact frame. The proposed mathematical model is derived under the assumption of a stable locomotion maneuver which includes vertical (jumping) and horizontal movement of the robot. For such a maneuver, the legs need to develop periodic horizontal and vertical forces denoted as side force $\vec{\textbf{S}}_{pi}$ and thrust force $\vec{\textbf{T}}_{pi}$ respectively. In order to achieve these forces, an adequate leg joint trajectory needs to be planned. Trajectory planning for the leg joints goes beyond the scope of this paper. 
 
 \begin{figure}
 	\centering
@@ -14,7 +14,7 @@ In order to simplify the complexity of the analysis, quadruped's main body is mo
 \begin{equation}\label{eq:CMrobot}
 \vec{\textbf{r}_{CM}}=\frac{\sum_{i=1}^{4}m_i\vec{\textbf{r}}_i}{\sum_{i=1}^{4}m_i}
 \end{equation}
-Vector $\vec{\textbf{r}_{CM}}$ points from the center of construction frame $L_C$ to the center of mass frame $L_B$, quantifying the displacement of the center of mass from the construction center of the robot. All vectors are written with repect to the $L_c$ frame. Next important dynamic parameter is the tensor of inertia. Having four prismatic bodies as the basis for the robot model, tensor of inertia can easily be derived using the Parallel axis theorem:
+Vector $\vec{\textbf{r}_{CM}}$ points from the center of construction frame $L_C$ to the center of mass frame $L_B$, quantifying the displacement of the center of mass from the construction center of the robot. All vectors are written with respect to the $L_c$ frame. Next important dynamic parameter is the tensor of inertia. Having four prismatic bodies as the basis for the robot model, tensor of inertia can easily be derived using the Parallel axis theorem:
 
 \begin{equation}
 \footnotesize
@@ -50,7 +50,7 @@ and the body center of mass is placed directly in the center of the body coordin
 % Dynarobin,Single leg model 
 \input{content/SingleLeg}
 
-%As it was previously explained, we propose modeling quadruped's legs as active springs. This can be achieved through adequat leg joint path planning, so that when the legs are in the contact with the ground, side forces and thrust forces are produced. 
+%As it was previously explained, we propose modeling quadruped's legs as active springs. This can be achieved through adequate leg joint path planning, so that when the legs are in the contact with the ground, side forces and thrust forces are produced. 
 Positioned symmetrically around the geometric center the legs exert forces and torques on the quadruped main body according to:
 
 \begin{gather}\label{eq:Forces}
@@ -138,7 +138,7 @@ The first term in \eqref{eq:NEGeneral}, $\mathbf{D}$ takes into account the tail
 
 where $g=\left \| \vec{\mathbf{g}} \right \|$, the gravity acceleration and the additional abbreviations used are $Sin(q_i+q_j)=S_{ij}$. Equations \eqref{eq:DCH_matrix} show the full complexity of \eqref{eq:NEGeneral} even for a particular case when the quadruped body is at rest. The additional abbreviations used in these equations are $Sin(q_i+q_j)=S_{ij}$.Therefore it is clear, that an analytical solution to the problem of dynamic stabilization through tail motion is not a straight forward process. Instead, we propose using a tail to compensate the imperfections in quadruped construction. Positioning the tail at the right pose, it is possible to shift the balance of the robot and make it symmetric. 
 \subsubsection{Tail inertia tensor}
-in Fig. \ref{fig:rmoment}, a tail with its ${L_T}$ coordinate system, placed in its center of mass is depicted. Upon introducing the tail as a new body  part in the quadruped construction, the overall center of mass will change accordingly:
+in Fig. \ref{fig:rmoment}, a tail with its ${L_T}$ coordinate system, placed in its center of mass is depicted. Upon introducing the tail as a new body part in the quadruped construction, the overall center of mass will change accordingly:
 \begin{equation}\label{eq:CMrobotAndTail}
 \vec{\textbf{r}_{CM}}=\frac{\sum_{i=1}^{4}m_i\vec{\textbf{r}}_i+m_T\vec{\textbf{p}}_T}{\sum_{i=1}^{4}m_i+m_T}= \frac{\Delta\vec{\textbf{r}_{CMB}}+\mu\cdot\vec{\textbf{r}_{CMT}}}{1+\mu}
 \end{equation}
@@ -168,7 +168,7 @@ When the condtion (\ref{eq:CMcondition}) is met, the analytical solution to equa
 q_1=atan2\left({\Delta \textsc{y}_{CM}},\, {\Delta \textsc{x}_{CM}}\right)\\
 q_2=asin\left(\frac{2\sqrt{{\Delta \textsc{x}_{CM}}^2+{\Delta \textsc{y}_{CM}}^2}}{\mu q_3} \right)\label{eq:CMsolution2}
 \end{gather}
-Moving the tail joints $q_1$ and $q_2$ to the values calculated with \eqref{eq:CMsolution1} and \eqref{eq:CMsolution2} respectively, balances the quadruped. On the other hand, repositioning the tail changes the overall inertia tensor. This change in the overall inertia can be calculated using the Parallel axis theorem and basic rotation matrices. We start by writing the tail inertia tensor, which, due to the approximation that the tail is infitesimal thin, can be simplified. Written in $L_T$ frame, the tail moment of inertia is:
+Moving the tail joints $q_1$ and $q_2$ to the values calculated with \eqref{eq:CMsolution1} and \eqref{eq:CMsolution2} respectively, balances the quadruped. On the other hand, repositioning the tail changes the overall inertia tensor. This change in the overall inertia can be calculated using the Parallel axis theorem and basic rotation matrices. We start by writing the tail inertia tensor, which, due to the approximation that the tail is infinitesimal thin, can be simplified. Written in $L_T$ frame, the tail moment of inertia is:
 \begin{equation}\label{eq:JT_LT}
 \textbf{J}_T=\textbf{J}_3=\frac{{q_3}^2 m_T}{12}\left(
 \begin{array}{ccc}
