@@ -1,5 +1,5 @@
 \section{Mathematical model}\label{sec:MathModel}
-A simplified model of a quadruped robot, depicted in Fig. \ref{fig:rmoment} has three distinctive parts: the main body, the tail and four legs. Let the frame $L$ be defined with its origin $\vec{O}$ and the respective coordinate system, then the following key frames should be observed: $L_w$ - world frame, $L_c$ - geometrical center of construction frame; $L_B$ - main body's center of mass frame; $L_T$ - tail's center of mass frame; and $L_{pi}$ - $i$-th leg point of contact frame. The proposed mathematical model is derived under the assumption of a stable locomotion maneuver which includes vertical (jumping) and horizontal movement of the robot. For such a maneuver, the legs need to develop periodic horizontal and vertical forces denoted as side force $\textbf{S}_{pi}$ and thrust force $\textbf{T}_{pi}$ respectively. In order to achieve these forces, an adequate leg joint trajectory needs to be planned. Trajectory planning for the leg joints goes beyond the scope of this paper. 
+A simplified model of a quadruped robot, depicted in Fig. \ref{fig:rmoment} has three distinctive parts: the main body, the tail and four legs. Let the frame $L$ be defined with its origin $\vec{O}$ and the respective coordinate system, then the following key frames should be observed: $L_w$ - world frame, $L_c$ - geometrical center of construction frame; $L_B$ - main body's center of mass frame; $L_T$ - tail's center of mass frame; and $L_{pi}$ - $i$-th leg point of contact frame. The proposed mathematical model is derived under the assumption of a stable locomotion maneuver which includes vertical (jumping) and horizontal movement of the robot. For such a maneuver, the legs need to develop periodic horizontal and vertical forces denoted as side force $\vec{\textbf{S}}_{pi}$ and thrust force $\vec{\textbf{T}}_{pi}$ respectively. In order to achieve these forces, an adequate leg joint trajectory needs to be planned. Trajectory planning for the leg joints goes beyond the scope of this paper. 
 
 \begin{figure}
 	\centering
@@ -9,13 +9,12 @@ A simplified model of a quadruped robot, depicted in Fig. \ref{fig:rmoment} has 
 \end{figure}
 
 \subsection{Main body dynamics}
-In order to simplify the complexity of the analysis, quadruped's main body is modeled as a system of four, equally displaced cuboid shaped bodies, as shown in Fig \ref{fig:rmoment}. Ideally, when the robots's body is fully symmetric, all four cuboids have the same mass. Since, in most situations, this is not the case, each cuboid has its own mass $m_i$, with its own centroid $\vec{\textbf{cm}}_i$. Each cuboid element center of mass $\vec{\textbf{cm}}_i$ is then placed at $\vec{\textbf{r}}_i$ distance from the body geometric center, the $L_c$ coordinate system. The overall main body center of mass is then easily calculated with:
+In order to simplify the complexity of the analysis, quadruped's main body is modeled as a system of four, equally displaced cuboids, as shown in Fig \ref{fig:rmoment}. Ideally, when the robots's body is fully symmetric, all four parts have the same mass. Since, in most situations, this is not the case, each body element has its own mass $m_i$, with its own centroid $\vec{\textbf{cm}}_i$. Each centroid $\vec{\textbf{cm}}_i$ is then placed at $\vec{\textbf{r}}_i$ distance from the body geometric center, the $L_c$ coordinate system. The overall main body center of mass is then easily calculated with:
  
 \begin{equation}\label{eq:CMrobot}
 \vec{\textbf{r}_{CM}}=\frac{\sum_{i=1}^{4}m_i\vec{\textbf{r}}_i}{\sum_{i=1}^{4}m_i}
 \end{equation}
-
-Vector $\vec{\textbf{r}_{CM}}$ points from the center of construction frame $L_C$ to the center of mass frame $L_B$, quantifying the displacement of the center of mass from the construction center of the robot. Next important dynamic parameter is the tensor of inertia. Having four prismatic bodies as the basis for the robot model, tensor of inertia can easily be derived using the Parallel axis theorem:
+Vector $\vec{\textbf{r}_{CM}}$ points from the center of construction frame $L_C$ to the center of mass frame $L_B$, quantifying the displacement of the center of mass from the construction center of the robot. All vectors are written with repect to the $L_c$ frame. Next important dynamic parameter is the tensor of inertia. Having four prismatic bodies as the basis for the robot model, tensor of inertia can easily be derived using the Parallel axis theorem:
 
 \begin{equation}
 \footnotesize
@@ -36,7 +35,7 @@ w_i^2+d_i^2 &0&0 \\
 \end{bmatrix}
 \end{equation} 
 
-It could be easily shown that if all four body parts have the same mass and size (i.e. $m,h,d,w$) in addition to lying symmetrically displaced around the body center frame $L_c$, as depicted in Fig \ref{fig:rmoment}, the total body moment of inertia $J_R$ is reduced to a diagonal matrix,
+It can be easily shown that if all four body parts have the same mass and size (i.e. $m,h,d,w$) in addition to lying symmetrically around the body center frame $L_c$, as depicted in Fig \ref{fig:rmoment}, the total body moment of inertia $J_R$ is reduced to a diagonal matrix,
 \begin{equation}
 \textbf{J}_{R}=\frac{m}{12}\begin{bmatrix}
 (2w)^2+d^2 &0&0 \\ 
@@ -58,12 +57,7 @@ Positioned symmetrically around the geometric center the legs exert forces and t
 \vec{\textbf{F}_{tot}}=\sum_{i=1}^{4}(\vec{\textbf{T}_{i}}+\vec{\textbf{S}_{i}})\\
 \vec{\boldsymbol{\tau}_{tot}}=\sum_{i=1}^{4}\vec{\boldsymbol{\rho} _i}\times(\vec{\textbf{T}_{i}}+\vec{\textbf{S}_{i}})
 \end{gather}  
-where $\vec{\textbf{T}_{i}}$ represents the $i$-th body part thrust force that causes vertical movement (i.e. hopping), $\vec{\textbf{S}_{i}}$ $i$-th cuboid 
-
-
-side force that moves the quadruped in x direction, and $\vec{\boldsymbol{\rho}} _i$ denotes the $i$-th distance between the center mass and 
-the origin of forces ($\vec{\boldsymbol{\rho}} _i=\vec{\textbf{r}} _CM+\vec{\textbf{r}} _i$). In reality, one would have the y - component of
-the side force, but since this component is of the order of magnitude smaller then the x - component, it can be disregarded.
+where $\vec{\textbf{T}_{i}}$ represents the $i$-th body part thrust force that causes vertical movement (i.e. hopping), $\vec{\textbf{S}_{i}}$ $i$-th cuboid side force that moves the quadruped in x direction, and $\vec{\boldsymbol{\rho}} _i$ denotes the $i$-th distance between the center mass and the origin of forces ($\vec{\boldsymbol{\rho}} _i=\vec{\textbf{r}} _CM+\vec{\textbf{r}} _i$). In reality, one would have the lateral component of the side force, but since this component is of the order of magnitude smaller then the sagittal component, it can be disregarded.
 
 For a perfectly symmetric body it follows that the total torque (\ref{eq:Forces}) acting on the body is equal to zero, and the total force is the sum of all 4 active springs. For this, the necessary condition is that all four springs have exactly the same parameters (i.e. force magnitudes, distance from the geometric center, etc.), and thus exert the same forces. In reality, neither the springs are the same, nor can there be a perfectly symmetric body. We write the body torque equation for a non-symmetric body, with the center of mass displaced for $\vec{\Delta\textbf{r}_{CM}}$:
 
@@ -77,9 +71,9 @@ where $\bar{T}$ and $\bar{S}$ represent the average thrust and side forces of ea
 In order to achieve successful gallop locomotion which consists of a combined jump and forward movement, average forces $\bar{T}$ and $\bar{S}$ must exist. On the other hand, for a jumping part of the maneuver to remain stable, we need to counteract the undesired torque (\ref{eq:Torques}). Therefore, we propose, adding a tail to the quadruped in order to balance the robot and eliminate the undesired asymmetry. 
 
 \subsection{Tail dynamics}
-In order to devise a mathematical model of tail dynamics, we propose modeling the tail as a kinematic chain manipulator attached to the robot body. Much like in aerial robots, when the robot is in the air \cite{Korpela2013ICRA,Orsag2012JINT}, the tail acts freely on its body. We aim to use the tail as a means to dynamically stabilize the hopping. First we build the kinematic model using Denavit-Hartenberg parameterization method, after that we devise a dynamic model of the tail using the recursive Newton-Euler algorithm.
+In order to devise a mathematical model of tail dynamics, we propose modeling the tail as an actuated kinematic chain manipulator attached to the robot body. Much like in aerial robots, when the robot is in the air \cite{Korpela2013ICRA,Orsag2012JINT}, the tail acts freely on its body. We aim to use the tail as a means to dynamically stabilize the hopping. First we build the kinematic model using Denavit-Hartenberg parameterization method, after that we devise a dynamic model of the tail using the recursive Newton-Euler algorithm.
 \subsubsection{Complete kinematic and dynamic tail model}
-Kinematic chain of the tail is shown in Fig. \ref{fig:rmax}, and the kinematic parameters are shown in Table \ref{tab:DHParameters}. Kinematic chain consists of the body coordinate system, 2 tail revolute joints, one virtual prismatic joint in the tail (i.e. tail length parameter), and the tail center of mass coordinate system. As can be seen from Table \ref{tab:DHParameters}, the two revolute joints have no linear, only angular displacement from each other, therefore their masses and moments of inertia are all zero. The third prismatic joint represents the tail length and is modeled as a long stick with infitesimal thickness. Normally, kinematic chains end with a tool at the tip of the last link, but here, the end effector is actually the tail center of mass, and thus it acts as the "tool" coordinate system.
+kinematic chain of the tail is shown in Fig. \ref{fig:rmax}, and the kinematic parameters are shown in Table \ref{tab:DHParameters}. Kinematic chain consists of the body coordinate system, two tail revolute joints, one virtual prismatic joint in the tail (i.e. tail length parameter), and the tail center of mass coordinate system. As can be seen from Table \ref{tab:DHParameters}, the two revolute joints have no linear, only angular displacement from each other, therefore their masses and moments of inertia are all zero. The third prismatic joint represents the tail length and is modeled as a long stick with infitesimal thickness. Normally, kinematic chains end with a tool at the tip of the last link, but here, the end effector is actually the tail center of mass, and thus it acts as the "tool" coordinate system.
 
 \begin{table}
 	\centering
@@ -113,7 +107,7 @@ For this analysis we place the tail in the geometric center of the quadruped, $L
 \vec{\boldsymbol{\tau}}_B=\mathbf{D}\left ( \ddot{q_i},\vec{\boldsymbol{\alpha}}_B \right )+\mathbf{C}\left ( \dot{q_i},\vec{\boldsymbol{\omega}}_B \right )+\mathbf{H}\left ( {q_i} \right )
 \end{equation}
 
-The first part of \eqref{eq:NEGeneral}, $\mathbf{D}$ takes into account the tail joint accelerations $\ddot{q}_i$ and the body initial angular acceleration $\vec{\boldsymbol{\alpha}}_B$. Next are the Coriolis and centrifugal forces contained in $\mathbf{C}$, where the forces are produced from the coupling of joint velocities $\dot{q}_i$ and body angular speed $\vec{\boldsymbol{\omega}}_B$. The term $\mathbf{H}$ contains the gravity part of the equation. In a stand-still situation, when the robot is at rest and angular velocities and accelerations,  $\vec{\boldsymbol{\omega}}_B$ and  $\vec{\boldsymbol{\alpha}}_B$ are zero vectors, then the inertial acceleration, Coriolis and gravitational part of the equations take the following forms:
+The first term in \eqref{eq:NEGeneral}, $\mathbf{D}$ takes into account the tail joint accelerations $\ddot{q}_i$ and the body initial angular acceleration $\vec{\boldsymbol{\alpha}}_B$. Next are the Coriolis and centrifugal forces contained in $\mathbf{C}$, where the forces are produced from the coupling of joint velocities $\dot{q}_i$ and body angular speed $\vec{\boldsymbol{\omega}}_B$. The term $\mathbf{H}$ contains the gravity part of the equation. In a stand-still situation, when the robot is at rest and angular velocities and accelerations,  $\vec{\boldsymbol{\omega}}_B$ and  $\vec{\boldsymbol{\alpha}}_B$ are zero vectors, then the inertial acceleration, Coriolis and gravitational part of the equations take the following forms:
  
 \begin{gather}\label{eq:DCH_matrix}
 \small
@@ -144,7 +138,7 @@ The first part of \eqref{eq:NEGeneral}, $\mathbf{D}$ takes into account the tail
 
 Equations \eqref{eq:DCH_matrix} show the full complexity of \eqref{eq:NEGeneral} even for a particular case when the quadruped body is at rest. Therefore it is clear, that an analytical solution to the problem of dynamic stabilization through tail motion is not a straight forward process. Instead, we propose using a tail to compensate the imperfections in quadruped construction. Positioning the tail at the right pose, it is possible to shift the balance of the robot and make it symmetric. 
 \subsubsection{Tail inertia tensor}
-In Fig. \ref{fig:rmoment}, a tail with its ${L_T}$ coordinate system, placed in its center of mass is depicted. Upon introducing the tail as a new body  part in the quadruped construction, the overall center of mass will change accordingly:
+in Fig. \ref{fig:rmoment}, a tail with its ${L_T}$ coordinate system, placed in its center of mass is depicted. Upon introducing the tail as a new body  part in the quadruped construction, the overall center of mass will change accordingly:
 \begin{equation}\label{eq:CMrobotAndTail}
 \vec{\textbf{r}_{CM}}=\frac{\sum_{i=1}^{4}m_i\vec{\textbf{r}}_i+m_T\vec{\textbf{p}}_T}{\sum_{i=1}^{4}m_i+m_T}= \frac{\Delta\vec{\textbf{r}_{CMB}}+\mu\cdot\vec{\textbf{r}_{CMT}}}{1+\mu}
 \end{equation}
