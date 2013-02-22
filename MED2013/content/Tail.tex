@@ -4,7 +4,7 @@ A simplified model of a quadruped robot, depicted in Fig. \ref{fig:rmoment} has 
 \begin{figure}
 	\centering
 	\includegraphics[width=85mm]{./pictures/RobinMoment.pdf}
-	\caption{Robin body dynamics}
+	\caption{Symplified quadruped body dynamics}
 	\label{fig:rmoment}
 \end{figure}
 
@@ -35,7 +35,7 @@ w_i^2+d_i^2 &0&0 \\
 \end{bmatrix}
 \end{equation} 
 
-It can be easily shown that if all four body parts have the same mass and size (i.e. $m,h,d,w$) in addition to lying symmetrically around the body center frame $L_c$, as depicted in Fig \ref{fig:rmoment}, the total body moment of inertia $J_R$ is reduced to a diagonal matrix,
+It can be easily shown that if all four body parts have the same mass and size (i.e. $m,h,d,w$) in addition to lying symmetrically around the body center frame $L_c$, as depicted in Fig \ref{fig:rmoment}, the total body moment of inertia $\textbf{J}_R$ is reduced to a diagonal matrix,
 \begin{equation}
 \textbf{J}_{R}=\frac{m}{12}\begin{bmatrix}
 (2w)^2+d^2 &0&0 \\ 
@@ -99,7 +99,7 @@ C_2 S_1 & C_1 & S_1 S_2 & S_1 S_2 q_3 \\
  0 & 0 & 0 & 1
 \end{bmatrix}
 \end{equation}
-with a standard abbreviation $Cos(q_1):=C_1$ and $Sin(q_2):=S_2$ completes the Kinematic model of the tail. 
+with a standard abbreviation $Cos(q_1):=C_1$ $Sin(q_2):=S_2$ completes the Kinematic model of the tail. 
 
 For this analysis we place the tail in the geometric center of the quadruped, $L_C$. Therefore, the distances between $L_0$ and $L_c$, $d_B$ and $a_B$ respectively, are both equal to zero. Using the recursive Newton-Euler method to build upon the kinematic model, we can write the complete dynamic model of the robot, which takes the following general form:
 
@@ -111,17 +111,17 @@ The first term in \eqref{eq:NEGeneral}, $\mathbf{D}$ takes into account the tail
  
 \begin{gather}\label{eq:DCH_matrix}
 \small
-\mathbf{D}\left ( \ddot{q_i},\vec{\boldsymbol{0}} \right )=\frac{m_3 q_3^2}{24}\begin{bmatrix}
+\mathbf{D}\left ( \ddot{q_i},\vec{\boldsymbol{0}} \right )=\frac{m_T q_3^2}{24}\begin{bmatrix}
 -3C_{q_1}S_{2q_2}\ddot{q_1} -8S_{q_1}\ddot{q_2}\\ -3S_{q_1}S_{2q_2}\ddot{q_1} +8C_{q_1}\ddot{q_2} \\ 8S_{q_2}\ddot{q_1}
 \end{bmatrix} \\
 \footnotesize
-\mathbf{C}\left ( \dot{q_i},\vec{\boldsymbol{0}} \right )=\frac{m_3 q_3^2}{24} \begin{bmatrix}
-3S_{q_1}S_{2q_2}{\dot{q_1}}^2-2C_{q_1}(5+3C_{2q_2})\dot{q_1}\dot{q_2}\\ 
-3C_{q_1}S_{2q_2}{\dot{q_1}}^2-2S_{q_1}(5+3C_{2q_2})\dot{q_1}\dot{q_2}\\ 
+\mathbf{C}\left ( \dot{q_i},\vec{\boldsymbol{0}} \right )=\frac{m_T q_3^2}{24} \begin{bmatrix}
+3S_{q_1}S_{22}{\dot{q_1}}^2-2C_{q_1}(5+3C_{22})\dot{q_1}\dot{q_2}\\ 
+3C_{q_1}S_{22}{\dot{q_1}}^2-2S_{q_1}(5+3C_{22})\dot{q_1}\dot{q_2}\\ 
 6S_{2q_2}\dot{q_1}\dot{q_2}
 \end{bmatrix}\\
 \small
-\mathbf{H}\left ( {q_i} \right )=\frac{m_3 q_3^2}{24} \begin{bmatrix}
+\mathbf{H}\left ( {q_i} \right )=\frac{m_T q_3^2}{24} \begin{bmatrix}
 -12S_1S_2g\\ 
 12C_1S_2g\\ 
 0
@@ -136,7 +136,7 @@ The first term in \eqref{eq:NEGeneral}, $\mathbf{D}$ takes into account the tail
 	\label{fig:rmax}
 \end{figure}
 
-Equations \eqref{eq:DCH_matrix} show the full complexity of \eqref{eq:NEGeneral} even for a particular case when the quadruped body is at rest. Therefore it is clear, that an analytical solution to the problem of dynamic stabilization through tail motion is not a straight forward process. Instead, we propose using a tail to compensate the imperfections in quadruped construction. Positioning the tail at the right pose, it is possible to shift the balance of the robot and make it symmetric. 
+where $g=\left \| \vec{\mathbf{g}} \right \|$, the gravity acceleration and the additional abbreviations used are $Sin(q_i+q_j)=S_{ij}$. Equations \eqref{eq:DCH_matrix} show the full complexity of \eqref{eq:NEGeneral} even for a particular case when the quadruped body is at rest. The additional abbreviations used in these equations are $Sin(q_i+q_j)=S_{ij}$.Therefore it is clear, that an analytical solution to the problem of dynamic stabilization through tail motion is not a straight forward process. Instead, we propose using a tail to compensate the imperfections in quadruped construction. Positioning the tail at the right pose, it is possible to shift the balance of the robot and make it symmetric. 
 \subsubsection{Tail inertia tensor}
 in Fig. \ref{fig:rmoment}, a tail with its ${L_T}$ coordinate system, placed in its center of mass is depicted. Upon introducing the tail as a new body  part in the quadruped construction, the overall center of mass will change accordingly:
 \begin{equation}\label{eq:CMrobotAndTail}
@@ -170,7 +170,7 @@ q_2=asin\left(\frac{2\sqrt{{\Delta \textsc{x}_{CM}}^2+{\Delta \textsc{y}_{CM}}^2
 \end{gather}
 Moving the tail joints $q_1$ and $q_2$ to the values calculated with \eqref{eq:CMsolution1} and \eqref{eq:CMsolution2} respectively, balances the quadruped. On the other hand, repositioning the tail changes the overall inertia tensor. This change in the overall inertia can be calculated using the Parallel axis theorem and basic rotation matrices. We start by writing the tail inertia tensor, which, due to the approximation that the tail is infitesimal thin, can be simplified. Written in $L_T$ frame, the tail moment of inertia is:
 \begin{equation}\label{eq:JT_LT}
-\textbf{J}_T=\textbf{J}_3=\frac{{q_3}^2 m_3}{12}\left(
+\textbf{J}_T=\textbf{J}_3=\frac{{q_3}^2 m_T}{12}\left(
 \begin{array}{ccc}
  1 & 0 & 0 \\
  0 & 1 & 0 \\
@@ -190,7 +190,7 @@ However, in order to write \eqref{eq:JT_LT} in the body coordinate system $L_B$ 
 \normalsize
 \end{aligned}
 \end{equation}
-with $\textbf{R}_0^3$ as a rotation part of transformation matrix \eqref{eq:T03}. Finally, the total moment of inertia is then a sum of the body moment of inertia $\textbf{J}_B$ and the tail moment of inertia $\textbf{J}_T^*$, both written in the body coordinate system.
+with $\textbf{R}_0^3$ as a rotation submatrix in \eqref{eq:T03}. Finally, the total moment of inertia is then a sum of the body moment of inertia $\textbf{J}_B$ and the tail moment of inertia $\textbf{J}_T^*$, both written in the body coordinate system.
 \begin{equation*}
 \textbf{J}_{tot}=\textbf{J}_B+\textbf{J}_T^*
 \end{equation*}
