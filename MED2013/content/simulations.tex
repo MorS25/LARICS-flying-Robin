@@ -1,6 +1,6 @@
 \section{Simulations}\label{sec:simulation}
 
-The ODE (open dynamics engine) library \cite{ode:2008} is used to test the iterative mass displacement compensation algorithm presented in the previous section. The initial position of the hopping quadruped robot is shown in Fig \ref{fig:ODESimulations}a. Each leg is composed of two spring-damper joints, the first one being passive and connects the red and green cylinder together; and the second, active one, connects the green cylinder with the robot body. The body consists of 4 joined masses indexed as 1 (white), 2 (red), 3 (green) and 4 (blue). All the parameters of the  robot simulation are shown in \ref{tab:RobotDimensions}.
+The ODE (Open Dynamics Engine) library \cite{ode:2008} is used to test the iterative mass displacement compensation algorithm presented in the previous section. The initial position of the hopping quadruped robot is shown in Fig \ref{fig:ODESimulations}a. Each leg is composed of two spring-damper joints, the first one being passive and connects the red and green cylinder together; and the second, active one, connects the green cylinder with the robot body. The body consists of 4 joined masses indexed as 1 (white), 2 (red), 3 (green) and 4 (blue). All the parameters of the  robot simulation are shown in \ref{tab:RobotDimensions}.
 
 \begin{table}
 \centering
@@ -30,7 +30,7 @@ The ODE (open dynamics engine) library \cite{ode:2008} is used to test the itera
 
 
 
-The active springs iteratively generates forces (Td=1s) which accelerate the body and produce rotational vector which is recorded during the acceleration phase. The applied spring force is minimal, but sufficient enough to produce measurable angular speed and to keep the time needed to calm the body oscillations down to a minimum. The acceleration phase lasts for about 200ms after which the body calms in the next 800ms. The initial tail angles are $q_1=0$ and $q_2=0$ as illustrated in Fig. \ref{fig:ODESimulations}a.
+The active springs generates forces periodically with the period interval $Td=1s$ which accelerate the body and produce rotational vector which is recorded during the acceleration phase. The applied spring force is minimal, but sufficient enough to produce measurable angular speed and to keep the time needed to calm the body oscillations down to a minimum. The acceleration phase lasts for about 200ms after which the body calms in the next 800ms. The initial tail angles are $q_1=0$ and $q_2=0$ as illustrated in Fig. \ref{fig:ODESimulations}a.
 
 \begin{table}
 	\centering
