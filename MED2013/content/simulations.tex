@@ -30,7 +30,7 @@ The ODE (Open Dynamics Engine) library \cite{ode:2008} is used to test the itera
 
 
 
-The active springs generate forces periodically with the period interval $Td=1s$ which accelerate the body and produce rotational vector which is recorded during the acceleration phase. The applied spring force is minimal, but sufficient enough to produce measurable angular speed and to keep the time needed to calm the body oscillations down to a minimum. The acceleration phase lasts for about 200ms after which the body calms in the next 800ms. The initial tail angles are $q_1=0$ and $q_2=0$ as illustrated in Fig. \ref{fig:ODESimulations}a.
+Active springs generate forces periodically with the period interval $Td=1s$ which accelerate the body and produce rotational vector which is recorded during the acceleration phase. The applied spring force is minimal, but sufficient enough to produce measurable angular speed and to keep the time needed to calm the body oscillations down to a minimum. The acceleration phase lasts for about 200ms after which the body calms in the next 800ms. The initial tail angles are $q_1=0$ and $q_2=0$ as illustrated in Fig. \ref{fig:ODESimulations}a.
 
 \begin{table}[!t]
 	\centering
@@ -58,7 +58,7 @@ $Test$ &  $Mass[kg]$ & $q$  & $\left \| \vec{\boldsymbol{\omega}} \right \|$ & $
 
 A series of four experiments has been conducted by varying the initial mass distribution of the robot, as shown in Table \ref{tab:Simulations}. The first column represents body mass redistribution vector, while the second and the third are the final results of tail angles and angular velocity values, respectively. The simulation results are presented in Fig. \ref{fig:ODE graph}. 
 
-Test 1: For negligibly small masses of white and red cuboids, the algorithm consequently tilted tail in the direction $q1=90^{\circ}$. The tail reaches the desired position in 7-10 seconds and the final inclination is $q2=32.86^{\circ}$(Fig. \ref{fig:ODESimulations}b). The angular velocity value $\left \| \vec{\boldsymbol{\omega}} \right \|$ falls from $0.14$ to final $0.0025$.
+Test 1: For negligibly small masses of white and red cuboids, the algorithm consequently tilts the tail in the direction $q1=90^{\circ}$. The tail reaches the desired position in 7-10 seconds and the final inclination is $q2=32.86^{\circ}$(Fig. \ref{fig:ODESimulations}b). The angular velocity value $\left \| \vec{\boldsymbol{\omega}} \right \|$ falls from $0.14$ to final $0.0025$.
 
 Test 2: When the green and blue cuboid masses are negligible, the algorithm tilts the tail in the direction $q1=-90^{\circ}$. The final tail inclination is $q2=32.20^{\circ}$(Fig. \ref{fig:ODESimulations}c). The angular velocity value $\left \| \vec{\boldsymbol{\omega}} \right \|$ goes from $0.14$ to final $0.0038$. 
 

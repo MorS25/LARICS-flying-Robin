@@ -3,7 +3,7 @@ In reality, the distribution of the mass within the body is not known, and there
 \begin{figure}[!t]
 	\centering
 	\includegraphics[width=85mm]{./pictures/RobinRepicCM.pdf}
-	\caption{Center of mass displacement}
+	\caption{Center of mass displacement vector absolute value}
 	\label{fig:CM3Dfunction}
 \end{figure}
 
@@ -17,7 +17,7 @@ In reality, the distribution of the mass within the body is not known, and there
 \end{bmatrix}^T\bar{T}\delta(s)
 \end{equation}
 
-Calculating the absolute value of vector (\ref{eq:RotSpeedAprox}) it is easy to show that the size of the rotation speed vector is proportional to the displacement of center of mass \eqref{eq:WpropCM}. In other words, centering the robot and minimizing the displacement of the center of mass eliminates the generation of unwanted rotations. 
+Calculating the absolute value of vector (\ref{eq:RotSpeedAprox}) it is easy to show that the size of the rotation speed vector is proportional to the displacement of center of mass \eqref{eq:WpropCM}, which is a quadratic function, shown in Fig. \ref{fig:CM3Dfunction}. In other words, centering the robot and minimizing the displacement of the center of mass eliminates the generation of unwanted rotations. 
 
 \begin{equation}\label{eq:WpropCM}
 \left \| \vec{\boldsymbol{\omega}} \right \|\sim \sqrt{{\Delta \textsc{x}_{CM}}^2+{\Delta \textsc{y}_{CM}}^2}
