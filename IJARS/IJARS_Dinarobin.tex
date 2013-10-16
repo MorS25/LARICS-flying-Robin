@@ -1,0 +1,143 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%%  LaTeX template for InTech Journal article
+%%%  Please don't change next few lines
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{intech-journal}
+%\setcounter{page}{}
+%\journaltitle{}
+%\volume{}
+%\pubyear{}
+%\doi{}
+%\articlenumber{}
+%\articletype{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% 
+%%%  List custom packages below, if needed. 
+%%%  Note that amsfonts,amstext,amssymb,amsmath,amsthm,amscd
+%%%  bm,paralist,color,graphicx,array and subfigure packages
+%%%  are all part of intech-journal.cls
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\usepackage{}
+%\usepackage{cite}
+%\usepackage[pdftex]{graphicx}
+\graphicspath{{../pdf/}{../jpeg/}}
+\DeclareGraphicsExtensions{.pdf,.jpeg,.png,.eps}
+\usepackage{epstopdf}
+%\usepackage[cmex10]{amsmath}
+%\usepackage{subfig}
+%\usepackage{dblfloatfix}
+%\usepackage{color}
+%\usepackage{amsmath,multicol}
+%\usepackage{float}
+%\floatstyle{plaintop}
+%\restylefloat{table}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%%  %%Journal article basic info.
+%%%  %%List all authors first and then their affiliations. 
+%%%  %%Link author and affiliations with numbers in optional arguments.
+%%%  %%For corresponding author use the form given below.
+%%%  
+%%%  IMPORTANT NOTICE (as of 02.05.2013):
+%%%  Due to the double blind peer review process, 
+%%%  make sure to omit the author information from the manuscript. 
+%%%  You will be asked to enter these information separately during author
+%%%  registration in InTech MTS system.
+%%%  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\articletitle{} % To break lines in long titles use \\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%%  Main document.
+%%%
+%%%  To span floating objects (wide images, tables, etc.)
+%%%  over twocolumn layout, use figure* 
+%%%  or table* environments.
+%%%
+%%%  Examples:
+%%%  \begin{figure*}	 \begin{table*}		
+%%%   ...				  ...				
+%%%  \end{figure*}		 \end{table*}		
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+
+\articleabstract{}
+\keywords{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abstract
+\input{content/abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introduction
+\input{content/introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dynarobin,Single leg model 
+%\input{content/SingleLeg}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Mathematical model
+\input{content/tail}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Mathematical model
+\input{content/algorithm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Simulations
+\input{content/simulations}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Simulations
+\input{content/conclusion}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\addtolength{\textheight}{-4cm}   % This command serves to balance the column lengths
+                                  % on the last page of the document manually. It shortens
+                                  % the textheight of the last page by a suitable amount.
+                                  % This command does not take effect until the next page
+                                  % so it should come on the page before the last. Make
+                                  % sure that you do not shorten the textheight too much.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\bibliographystyle{bibliography/IEEEtran}
+\bibliography{bibliography/IEEEabrv,bibliography/bibliography}
+
+
+%\begin{thebibliography}{500} % Include .bib (.bbl) references here
+
+%\end{thebibliography}
+
+\end{document}
